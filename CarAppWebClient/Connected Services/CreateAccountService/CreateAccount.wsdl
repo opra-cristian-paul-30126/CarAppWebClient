@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="createUserAcount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nume" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="prenume" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parola" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="adresa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="telefon" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userImage" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="createUserAcountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="createUserAcountResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="createUserAcountSoapIn">
+    <wsdl:part name="parameters" element="tns:createUserAcount" />
+  </wsdl:message>
+  <wsdl:message name="createUserAcountSoapOut">
+    <wsdl:part name="parameters" element="tns:createUserAcountResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CreateAccountSoap">
+    <wsdl:operation name="createUserAcount">
+      <wsdl:input message="tns:createUserAcountSoapIn" />
+      <wsdl:output message="tns:createUserAcountSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CreateAccountSoap" type="tns:CreateAccountSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="createUserAcount">
+      <soap:operation soapAction="http://tempuri.org/createUserAcount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CreateAccountSoap12" type="tns:CreateAccountSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="createUserAcount">
+      <soap12:operation soapAction="http://tempuri.org/createUserAcount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CreateAccount">
+    <wsdl:port name="CreateAccountSoap" binding="tns:CreateAccountSoap">
+      <soap:address location="https://localhost:44385/CreateAccount.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CreateAccountSoap12" binding="tns:CreateAccountSoap12">
+      <soap12:address location="https://localhost:44385/CreateAccount.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
