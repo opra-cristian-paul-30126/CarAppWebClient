@@ -21,6 +21,20 @@ namespace CarAppWebClient.CreateAccountService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/createUserAcount", ReplyAction="*")]
         System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createUserAcountResponse> createUserAcountAsync(CarAppWebClient.CreateAccountService.createUserAcountRequest request);
+        
+        // CODEGEN: Generating message contract since element name nume from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/createAdminAcount", ReplyAction="*")]
+        CarAppWebClient.CreateAccountService.createAdminAcountResponse createAdminAcount(CarAppWebClient.CreateAccountService.createAdminAcountRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/createAdminAcount", ReplyAction="*")]
+        System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createAdminAcountResponse> createAdminAcountAsync(CarAppWebClient.CreateAccountService.createAdminAcountRequest request);
+        
+        // CODEGEN: Generating message contract since element name pass from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/checkPass", ReplyAction="*")]
+        CarAppWebClient.CreateAccountService.checkPassResponse checkPass(CarAppWebClient.CreateAccountService.checkPassRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/checkPass", ReplyAction="*")]
+        System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.checkPassResponse> checkPassAsync(CarAppWebClient.CreateAccountService.checkPassRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -115,6 +129,162 @@ namespace CarAppWebClient.CreateAccountService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class createAdminAcountRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="createAdminAcount", Namespace="http://tempuri.org/", Order=0)]
+        public CarAppWebClient.CreateAccountService.createAdminAcountRequestBody Body;
+        
+        public createAdminAcountRequest() {
+        }
+        
+        public createAdminAcountRequest(CarAppWebClient.CreateAccountService.createAdminAcountRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class createAdminAcountRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string nume;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string prenume;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string email;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string parola;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string contact;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public byte[] userImage;
+        
+        public createAdminAcountRequestBody() {
+        }
+        
+        public createAdminAcountRequestBody(string nume, string prenume, string email, string parola, string contact, byte[] userImage) {
+            this.nume = nume;
+            this.prenume = prenume;
+            this.email = email;
+            this.parola = parola;
+            this.contact = contact;
+            this.userImage = userImage;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class createAdminAcountResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="createAdminAcountResponse", Namespace="http://tempuri.org/", Order=0)]
+        public CarAppWebClient.CreateAccountService.createAdminAcountResponseBody Body;
+        
+        public createAdminAcountResponse() {
+        }
+        
+        public createAdminAcountResponse(CarAppWebClient.CreateAccountService.createAdminAcountResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class createAdminAcountResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool createAdminAcountResult;
+        
+        public createAdminAcountResponseBody() {
+        }
+        
+        public createAdminAcountResponseBody(bool createAdminAcountResult) {
+            this.createAdminAcountResult = createAdminAcountResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class checkPassRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="checkPass", Namespace="http://tempuri.org/", Order=0)]
+        public CarAppWebClient.CreateAccountService.checkPassRequestBody Body;
+        
+        public checkPassRequest() {
+        }
+        
+        public checkPassRequest(CarAppWebClient.CreateAccountService.checkPassRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class checkPassRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string pass;
+        
+        public checkPassRequestBody() {
+        }
+        
+        public checkPassRequestBody(string pass) {
+            this.pass = pass;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class checkPassResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="checkPassResponse", Namespace="http://tempuri.org/", Order=0)]
+        public CarAppWebClient.CreateAccountService.checkPassResponseBody Body;
+        
+        public checkPassResponse() {
+        }
+        
+        public checkPassResponse(CarAppWebClient.CreateAccountService.checkPassResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class checkPassResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool checkPassResult;
+        
+        public checkPassResponseBody() {
+        }
+        
+        public checkPassResponseBody(bool checkPassResult) {
+            this.checkPassResult = checkPassResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface CreateAccountSoapChannel : CarAppWebClient.CreateAccountService.CreateAccountSoap, System.ServiceModel.IClientChannel {
     }
@@ -177,6 +347,66 @@ namespace CarAppWebClient.CreateAccountService {
             inValue.Body.telefon = telefon;
             inValue.Body.userImage = userImage;
             return ((CarAppWebClient.CreateAccountService.CreateAccountSoap)(this)).createUserAcountAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CarAppWebClient.CreateAccountService.createAdminAcountResponse CarAppWebClient.CreateAccountService.CreateAccountSoap.createAdminAcount(CarAppWebClient.CreateAccountService.createAdminAcountRequest request) {
+            return base.Channel.createAdminAcount(request);
+        }
+        
+        public bool createAdminAcount(string nume, string prenume, string email, string parola, string contact, byte[] userImage) {
+            CarAppWebClient.CreateAccountService.createAdminAcountRequest inValue = new CarAppWebClient.CreateAccountService.createAdminAcountRequest();
+            inValue.Body = new CarAppWebClient.CreateAccountService.createAdminAcountRequestBody();
+            inValue.Body.nume = nume;
+            inValue.Body.prenume = prenume;
+            inValue.Body.email = email;
+            inValue.Body.parola = parola;
+            inValue.Body.contact = contact;
+            inValue.Body.userImage = userImage;
+            CarAppWebClient.CreateAccountService.createAdminAcountResponse retVal = ((CarAppWebClient.CreateAccountService.CreateAccountSoap)(this)).createAdminAcount(inValue);
+            return retVal.Body.createAdminAcountResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createAdminAcountResponse> CarAppWebClient.CreateAccountService.CreateAccountSoap.createAdminAcountAsync(CarAppWebClient.CreateAccountService.createAdminAcountRequest request) {
+            return base.Channel.createAdminAcountAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createAdminAcountResponse> createAdminAcountAsync(string nume, string prenume, string email, string parola, string contact, byte[] userImage) {
+            CarAppWebClient.CreateAccountService.createAdminAcountRequest inValue = new CarAppWebClient.CreateAccountService.createAdminAcountRequest();
+            inValue.Body = new CarAppWebClient.CreateAccountService.createAdminAcountRequestBody();
+            inValue.Body.nume = nume;
+            inValue.Body.prenume = prenume;
+            inValue.Body.email = email;
+            inValue.Body.parola = parola;
+            inValue.Body.contact = contact;
+            inValue.Body.userImage = userImage;
+            return ((CarAppWebClient.CreateAccountService.CreateAccountSoap)(this)).createAdminAcountAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        CarAppWebClient.CreateAccountService.checkPassResponse CarAppWebClient.CreateAccountService.CreateAccountSoap.checkPass(CarAppWebClient.CreateAccountService.checkPassRequest request) {
+            return base.Channel.checkPass(request);
+        }
+        
+        public bool checkPass(string pass) {
+            CarAppWebClient.CreateAccountService.checkPassRequest inValue = new CarAppWebClient.CreateAccountService.checkPassRequest();
+            inValue.Body = new CarAppWebClient.CreateAccountService.checkPassRequestBody();
+            inValue.Body.pass = pass;
+            CarAppWebClient.CreateAccountService.checkPassResponse retVal = ((CarAppWebClient.CreateAccountService.CreateAccountSoap)(this)).checkPass(inValue);
+            return retVal.Body.checkPassResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.checkPassResponse> CarAppWebClient.CreateAccountService.CreateAccountSoap.checkPassAsync(CarAppWebClient.CreateAccountService.checkPassRequest request) {
+            return base.Channel.checkPassAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.checkPassResponse> checkPassAsync(string pass) {
+            CarAppWebClient.CreateAccountService.checkPassRequest inValue = new CarAppWebClient.CreateAccountService.checkPassRequest();
+            inValue.Body = new CarAppWebClient.CreateAccountService.checkPassRequestBody();
+            inValue.Body.pass = pass;
+            return ((CarAppWebClient.CreateAccountService.CreateAccountSoap)(this)).checkPassAsync(inValue);
         }
     }
 }

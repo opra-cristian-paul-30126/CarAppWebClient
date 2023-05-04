@@ -22,6 +22,39 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="createAdminAcount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nume" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="prenume" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parola" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contact" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userImage" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="createAdminAcountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="createAdminAcountResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkPass">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkPassResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="checkPassResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="createUserAcountSoapIn">
@@ -30,10 +63,30 @@
   <wsdl:message name="createUserAcountSoapOut">
     <wsdl:part name="parameters" element="tns:createUserAcountResponse" />
   </wsdl:message>
+  <wsdl:message name="createAdminAcountSoapIn">
+    <wsdl:part name="parameters" element="tns:createAdminAcount" />
+  </wsdl:message>
+  <wsdl:message name="createAdminAcountSoapOut">
+    <wsdl:part name="parameters" element="tns:createAdminAcountResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkPassSoapIn">
+    <wsdl:part name="parameters" element="tns:checkPass" />
+  </wsdl:message>
+  <wsdl:message name="checkPassSoapOut">
+    <wsdl:part name="parameters" element="tns:checkPassResponse" />
+  </wsdl:message>
   <wsdl:portType name="CreateAccountSoap">
     <wsdl:operation name="createUserAcount">
       <wsdl:input message="tns:createUserAcountSoapIn" />
       <wsdl:output message="tns:createUserAcountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="createAdminAcount">
+      <wsdl:input message="tns:createAdminAcountSoapIn" />
+      <wsdl:output message="tns:createAdminAcountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkPass">
+      <wsdl:input message="tns:checkPassSoapIn" />
+      <wsdl:output message="tns:checkPassSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CreateAccountSoap" type="tns:CreateAccountSoap">
@@ -47,11 +100,47 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="createAdminAcount">
+      <soap:operation soapAction="http://tempuri.org/createAdminAcount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkPass">
+      <soap:operation soapAction="http://tempuri.org/checkPass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CreateAccountSoap12" type="tns:CreateAccountSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="createUserAcount">
       <soap12:operation soapAction="http://tempuri.org/createUserAcount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createAdminAcount">
+      <soap12:operation soapAction="http://tempuri.org/createAdminAcount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkPass">
+      <soap12:operation soapAction="http://tempuri.org/checkPass" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

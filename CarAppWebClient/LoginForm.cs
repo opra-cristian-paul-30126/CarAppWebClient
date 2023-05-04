@@ -8,10 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
-//  TEST TEST TEST
-//  TEST TEST TEST
-
 namespace CarAppWebClient
 {
     public partial class LoginForm : Form
@@ -25,6 +21,7 @@ namespace CarAppWebClient
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
+            Console.WriteLine(AppDomain.CurrentDomain.GetData("masterpassword.txt").ToString());
             email = textBoxUsername.Text;
             parola = textBoxPassword.Text;
             //under construction, awaiting for LoginService

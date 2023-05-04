@@ -52,7 +52,9 @@ namespace CarAppWebClient
                 case 7:
                     labelError.Text = "Eroare: Parola nu poate fi nula!";
                     break;
-
+                case 8:
+                    labelError.Text = "Nu stii passu'? Urat";
+                    break;
                 default:
                     Console.WriteLine("Cod incorect");
                     break;

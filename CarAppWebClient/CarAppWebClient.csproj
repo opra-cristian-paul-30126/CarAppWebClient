@@ -91,6 +91,12 @@
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Connected Services\CreateAccountService\CarAppWebClient.CreateAccountService.checkPassResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CreateAccountService\CarAppWebClient.CreateAccountService.createAdminAcountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\CreateAccountService\CarAppWebClient.CreateAccountService.createUserAcountResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

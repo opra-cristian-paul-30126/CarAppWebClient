@@ -25,15 +25,16 @@ namespace CarAppWebClient
         private string parola;
         private string telefon;
         private string adresa;
+        private string pass;
         private LoginForm lf;
+
+
         public RegisterForm(LoginForm lf)
         {
             this.lf = lf;
             InitializeComponent();
-            textBoxAdresa.Enabled = true;
-            textBoxTelefon.Enabled = true;
             lf.Visible = false;
-            textBoxParola.PasswordChar = '*';
+            textBoxParola.UseSystemPasswordChar = true;
         }
 
         private void button_Cancel_Click(object sender, EventArgs e)
@@ -64,7 +65,8 @@ namespace CarAppWebClient
 
         private void button_Ok_Click(object sender, EventArgs e)
         {
-            
+            if (!checkBoxAdmin.Checked)
+            {
                 prenume = textBoxNume.Text;
                 nume = textBoxPrenume.Text;
                 email = textBoxEmail.Text;
@@ -112,27 +114,86 @@ namespace CarAppWebClient
                 }
 
                 byte[] userImage = ConvertImageToByteArray(pictureBox.Image, System.Drawing.Imaging.ImageFormat.Png);
-            
+
                 bool success = createAccountService.createUserAcount(nume, prenume, email, parola, adresa, telefon, userImage);
-                if (success) Console.WriteLine("User creat");
-                else Console.WriteLine("Nu sa putut crea userul");
-            
+                if (success) Console.WriteLine("Contul a fost inregistrat cu success!");
+                else Console.WriteLine("Eroare");
+            }
+            else if(createAccountService.checkPass(pass))
+            {
+                prenume = textBoxNume.Text;
+                nume = textBoxPrenume.Text;
+                email = textBoxEmail.Text;
+                parola = textBoxParola.Text;
+                pass = textBoxTelefon.Text;
+                adresa = textBoxAdresa.Text;
+
+                if (String.IsNullOrEmpty(prenume))
+                {
+                    //numele nu poate fi nul
+                    new ErrorForm(5);
+                    return;
+                }
+
+                if (String.IsNullOrEmpty(nume))
+                {
+                    //prenumele nu poate fi nul
+                    new ErrorForm(4);
+                    return;
+                }
+
+                if (String.IsNullOrEmpty(email))
+                {
+                    //emailul nu poate fi nul
+                    new ErrorForm(6);
+                    return;
+                }
+
+                if (String.IsNullOrEmpty(parola))
+                {
+                    //parola nu poate fi nula
+                    new ErrorForm(7);
+                    return;
+                }
+
+                if (String.IsNullOrEmpty(adresa))
+                {
+                    adresa = String.Empty;
+                }
+
+                byte[] userImage = ConvertImageToByteArray(pictureBox.Image, System.Drawing.Imaging.ImageFormat.Png);
+
+                bool success = createAccountService.createAdminAcount(nume,prenume,email,parola,adresa,userImage);
+                if (success) Console.WriteLine("Contul a fost inregistrat cu success!");
+                else Console.WriteLine("Eroare");
+            }
+            else
+            {
+                new ErrorForm(8);
+                return;
+            }
+
+
             lf.Visible = true;
             this.Close();
         }
 
         private void checkBoxAdmin_CheckedChanged(object sender, EventArgs e)
         {
-            //under construction, awaiting further instructions
             if(checkBoxAdmin.Checked)
             {
-                groupBox_Admin.Enabled = true;
+                label_Adresa.Text  = "Contact";
+                label_Telefon.Text = "Permis";
+                textBoxTelefon.Text = string.Empty;
+                textBoxTelefon.UseSystemPasswordChar = true;
             }
             else
             {
-                groupBox_Admin.Enabled = false;
+                label_Adresa.Text  = "Adresa";
+                label_Telefon.Text = "Telefon";
+                textBoxTelefon.Text = string.Empty;
+                textBoxTelefon.UseSystemPasswordChar = false;
             }
-
         }
 
         private void button_Imagine_Click(object sender, EventArgs e)
