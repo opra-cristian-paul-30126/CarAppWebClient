@@ -34,6 +34,7 @@
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.button_Login = new System.Windows.Forms.Button();
             this.linkLabel = new System.Windows.Forms.LinkLabel();
+            this.checkBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label_Username
@@ -70,7 +71,7 @@
             // 
             // button_Login
             // 
-            this.button_Login.Location = new System.Drawing.Point(114, 114);
+            this.button_Login.Location = new System.Drawing.Point(31, 114);
             this.button_Login.Name = "button_Login";
             this.button_Login.Size = new System.Drawing.Size(75, 23);
             this.button_Login.TabIndex = 4;
@@ -89,11 +90,23 @@
             this.linkLabel.Text = "Creaza un cont nou";
             this.linkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_LinkClicked);
             // 
+            // checkBox
+            // 
+            this.checkBox.AutoSize = true;
+            this.checkBox.Location = new System.Drawing.Point(143, 116);
+            this.checkBox.Name = "checkBox";
+            this.checkBox.Size = new System.Drawing.Size(67, 20);
+            this.checkBox.TabIndex = 7;
+            this.checkBox.Text = "Admin";
+            this.checkBox.UseVisualStyleBackColor = true;
+            this.checkBox.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(297, 193);
+            this.Controls.Add(this.checkBox);
             this.Controls.Add(this.linkLabel);
             this.Controls.Add(this.button_Login);
             this.Controls.Add(this.textBoxPassword);
@@ -118,6 +131,7 @@
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.Button button_Login;
         private System.Windows.Forms.LinkLabel linkLabel;
+        private System.Windows.Forms.CheckBox checkBox;
     }
 }
 
