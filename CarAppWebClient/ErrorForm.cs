@@ -55,6 +55,20 @@ namespace CarAppWebClient
                 case 8:
                     labelError.Text = "Nu stii passu'? Urat";
                     break;
+                case 9:
+                    labelError.Text = "Eroare: Parolele nu coincid!";
+                    break;
+                case 10:
+                    labelError.Text = "Eroare: Emailul exista deja in baza de date!";
+                    break;
+                case 11:
+                    labelError.Text = "Parola trebuie sa contina:\n" +
+                      "- Minim 8 caractere\n" +
+                      "- Cel putin o majuscula\n" +
+                      "- Cel putin o litera mica\n" +
+                      "- Cel putin o cifra\n" +
+                      "- Cel putin un caracter special: (!@#$%^&*()-=_+[]{}|;':\",./<>?)";
+                    break;
                 default:
                     Console.WriteLine("Cod incorect");
                     break;

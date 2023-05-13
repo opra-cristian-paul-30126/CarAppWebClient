@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -23,6 +24,7 @@ namespace CarAppWebClient
         private string prenume;
         private string email;
         private string parola;
+        private string confirmareParola;
         private string telefon;
         private string adresa;
         private string pass;
@@ -34,12 +36,13 @@ namespace CarAppWebClient
             this.lf = lf;
             InitializeComponent();
             lf.Visible = false;
-            textBoxParola.UseSystemPasswordChar = true;
+            textBoxParola.UseSystemPasswordChar = false;
+            textBoxConfirmareParola.UseSystemPasswordChar = false;
         }
 
         private void button_Cancel_Click(object sender, EventArgs e)
         {
-            lf.Visible=false;
+            lf.Visible = false;
             this.Close();
         }
 
@@ -71,6 +74,7 @@ namespace CarAppWebClient
                 nume = textBoxPrenume.Text;
                 email = textBoxEmail.Text;
                 parola = textBoxParola.Text;
+                confirmareParola = textBoxConfirmareParola.Text;
                 telefon = textBoxTelefon.Text;
                 adresa = textBoxAdresa.Text;
 
@@ -95,10 +99,31 @@ namespace CarAppWebClient
                     return;
                 }
 
+                if (!IsValidEmail(email))
+                {
+                    //emailul nu are forma corecta
+                    new ErrorForm(3);
+                    return;
+                }
+
                 if (String.IsNullOrEmpty(parola))
                 {
                     //parola nu poate fi nula
                     new ErrorForm(7);
+                    return;
+                }
+
+                if (!confirmareParola.Equals(parola))
+                {
+                    //parolele nu coincid
+                    new ErrorForm(9);
+                    return;
+                }
+
+                if(!ValidatePassword(parola))
+                {
+                    //parola nu are forma corecta
+                    new ErrorForm(11);
                     return;
                 }
 
@@ -117,9 +142,13 @@ namespace CarAppWebClient
 
                 bool success = createAccountService.createUserAcount(nume, prenume, email, parola, adresa, telefon, userImage);
                 if (success) Console.WriteLine("Contul a fost inregistrat cu success!");
-                else Console.WriteLine("Eroare");
+                else
+                {
+                    new ErrorForm(10);
+                    return;
+                }
             }
-            else if(createAccountService.checkPass(pass))
+            else if (createAccountService.checkPass(pass))
             {
                 prenume = textBoxNume.Text;
                 nume = textBoxPrenume.Text;
@@ -149,11 +178,37 @@ namespace CarAppWebClient
                     return;
                 }
 
+                if (IsValidEmail(email))
+                {
+                    //emailul nu are forma corecta
+                    new ErrorForm(3);
+                    return;
+                }
+
                 if (String.IsNullOrEmpty(parola))
                 {
                     //parola nu poate fi nula
                     new ErrorForm(7);
                     return;
+                }
+                
+                if (!confirmareParola.Equals(parola))
+                {
+                    //parolele nu coincid
+                    new ErrorForm(9);
+                    return;
+                }
+
+                if (!ValidatePassword(parola))
+                {
+                    //parola nu are forma corecta
+                    new ErrorForm(11);
+                    return;
+                }
+
+                if (String.IsNullOrEmpty(telefon))
+                {
+                    telefon = String.Empty;
                 }
 
                 if (String.IsNullOrEmpty(adresa))
@@ -163,9 +218,13 @@ namespace CarAppWebClient
 
                 byte[] userImage = ConvertImageToByteArray(pictureBox.Image, System.Drawing.Imaging.ImageFormat.Png);
 
-                bool success = createAccountService.createAdminAcount(nume,prenume,email,parola,adresa,userImage);
+                bool success = createAccountService.createAdminAcount(nume, prenume, email, parola, adresa, userImage);
                 if (success) Console.WriteLine("Contul a fost inregistrat cu success!");
-                else Console.WriteLine("Eroare");
+                else
+                {
+                    new ErrorForm(10);
+                    return;
+                }
             }
             else
             {
@@ -180,16 +239,16 @@ namespace CarAppWebClient
 
         private void checkBoxAdmin_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBoxAdmin.Checked)
+            if (checkBoxAdmin.Checked)
             {
-                label_Adresa.Text  = "Contact";
+                label_Adresa.Text = "Contact";
                 label_Telefon.Text = "Permis";
                 textBoxTelefon.Text = string.Empty;
                 textBoxTelefon.UseSystemPasswordChar = true;
             }
             else
             {
-                label_Adresa.Text  = "Adresa";
+                label_Adresa.Text = "Adresa";
                 label_Telefon.Text = "Telefon";
                 textBoxTelefon.Text = string.Empty;
                 textBoxTelefon.UseSystemPasswordChar = false;
@@ -206,6 +265,38 @@ namespace CarAppWebClient
                 pictureBox.Image = Image.FromFile(imageLocation);
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             }
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            string pattern = @"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$";
+
+            Regex regex = new Regex(pattern);
+
+            Match match = regex.Match(email);
+
+            return match.Success;
+
+        }
+
+        private bool ValidatePassword(string password)
+        {
+            int minLength = 8;
+            string specialCharacters = "!@#$%^&*()-=_+[]{}|;':,./<>?";
+
+            bool hasValidCharachters = password.Any(char.IsLetterOrDigit);
+            bool hasMinimumLength = password.Length >= minLength;
+            bool hasUppercase = password.Any(char.IsUpper);
+            bool hasLowercase = password.Any(char.IsLower);
+            bool hasDigits = password.Any(char.IsDigit);
+            bool hasSpecialCharachters = password.Any(specialCharacters.Contains);
+
+            return hasValidCharachters &&
+                   hasMinimumLength &&
+                   hasUppercase &&
+                   hasLowercase &&
+                   hasDigits &&
+                   hasSpecialCharachters;
         }
     }
 }

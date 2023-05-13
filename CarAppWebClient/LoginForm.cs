@@ -7,8 +7,10 @@ using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace CarAppWebClient
 {
@@ -21,10 +23,16 @@ namespace CarAppWebClient
         Admin admin;
         CarAppWebClient.LoginService.LoginServiceSoapClient loginService
         = new CarAppWebClient.LoginService.LoginServiceSoapClient();
+        string eyeOpen = Path.Combine(Application.StartupPath,  "eyeOpen.png");
+        string eyeClose = Path.Combine(Application.StartupPath, "eyeClose.png");
 
         public LoginForm()
         {
             InitializeComponent();
+            textBoxPassword.UseSystemPasswordChar = true;
+            passBox.BackgroundImage = Image.FromFile(eyeClose);
+            
+
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -92,15 +100,14 @@ namespace CarAppWebClient
 
         private bool IsValidEmail(string email)
         {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
+            string pattern = @"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$";
+
+            Regex regex = new Regex(pattern);
+
+            Match match = regex.Match(email);
+
+            return match.Success;
+
         }
 
         private void checkBox_CheckedChanged(object sender, EventArgs e)
@@ -112,6 +119,20 @@ namespace CarAppWebClient
             else
             {
                 isAdmin = false;
+            }
+        }
+
+        private void passBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (passBox.Checked)
+            {
+                passBox.BackgroundImage = Image.FromFile(eyeOpen);
+                textBoxPassword.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                passBox.BackgroundImage = Image.FromFile(eyeClose);
+                textBoxPassword.UseSystemPasswordChar = true;
             }
         }
     }

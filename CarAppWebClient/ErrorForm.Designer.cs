@@ -34,9 +34,10 @@
             // 
             // buttonOk
             // 
-            this.buttonOk.Location = new System.Drawing.Point(77, 118);
+            this.buttonOk.Location = new System.Drawing.Point(99, 134);
+            this.buttonOk.Margin = new System.Windows.Forms.Padding(2);
             this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(75, 23);
+            this.buttonOk.Size = new System.Drawing.Size(69, 19);
             this.buttonOk.TabIndex = 0;
             this.buttonOk.Text = "Ok";
             this.buttonOk.UseVisualStyleBackColor = true;
@@ -45,19 +46,21 @@
             // labelError
             // 
             this.labelError.AutoSize = true;
-            this.labelError.Location = new System.Drawing.Point(47, 45);
+            this.labelError.Location = new System.Drawing.Point(37, 41);
+            this.labelError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelError.Name = "labelError";
-            this.labelError.Size = new System.Drawing.Size(92, 16);
+            this.labelError.Size = new System.Drawing.Size(72, 13);
             this.labelError.TabIndex = 1;
             this.labelError.Text = "Error Example";
             // 
             // ErrorForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(232, 153);
+            this.ClientSize = new System.Drawing.Size(266, 164);
             this.Controls.Add(this.labelError);
             this.Controls.Add(this.buttonOk);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ErrorForm";
             this.Text = "ErrorForm";
             this.ResumeLayout(false);
