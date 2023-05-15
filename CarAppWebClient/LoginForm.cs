@@ -30,13 +30,19 @@ namespace CarAppWebClient
         {
             InitializeComponent();
             textBoxPassword.UseSystemPasswordChar = true;
-            passBox.BackgroundImage = Image.FromFile(eyeClose);
+            //passBox.BackgroundImage = Image.FromFile(eyeClose);
             
 
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
+            BrowserForm bf = new BrowserForm(new User());
+
+            bf.ShowDialog();
+
+
+            /*
             email = textBoxUsername.Text;
             parola = textBoxPassword.Text;
 
@@ -67,7 +73,11 @@ namespace CarAppWebClient
                         {
                             admin = loginService.ReturnAdmin(email);
                             BrowserForm bf = new BrowserForm(admin);
+                            this.Tag = bf;
+                            bf.Tag=this;
                             bf.Show();
+
+
                         }
                     }
                     else
@@ -89,7 +99,7 @@ namespace CarAppWebClient
                 //eroare invalid email
                 new ErrorForm(3);
             }
-
+            */
         }
 
         private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -126,12 +136,12 @@ namespace CarAppWebClient
         {
             if (passBox.Checked)
             {
-                passBox.BackgroundImage = Image.FromFile(eyeOpen);
+                //passBox.BackgroundImage = Image.FromFile(eyeOpen);
                 textBoxPassword.UseSystemPasswordChar = false;
             }
             else
             {
-                passBox.BackgroundImage = Image.FromFile(eyeClose);
+                //passBox.BackgroundImage = Image.FromFile(eyeClose);
                 textBoxPassword.UseSystemPasswordChar = true;
             }
         }
