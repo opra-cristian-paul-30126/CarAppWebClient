@@ -21,10 +21,10 @@
             <s:element minOccurs="0" maxOccurs="1" name="culoare" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="locatie" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="descriere" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="imgannounce" type="s:base64Binary" />
-            <s:element minOccurs="0" maxOccurs="1" name="img1" type="s:base64Binary" />
-            <s:element minOccurs="0" maxOccurs="1" name="img2" type="s:base64Binary" />
-            <s:element minOccurs="0" maxOccurs="1" name="img3" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="imageAnnounce" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="image1" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="image2" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="image3" type="s:base64Binary" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -34,7 +34,7 @@
       <s:element name="updateAnnouncee">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CodAnunt" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="caroserie" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="marca" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="model" type="s:string" />

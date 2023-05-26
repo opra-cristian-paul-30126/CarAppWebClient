@@ -102,16 +102,16 @@ namespace CarAppWebClient.CreateAnnouncementService {
         public string descriere;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=16)]
-        public byte[] imgannounce;
+        public byte[] imageAnnounce;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=17)]
-        public byte[] img1;
+        public byte[] image1;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=18)]
-        public byte[] img2;
+        public byte[] image2;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=19)]
-        public byte[] img3;
+        public byte[] image3;
         
         public addAnnounceRequestBody() {
         }
@@ -133,10 +133,10 @@ namespace CarAppWebClient.CreateAnnouncementService {
                     string culoare, 
                     string locatie, 
                     string descriere, 
-                    byte[] imgannounce, 
-                    byte[] img1, 
-                    byte[] img2, 
-                    byte[] img3) {
+                    byte[] imageAnnounce, 
+                    byte[] image1, 
+                    byte[] image2, 
+                    byte[] image3) {
             this.iduser = iduser;
             this.caroserie = caroserie;
             this.marca = marca;
@@ -153,10 +153,10 @@ namespace CarAppWebClient.CreateAnnouncementService {
             this.culoare = culoare;
             this.locatie = locatie;
             this.descriere = descriere;
-            this.imgannounce = imgannounce;
-            this.img1 = img1;
-            this.img2 = img2;
-            this.img3 = img3;
+            this.imageAnnounce = imageAnnounce;
+            this.image1 = image1;
+            this.image2 = image2;
+            this.image3 = image3;
         }
     }
     
@@ -211,7 +211,7 @@ namespace CarAppWebClient.CreateAnnouncementService {
     public partial class updateAnnounceeRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public int id;
+        public int CodAnunt;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
         public string caroserie;
@@ -274,7 +274,7 @@ namespace CarAppWebClient.CreateAnnouncementService {
         }
         
         public updateAnnounceeRequestBody(
-                    int id, 
+                    int CodAnunt, 
                     string caroserie, 
                     string marca, 
                     string model, 
@@ -294,7 +294,7 @@ namespace CarAppWebClient.CreateAnnouncementService {
                     byte[] img1, 
                     byte[] img2, 
                     byte[] img3) {
-            this.id = id;
+            this.CodAnunt = CodAnunt;
             this.caroserie = caroserie;
             this.marca = marca;
             this.model = model;
@@ -393,10 +393,10 @@ namespace CarAppWebClient.CreateAnnouncementService {
                     string culoare, 
                     string locatie, 
                     string descriere, 
-                    byte[] imgannounce, 
-                    byte[] img1, 
-                    byte[] img2, 
-                    byte[] img3) {
+                    byte[] imageAnnounce, 
+                    byte[] image1, 
+                    byte[] image2, 
+                    byte[] image3) {
             CarAppWebClient.CreateAnnouncementService.addAnnounceRequest inValue = new CarAppWebClient.CreateAnnouncementService.addAnnounceRequest();
             inValue.Body = new CarAppWebClient.CreateAnnouncementService.addAnnounceRequestBody();
             inValue.Body.iduser = iduser;
@@ -415,10 +415,10 @@ namespace CarAppWebClient.CreateAnnouncementService {
             inValue.Body.culoare = culoare;
             inValue.Body.locatie = locatie;
             inValue.Body.descriere = descriere;
-            inValue.Body.imgannounce = imgannounce;
-            inValue.Body.img1 = img1;
-            inValue.Body.img2 = img2;
-            inValue.Body.img3 = img3;
+            inValue.Body.imageAnnounce = imageAnnounce;
+            inValue.Body.image1 = image1;
+            inValue.Body.image2 = image2;
+            inValue.Body.image3 = image3;
             CarAppWebClient.CreateAnnouncementService.addAnnounceResponse retVal = ((CarAppWebClient.CreateAnnouncementService.CreateAnnouncementSoap)(this)).addAnnounce(inValue);
         }
         
@@ -444,10 +444,10 @@ namespace CarAppWebClient.CreateAnnouncementService {
                     string culoare, 
                     string locatie, 
                     string descriere, 
-                    byte[] imgannounce, 
-                    byte[] img1, 
-                    byte[] img2, 
-                    byte[] img3) {
+                    byte[] imageAnnounce, 
+                    byte[] image1, 
+                    byte[] image2, 
+                    byte[] image3) {
             CarAppWebClient.CreateAnnouncementService.addAnnounceRequest inValue = new CarAppWebClient.CreateAnnouncementService.addAnnounceRequest();
             inValue.Body = new CarAppWebClient.CreateAnnouncementService.addAnnounceRequestBody();
             inValue.Body.iduser = iduser;
@@ -466,10 +466,10 @@ namespace CarAppWebClient.CreateAnnouncementService {
             inValue.Body.culoare = culoare;
             inValue.Body.locatie = locatie;
             inValue.Body.descriere = descriere;
-            inValue.Body.imgannounce = imgannounce;
-            inValue.Body.img1 = img1;
-            inValue.Body.img2 = img2;
-            inValue.Body.img3 = img3;
+            inValue.Body.imageAnnounce = imageAnnounce;
+            inValue.Body.image1 = image1;
+            inValue.Body.image2 = image2;
+            inValue.Body.image3 = image3;
             return ((CarAppWebClient.CreateAnnouncementService.CreateAnnouncementSoap)(this)).addAnnounceAsync(inValue);
         }
         
@@ -479,7 +479,7 @@ namespace CarAppWebClient.CreateAnnouncementService {
         }
         
         public void updateAnnouncee(
-                    int id, 
+                    int CodAnunt, 
                     string caroserie, 
                     string marca, 
                     string model, 
@@ -501,7 +501,7 @@ namespace CarAppWebClient.CreateAnnouncementService {
                     byte[] img3) {
             CarAppWebClient.CreateAnnouncementService.updateAnnounceeRequest inValue = new CarAppWebClient.CreateAnnouncementService.updateAnnounceeRequest();
             inValue.Body = new CarAppWebClient.CreateAnnouncementService.updateAnnounceeRequestBody();
-            inValue.Body.id = id;
+            inValue.Body.CodAnunt = CodAnunt;
             inValue.Body.caroserie = caroserie;
             inValue.Body.marca = marca;
             inValue.Body.model = model;
@@ -530,7 +530,7 @@ namespace CarAppWebClient.CreateAnnouncementService {
         }
         
         public System.Threading.Tasks.Task<CarAppWebClient.CreateAnnouncementService.updateAnnounceeResponse> updateAnnounceeAsync(
-                    int id, 
+                    int CodAnunt, 
                     string caroserie, 
                     string marca, 
                     string model, 
@@ -552,7 +552,7 @@ namespace CarAppWebClient.CreateAnnouncementService {
                     byte[] img3) {
             CarAppWebClient.CreateAnnouncementService.updateAnnounceeRequest inValue = new CarAppWebClient.CreateAnnouncementService.updateAnnounceeRequest();
             inValue.Body = new CarAppWebClient.CreateAnnouncementService.updateAnnounceeRequestBody();
-            inValue.Body.id = id;
+            inValue.Body.CodAnunt = CodAnunt;
             inValue.Body.caroserie = caroserie;
             inValue.Body.marca = marca;
             inValue.Body.model = model;

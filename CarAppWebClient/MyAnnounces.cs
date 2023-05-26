@@ -1,16 +1,9 @@
 ﻿using CarAppWebClient.LoginService;
+using CarAppWebClient.BrowseService;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.Common;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CarAppWebService.Model;
 namespace CarAppWebClient
 {
     public partial class MyAnnounces : Form
@@ -19,6 +12,7 @@ namespace CarAppWebClient
         DataSet dsAnnounces;
         Announce announce;
         MyAnnouncesService.MyAnnouncesServicesSoapClient Service = new MyAnnouncesService.MyAnnouncesServicesSoapClient();
+        BrowseService.BrowseServiceSoapClient Service2 = new BrowseService.BrowseServiceSoapClient();
         public MyAnnounces(User user)
         {
             InitializeComponent();
@@ -50,7 +44,8 @@ namespace CarAppWebClient
                     pictureBox.Image = ConvertByteArrayToImage(lastColumnValue);
             }
             int id = int.Parse(selectedRow.Cells[0].Value.ToString());
-            announce = Service.getAnnounceData(id);
+            Console.WriteLine(id);
+            announce = Service2.getAnounceData(id);
         }
 
         public System.Drawing.Image ConvertByteArrayToImage(byte[] byteArray)
@@ -73,7 +68,7 @@ namespace CarAppWebClient
 
         private void buttonModift_Click(object sender, EventArgs e)
         {
-            AnnounceAddModifyForm admf = new AnnounceAddModifyForm(user,announce);
+            AnnounceAddModifyForm admf = new AnnounceAddModifyForm(announce,user);
             admf.ShowDialog();
         }
     }

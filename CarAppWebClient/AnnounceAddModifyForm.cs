@@ -1,5 +1,6 @@
 ﻿using System;
 using CarAppWebClient.LoginService;
+using CarAppWebClient.BrowseService;
 using System.Windows.Forms;
 using System.IO;
 
@@ -11,11 +12,11 @@ namespace CarAppWebClient
         CreateAnnouncementService.CreateAnnouncementSoapClient service
         = new CreateAnnouncementService.CreateAnnouncementSoapClient();
         User user;
-        //Announce announce;
-        byte[] imageAnnounce;
-        byte[] image1;
-        byte[] image2;
-        byte[] image3;
+        private Announce announce;
+        private byte[] imageAnnounce;
+        private byte[] image1;
+        private byte[] image2;
+        private byte[] image3;
 
 
         public AnnounceAddModifyForm(User user)
@@ -25,7 +26,7 @@ namespace CarAppWebClient
             init();
         }
 
-        /*
+        
         public AnnounceAddModifyForm(Announce announce, User user)
         {
             this.user = user;
@@ -33,7 +34,7 @@ namespace CarAppWebClient
             InitializeComponent();
             initAlt();
         }
-        */
+        
 
         private void init()
         {
@@ -100,32 +101,31 @@ namespace CarAppWebClient
             textBoxVarianta.Text = "varianta";
             richTextBoxDescriere.Text = "Description";
         }
-        /*
+        
         private void initAlt()
         {
             textBoxMarca.Text = announce.marca;
             textBoxModel.Text = announce.model;
             textBoxVarianta.Text = announce.varianta;
 
-            textBoxPret.Text = announce.pretLicitatie.ToString();
             textBoxAn.Text = announce.an.ToString();
             textBoxKm.Text = announce.km.ToString();
-            textBoxPutere.Text = announce.cp.ToString();
-            textBoxPutereKW.Text = announce.kw.ToString();
+            textBoxPutere.Text = announce.putere.ToString();
+            textBoxPutereKW.Text = announce.putereKw.ToString();
 
             textBoxCC.Text = announce.cc.ToString(); ;
 
             richTextBoxDescriere.Text = announce.descriere;
             textBoxLocatie.Text = announce.locatie;
 
-            pictureBoxAnnounce.Image = ConvertByteArrayToImage(anunt.imagAnnounce);
+            pictureBoxAnnounce.Image = ConvertByteArrayToImage(announce.imagAnunt);
             pictureBox1.Image = ConvertByteArrayToImage(announce.imag1);
             pictureBox2.Image = ConvertByteArrayToImage(announce.imag2);
             pictureBox3.Image = ConvertByteArrayToImage(announce.imag3);
 
             init();
         }
-        */
+        
 
         public System.Drawing.Image ConvertByteArrayToImage(byte[] byteArray)
         {
