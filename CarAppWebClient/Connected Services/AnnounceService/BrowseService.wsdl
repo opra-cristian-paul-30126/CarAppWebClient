@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="PopulateAnunturi">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="marca" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="model" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretMin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretMax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="varianta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="combustibil" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="anMin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="anMax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ccMin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ccMax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="putereCPMin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="putereCPMax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kmMin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kmMax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="caroserie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="culoare" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cutieViteze" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="locatie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PopulateAnunturiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PopulateAnunturiResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PopulateAnunturiSoapIn">
+    <wsdl:part name="parameters" element="tns:PopulateAnunturi" />
+  </wsdl:message>
+  <wsdl:message name="PopulateAnunturiSoapOut">
+    <wsdl:part name="parameters" element="tns:PopulateAnunturiResponse" />
+  </wsdl:message>
+  <wsdl:portType name="BrowseServiceSoap">
+    <wsdl:operation name="PopulateAnunturi">
+      <wsdl:input message="tns:PopulateAnunturiSoapIn" />
+      <wsdl:output message="tns:PopulateAnunturiSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BrowseServiceSoap" type="tns:BrowseServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PopulateAnunturi">
+      <soap:operation soapAction="http://tempuri.org/PopulateAnunturi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BrowseServiceSoap12" type="tns:BrowseServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PopulateAnunturi">
+      <soap12:operation soapAction="http://tempuri.org/PopulateAnunturi" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BrowseService">
+    <wsdl:port name="BrowseServiceSoap" binding="tns:BrowseServiceSoap">
+      <soap:address location="https://localhost:44385/BrowseService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BrowseServiceSoap12" binding="tns:BrowseServiceSoap12">
+      <soap12:address location="https://localhost:44385/BrowseService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

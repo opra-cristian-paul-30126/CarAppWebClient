@@ -1,4 +1,5 @@
 ﻿using CarAppWebClient.LoginService;
+using CarAppWebClient.AnnounceService;
 using System;
 using System.Data;
 using System.IO;

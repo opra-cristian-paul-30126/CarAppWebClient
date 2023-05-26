@@ -60,6 +60,11 @@
     <Compile Include="BrowserForm.Designer.cs">
       <DependentUpon>BrowserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\AnnounceService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\BrowseService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -139,6 +144,7 @@
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Connected Services\AnnounceService\BrowseService.wsdl" />
     <None Include="Connected Services\BrowseService\BrowseService.wsdl" />
     <None Include="Connected Services\CreateAccountService\CarAppWebClient.CreateAccountService.checkPassResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -195,6 +201,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\AnnounceService\" />
     <WCFMetadataStorage Include="Connected Services\BrowseService\" />
     <WCFMetadataStorage Include="Connected Services\CreateAccountService\" />
     <WCFMetadataStorage Include="Connected Services\CreateAnnouncementService\" />
@@ -299,6 +306,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\MyAnnouncesService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AnnounceService\BrowseService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AnnounceService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AnnounceService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AnnounceService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
