@@ -1,5 +1,5 @@
 ﻿using CarAppWebClient.LoginService;
-using CarAppWebService.Model;
+using CarAppWebClient.BrowseService;
 using System;
 using System.Data;
 using System.IO;

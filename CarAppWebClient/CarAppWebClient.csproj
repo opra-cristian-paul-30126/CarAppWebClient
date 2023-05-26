@@ -63,11 +63,6 @@
     <Compile Include="BrowserForm.Designer.cs">
       <DependentUpon>BrowserForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\AnnounceService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Connected Services\BrowseService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -147,8 +142,10 @@
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Connected Services\AnnounceService\BrowseService.wsdl" />
     <None Include="Connected Services\BrowseService\BrowseService.wsdl" />
+    <None Include="Connected Services\BrowseService\CarAppWebClient.BrowseService.Announce.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\CreateAccountService\CarAppWebClient.CreateAccountService.checkPassResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -207,7 +204,6 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\AnnounceService\" />
     <WCFMetadataStorage Include="Connected Services\BrowseService\" />
     <WCFMetadataStorage Include="Connected Services\CreateAccountService\" />
     <WCFMetadataStorage Include="Connected Services\CreateAnnouncementService\" />
@@ -269,21 +265,6 @@
     <None Include="Photos\CarTraderLogol.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\BrowseService\BrowseService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\BrowseService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\BrowseService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\BrowseService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Connected Services\CreateAnnouncementService\CreateAnnouncement.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -317,16 +298,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AnnounceService\BrowseService.disco" />
+    <None Include="Connected Services\BrowseService\BrowseService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AnnounceService\configuration91.svcinfo" />
+    <None Include="Connected Services\BrowseService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AnnounceService\configuration.svcinfo" />
+    <None Include="Connected Services\BrowseService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AnnounceService\Reference.svcmap">
+    <None Include="Connected Services\BrowseService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
