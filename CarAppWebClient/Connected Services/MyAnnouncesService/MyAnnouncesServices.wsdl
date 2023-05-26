@@ -23,6 +23,46 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="getAnnounceData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IdAnunt" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAnnounceDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getAnnounceDataResult" type="tns:Announce" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Announce">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="marca" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="model" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="varianta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="caroserie" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="combustibil" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cutieViteze" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="culoare" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dataAnunt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="locatie" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descriere" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="idUser" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="idAnunt" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="pret" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="an" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="km" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="putere" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="putereKw" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="cc" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="imagAnunt" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="imag1" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="imag2" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="imag3" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="PopulateGridSoapIn">
@@ -31,10 +71,20 @@
   <wsdl:message name="PopulateGridSoapOut">
     <wsdl:part name="parameters" element="tns:PopulateGridResponse" />
   </wsdl:message>
+  <wsdl:message name="getAnnounceDataSoapIn">
+    <wsdl:part name="parameters" element="tns:getAnnounceData" />
+  </wsdl:message>
+  <wsdl:message name="getAnnounceDataSoapOut">
+    <wsdl:part name="parameters" element="tns:getAnnounceDataResponse" />
+  </wsdl:message>
   <wsdl:portType name="MyAnnouncesServicesSoap">
     <wsdl:operation name="PopulateGrid">
       <wsdl:input message="tns:PopulateGridSoapIn" />
       <wsdl:output message="tns:PopulateGridSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAnnounceData">
+      <wsdl:input message="tns:getAnnounceDataSoapIn" />
+      <wsdl:output message="tns:getAnnounceDataSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="MyAnnouncesServicesSoap" type="tns:MyAnnouncesServicesSoap">
@@ -48,11 +98,29 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getAnnounceData">
+      <soap:operation soapAction="http://tempuri.org/getAnnounceData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="MyAnnouncesServicesSoap12" type="tns:MyAnnouncesServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="PopulateGrid">
       <soap12:operation soapAction="http://tempuri.org/PopulateGrid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAnnounceData">
+      <soap12:operation soapAction="http://tempuri.org/getAnnounceData" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -185,6 +185,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\LoginService\LoginService.wsdl" />
+    <None Include="Connected Services\MyAnnouncesService\CarAppWebClient.MyAnnouncesService.Announce.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\MyAnnouncesService\MyAnnouncesServices.wsdl" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\Settings.settings">

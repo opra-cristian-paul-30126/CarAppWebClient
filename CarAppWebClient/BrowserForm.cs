@@ -53,8 +53,6 @@ namespace CarAppWebClient
         }
 
 
-
-
         private void init()
         {
             dataGridView.Columns["IdUser"].Visible   = false;

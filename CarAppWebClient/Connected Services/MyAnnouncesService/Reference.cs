@@ -22,6 +22,339 @@ namespace CarAppWebClient.MyAnnouncesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PopulateGrid", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> PopulateGridAsync(int idUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/getAnnounceData", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        CarAppWebClient.MyAnnouncesService.Announce getAnnounceData(int IdAnunt);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/getAnnounceData", ReplyAction="*")]
+        System.Threading.Tasks.Task<CarAppWebClient.MyAnnouncesService.Announce> getAnnounceDataAsync(int IdAnunt);
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4161.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Announce : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string marcaField;
+        
+        private string modelField;
+        
+        private string variantaField;
+        
+        private string caroserieField;
+        
+        private string combustibilField;
+        
+        private string cutieVitezeField;
+        
+        private string culoareField;
+        
+        private string dataAnuntField;
+        
+        private string locatieField;
+        
+        private string descriereField;
+        
+        private int idUserField;
+        
+        private int idAnuntField;
+        
+        private int pretField;
+        
+        private int anField;
+        
+        private int kmField;
+        
+        private int putereField;
+        
+        private int putereKwField;
+        
+        private int ccField;
+        
+        private byte[] imagAnuntField;
+        
+        private byte[] imag1Field;
+        
+        private byte[] imag2Field;
+        
+        private byte[] imag3Field;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string marca {
+            get {
+                return this.marcaField;
+            }
+            set {
+                this.marcaField = value;
+                this.RaisePropertyChanged("marca");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string model {
+            get {
+                return this.modelField;
+            }
+            set {
+                this.modelField = value;
+                this.RaisePropertyChanged("model");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string varianta {
+            get {
+                return this.variantaField;
+            }
+            set {
+                this.variantaField = value;
+                this.RaisePropertyChanged("varianta");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string caroserie {
+            get {
+                return this.caroserieField;
+            }
+            set {
+                this.caroserieField = value;
+                this.RaisePropertyChanged("caroserie");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string combustibil {
+            get {
+                return this.combustibilField;
+            }
+            set {
+                this.combustibilField = value;
+                this.RaisePropertyChanged("combustibil");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public string cutieViteze {
+            get {
+                return this.cutieVitezeField;
+            }
+            set {
+                this.cutieVitezeField = value;
+                this.RaisePropertyChanged("cutieViteze");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public string culoare {
+            get {
+                return this.culoareField;
+            }
+            set {
+                this.culoareField = value;
+                this.RaisePropertyChanged("culoare");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public string dataAnunt {
+            get {
+                return this.dataAnuntField;
+            }
+            set {
+                this.dataAnuntField = value;
+                this.RaisePropertyChanged("dataAnunt");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public string locatie {
+            get {
+                return this.locatieField;
+            }
+            set {
+                this.locatieField = value;
+                this.RaisePropertyChanged("locatie");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public string descriere {
+            get {
+                return this.descriereField;
+            }
+            set {
+                this.descriereField = value;
+                this.RaisePropertyChanged("descriere");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public int idUser {
+            get {
+                return this.idUserField;
+            }
+            set {
+                this.idUserField = value;
+                this.RaisePropertyChanged("idUser");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        public int idAnunt {
+            get {
+                return this.idAnuntField;
+            }
+            set {
+                this.idAnuntField = value;
+                this.RaisePropertyChanged("idAnunt");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        public int pret {
+            get {
+                return this.pretField;
+            }
+            set {
+                this.pretField = value;
+                this.RaisePropertyChanged("pret");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        public int an {
+            get {
+                return this.anField;
+            }
+            set {
+                this.anField = value;
+                this.RaisePropertyChanged("an");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        public int km {
+            get {
+                return this.kmField;
+            }
+            set {
+                this.kmField = value;
+                this.RaisePropertyChanged("km");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        public int putere {
+            get {
+                return this.putereField;
+            }
+            set {
+                this.putereField = value;
+                this.RaisePropertyChanged("putere");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
+        public int putereKw {
+            get {
+                return this.putereKwField;
+            }
+            set {
+                this.putereKwField = value;
+                this.RaisePropertyChanged("putereKw");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
+        public int cc {
+            get {
+                return this.ccField;
+            }
+            set {
+                this.ccField = value;
+                this.RaisePropertyChanged("cc");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=18)]
+        public byte[] imagAnunt {
+            get {
+                return this.imagAnuntField;
+            }
+            set {
+                this.imagAnuntField = value;
+                this.RaisePropertyChanged("imagAnunt");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=19)]
+        public byte[] imag1 {
+            get {
+                return this.imag1Field;
+            }
+            set {
+                this.imag1Field = value;
+                this.RaisePropertyChanged("imag1");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=20)]
+        public byte[] imag2 {
+            get {
+                return this.imag2Field;
+            }
+            set {
+                this.imag2Field = value;
+                this.RaisePropertyChanged("imag2");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=21)]
+        public byte[] imag3 {
+            get {
+                return this.imag3Field;
+            }
+            set {
+                this.imag3Field = value;
+                this.RaisePropertyChanged("imag3");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -57,6 +390,14 @@ namespace CarAppWebClient.MyAnnouncesService {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> PopulateGridAsync(int idUser) {
             return base.Channel.PopulateGridAsync(idUser);
+        }
+        
+        public CarAppWebClient.MyAnnouncesService.Announce getAnnounceData(int IdAnunt) {
+            return base.Channel.getAnnounceData(IdAnunt);
+        }
+        
+        public System.Threading.Tasks.Task<CarAppWebClient.MyAnnouncesService.Announce> getAnnounceDataAsync(int IdAnunt) {
+            return base.Channel.getAnnounceDataAsync(IdAnunt);
         }
     }
 }
