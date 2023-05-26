@@ -74,7 +74,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.buttonLogOut = new System.Windows.Forms.Button();
-            this.buttonAddAnnounce = new System.Windows.Forms.Button();
             this.buttonMyAnnounces = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -501,7 +500,6 @@
             this.groupBox4.Controls.Add(this.label18);
             this.groupBox4.Controls.Add(this.label17);
             this.groupBox4.Controls.Add(this.buttonLogOut);
-            this.groupBox4.Controls.Add(this.buttonAddAnnounce);
             this.groupBox4.Controls.Add(this.buttonMyAnnounces);
             this.groupBox4.Controls.Add(this.pictureBoxUser);
             this.groupBox4.Location = new System.Drawing.Point(887, 241);
@@ -539,19 +537,9 @@
             this.buttonLogOut.UseVisualStyleBackColor = true;
             this.buttonLogOut.Click += new System.EventHandler(this.buttonLogOut_Click);
             // 
-            // buttonAddAnnounce
-            // 
-            this.buttonAddAnnounce.Location = new System.Drawing.Point(67, 212);
-            this.buttonAddAnnounce.Name = "buttonAddAnnounce";
-            this.buttonAddAnnounce.Size = new System.Drawing.Size(100, 37);
-            this.buttonAddAnnounce.TabIndex = 4;
-            this.buttonAddAnnounce.Text = "Adauga un anunt";
-            this.buttonAddAnnounce.UseVisualStyleBackColor = true;
-            this.buttonAddAnnounce.Click += new System.EventHandler(this.buttonAddAnnounce_Click);
-            // 
             // buttonMyAnnounces
             // 
-            this.buttonMyAnnounces.Location = new System.Drawing.Point(67, 169);
+            this.buttonMyAnnounces.Location = new System.Drawing.Point(67, 198);
             this.buttonMyAnnounces.Name = "buttonMyAnnounces";
             this.buttonMyAnnounces.Size = new System.Drawing.Size(100, 37);
             this.buttonMyAnnounces.TabIndex = 3;
@@ -597,7 +585,6 @@
         private System.Windows.Forms.PictureBox pictureBoxUser;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button buttonLogOut;
-        private System.Windows.Forms.Button buttonAddAnnounce;
         private System.Windows.Forms.Button buttonMyAnnounces;
         private System.Windows.Forms.TextBox textBoxLocatie;
         private System.Windows.Forms.Label label6;

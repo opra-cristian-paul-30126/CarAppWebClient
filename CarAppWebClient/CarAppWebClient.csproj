@@ -80,6 +80,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\MyAnnouncesService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ErrorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +96,12 @@
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyAnnounces.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyAnnounces.Designer.cs">
+      <DependentUpon>MyAnnounces.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyAnnounces.resx">
+      <DependentUpon>MyAnnounces.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -162,6 +176,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\LoginService\LoginService.wsdl" />
+    <None Include="Connected Services\MyAnnouncesService\MyAnnouncesServices.wsdl" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -184,6 +199,7 @@
     <WCFMetadataStorage Include="Connected Services\CreateAccountService\" />
     <WCFMetadataStorage Include="Connected Services\CreateAnnouncementService\" />
     <WCFMetadataStorage Include="Connected Services\LoginService\" />
+    <WCFMetadataStorage Include="Connected Services\MyAnnouncesService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\CreateAccountService\CreateAccount.disco" />
@@ -271,6 +287,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Announcement\default_announcement.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MyAnnouncesService\MyAnnouncesServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MyAnnouncesService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MyAnnouncesService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MyAnnouncesService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

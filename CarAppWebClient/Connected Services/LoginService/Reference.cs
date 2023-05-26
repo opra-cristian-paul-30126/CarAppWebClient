@@ -34,10 +34,10 @@ namespace CarAppWebClient.LoginService {
         private string emailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] pozaProfilField;
+        private string contactField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string contactField;
+        private byte[] pozaProfilField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -102,19 +102,6 @@ namespace CarAppWebClient.LoginService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
-        public byte[] pozaProfil {
-            get {
-                return this.pozaProfilField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.pozaProfilField, value) != true)) {
-                    this.pozaProfilField = value;
-                    this.RaisePropertyChanged("pozaProfil");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
         public string contact {
             get {
                 return this.contactField;
@@ -123,6 +110,19 @@ namespace CarAppWebClient.LoginService {
                 if ((object.ReferenceEquals(this.contactField, value) != true)) {
                     this.contactField = value;
                     this.RaisePropertyChanged("contact");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public byte[] pozaProfil {
+            get {
+                return this.pozaProfilField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.pozaProfilField, value) != true)) {
+                    this.pozaProfilField = value;
+                    this.RaisePropertyChanged("pozaProfil");
                 }
             }
         }
@@ -164,8 +164,6 @@ namespace CarAppWebClient.LoginService {
         private string telefonField;
         
         private bool isBannedField;
-        
-        private int nrAnunturiField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte[] pozaProfilField;
@@ -271,20 +269,7 @@ namespace CarAppWebClient.LoginService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=7)]
-        public int nrAnunturi {
-            get {
-                return this.nrAnunturiField;
-            }
-            set {
-                if ((this.nrAnunturiField.Equals(value) != true)) {
-                    this.nrAnunturiField = value;
-                    this.RaisePropertyChanged("nrAnunturi");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=8)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
         public byte[] pozaProfil {
             get {
                 return this.pozaProfilField;

@@ -15,8 +15,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="anMax" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="ccMin" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="ccMax" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="cpMin" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="cpMax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="putereCPMin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="putereCPMax" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="kmMin" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="kmMax" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="caroserie" type="s:string" />

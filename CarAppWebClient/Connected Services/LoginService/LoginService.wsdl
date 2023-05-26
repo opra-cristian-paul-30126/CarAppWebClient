@@ -53,8 +53,8 @@
           <s:element minOccurs="0" maxOccurs="1" name="nume" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="prenume" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="pozaProfil" type="s:base64Binary" />
           <s:element minOccurs="0" maxOccurs="1" name="contact" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pozaProfil" type="s:base64Binary" />
         </s:sequence>
       </s:complexType>
       <s:element name="ReturnUser">
@@ -80,7 +80,6 @@
           <s:element minOccurs="0" maxOccurs="1" name="adresa" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="telefon" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="isBanned" type="s:boolean" />
-          <s:element minOccurs="1" maxOccurs="1" name="nrAnunturi" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="pozaProfil" type="s:base64Binary" />
         </s:sequence>
       </s:complexType>

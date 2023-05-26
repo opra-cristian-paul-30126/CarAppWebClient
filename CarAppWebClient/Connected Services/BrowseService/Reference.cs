@@ -29,8 +29,8 @@ namespace CarAppWebClient.BrowseService {
                     string anMax, 
                     string ccMin, 
                     string ccMax, 
-                    string cpMin, 
-                    string cpMax, 
+                    string putereCPMin, 
+                    string putereCPMax, 
                     string kmMin, 
                     string kmMax, 
                     string caroserie, 
@@ -50,8 +50,8 @@ namespace CarAppWebClient.BrowseService {
                     string anMax, 
                     string ccMin, 
                     string ccMax, 
-                    string cpMin, 
-                    string cpMax, 
+                    string putereCPMin, 
+                    string putereCPMax, 
                     string kmMin, 
                     string kmMax, 
                     string caroserie, 
@@ -98,15 +98,15 @@ namespace CarAppWebClient.BrowseService {
                     string anMax, 
                     string ccMin, 
                     string ccMax, 
-                    string cpMin, 
-                    string cpMax, 
+                    string putereCPMin, 
+                    string putereCPMax, 
                     string kmMin, 
                     string kmMax, 
                     string caroserie, 
                     string culoare, 
                     string cutieViteze, 
                     string locatie) {
-            return base.Channel.PopulateAnunturi(marca, model, pretMin, pretMax, varianta, combustibil, anMin, anMax, ccMin, ccMax, cpMin, cpMax, kmMin, kmMax, caroserie, culoare, cutieViteze, locatie);
+            return base.Channel.PopulateAnunturi(marca, model, pretMin, pretMax, varianta, combustibil, anMin, anMax, ccMin, ccMax, putereCPMin, putereCPMax, kmMin, kmMax, caroserie, culoare, cutieViteze, locatie);
         }
         
         public System.Threading.Tasks.Task<System.Data.DataSet> PopulateAnunturiAsync(
@@ -120,15 +120,15 @@ namespace CarAppWebClient.BrowseService {
                     string anMax, 
                     string ccMin, 
                     string ccMax, 
-                    string cpMin, 
-                    string cpMax, 
+                    string putereCPMin, 
+                    string putereCPMax, 
                     string kmMin, 
                     string kmMax, 
                     string caroserie, 
                     string culoare, 
                     string cutieViteze, 
                     string locatie) {
-            return base.Channel.PopulateAnunturiAsync(marca, model, pretMin, pretMax, varianta, combustibil, anMin, anMax, ccMin, ccMax, cpMin, cpMax, kmMin, kmMax, caroserie, culoare, cutieViteze, locatie);
+            return base.Channel.PopulateAnunturiAsync(marca, model, pretMin, pretMax, varianta, combustibil, anMin, anMax, ccMin, ccMax, putereCPMin, putereCPMax, kmMin, kmMax, caroserie, culoare, cutieViteze, locatie);
         }
     }
 }

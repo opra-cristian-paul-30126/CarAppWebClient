@@ -30,7 +30,6 @@ namespace CarAppWebClient
         private string pass;
         private LoginForm lf;
 
-
         public RegisterForm(LoginForm lf)
         {
             this.lf = lf;
@@ -61,7 +60,6 @@ namespace CarAppWebClient
             {
                 throw;
             }
-
             return rez;
         }
 
@@ -70,13 +68,13 @@ namespace CarAppWebClient
         {
             if (!checkBoxAdmin.Checked)
             {
-                prenume = textBoxNume.Text;
-                nume = textBoxPrenume.Text;
-                email = textBoxEmail.Text;
-                parola = textBoxParola.Text;
+                prenume          = textBoxNume.Text;
+                nume             = textBoxPrenume.Text;
+                email            = textBoxEmail.Text;
+                parola           = textBoxParola.Text;
                 confirmareParola = textBoxConfirmareParola.Text;
-                telefon = textBoxTelefon.Text;
-                adresa = textBoxAdresa.Text;
+                telefon          = textBoxTelefon.Text;
+                adresa           = textBoxAdresa.Text;
 
                 if (String.IsNullOrEmpty(prenume))
                 {
@@ -151,11 +149,11 @@ namespace CarAppWebClient
             else if (createAccountService.checkPass(pass))
             {
                 prenume = textBoxNume.Text;
-                nume = textBoxPrenume.Text;
-                email = textBoxEmail.Text;
-                parola = textBoxParola.Text;
-                pass = textBoxTelefon.Text;
-                adresa = textBoxAdresa.Text;
+                nume    = textBoxPrenume.Text;
+                email   = textBoxEmail.Text;
+                parola  = textBoxParola.Text;
+                pass    = textBoxTelefon.Text;
+                adresa  = textBoxAdresa.Text;
 
                 if (String.IsNullOrEmpty(prenume))
                 {
@@ -241,15 +239,15 @@ namespace CarAppWebClient
         {
             if (checkBoxAdmin.Checked)
             {
-                label_Adresa.Text = "Contact";
-                label_Telefon.Text = "Permis";
+                label_Adresa.Text   = "Contact";
+                label_Telefon.Text  = "Permis";
                 textBoxTelefon.Text = string.Empty;
                 textBoxTelefon.UseSystemPasswordChar = true;
             }
             else
             {
-                label_Adresa.Text = "Adresa";
-                label_Telefon.Text = "Telefon";
+                label_Adresa.Text   = "Adresa";
+                label_Telefon.Text  = "Telefon";
                 textBoxTelefon.Text = string.Empty;
                 textBoxTelefon.UseSystemPasswordChar = false;
             }
@@ -284,11 +282,11 @@ namespace CarAppWebClient
             int minLength = 8;
             string specialCharacters = "!@#$%^&*()-=_+[]{}|;':,./<>?";
 
-            bool hasValidCharachters = password.Any(char.IsLetterOrDigit);
-            bool hasMinimumLength = password.Length >= minLength;
-            bool hasUppercase = password.Any(char.IsUpper);
-            bool hasLowercase = password.Any(char.IsLower);
-            bool hasDigits = password.Any(char.IsDigit);
+            bool hasValidCharachters   = password.Any(char.IsLetterOrDigit);
+            bool hasMinimumLength      = password.Length >= minLength;
+            bool hasUppercase          = password.Any(char.IsUpper);
+            bool hasLowercase          = password.Any(char.IsLower);
+            bool hasDigits             = password.Any(char.IsDigit);
             bool hasSpecialCharachters = password.Any(specialCharacters.Contains);
 
             return hasValidCharachters &&

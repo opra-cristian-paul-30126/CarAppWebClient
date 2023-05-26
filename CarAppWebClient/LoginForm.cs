@@ -1,16 +1,7 @@
 ﻿using CarAppWebClient.LoginService;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics.Eventing.Reader;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
 namespace CarAppWebClient
 {
@@ -21,18 +12,15 @@ namespace CarAppWebClient
         bool isAdmin = false;
         User user;
         Admin admin;
-        CarAppWebClient.LoginService.LoginServiceSoapClient loginService
-        = new CarAppWebClient.LoginService.LoginServiceSoapClient();
-        string eyeOpen = Path.Combine(Application.StartupPath,  "eyeOpen.png");
-        string eyeClose = Path.Combine(Application.StartupPath, "eyeClose.png");
+        LoginServiceSoapClient loginService = new LoginServiceSoapClient();
+        // string eyeOpen = Path.Combine(Application.StartupPath,  "eyeOpen.png");
+        // string eyeClose = Path.Combine(Application.StartupPath, "eyeClose.png");
 
         public LoginForm()
         {
             InitializeComponent();
             textBoxPassword.UseSystemPasswordChar = true;
-            //passBox.BackgroundImage = Image.FromFile(eyeClose);
-            
-
+            // passBox.BackgroundImage = Image.FromFile(eyeClose);
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -48,7 +36,6 @@ namespace CarAppWebClient
                     //emailul este in database
                     if (loginService.CheckPassword(email, parola, isAdmin))
                     {
-
                         //login success new catalogue form
                         if (!isAdmin)
                         {
@@ -70,20 +57,16 @@ namespace CarAppWebClient
                             this.Tag = bf;
                             bf.Tag=this;
                             bf.Show();
-
-
                         }
                     }
                     else
                     {
-                        //hmmm
                         //parola incorecta
                         new ErrorForm(1);
                     }
                 }
                 else
                 {
-
                     //eroare emailul nu este in database
                     new ErrorForm(2);
                 }
@@ -104,39 +87,25 @@ namespace CarAppWebClient
         private bool IsValidEmail(string email)
         {
             string pattern = @"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$";
-
             Regex regex = new Regex(pattern);
-
             Match match = regex.Match(email);
-
             return match.Success;
-
         }
 
         private void checkBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox.Checked)
-            {
-                isAdmin = true;
-            }
-            else
-            {
-                isAdmin = false;
-            }
+            if (checkBox.Checked) isAdmin = true;
+            else isAdmin = false;   
         }
 
         private void passBox_CheckedChanged(object sender, EventArgs e)
         {
             if (passBox.Checked)
-            {
-                //passBox.BackgroundImage = Image.FromFile(eyeOpen);
-                textBoxPassword.UseSystemPasswordChar = false;
-            }
+            //passBox.BackgroundImage = Image.FromFile(eyeOpen);
+            textBoxPassword.UseSystemPasswordChar = false;
             else
-            {
-                //passBox.BackgroundImage = Image.FromFile(eyeClose);
-                textBoxPassword.UseSystemPasswordChar = true;
-            }
+            //passBox.BackgroundImage = Image.FromFile(eyeClose);
+            textBoxPassword.UseSystemPasswordChar = true;
         }
     }
 }
