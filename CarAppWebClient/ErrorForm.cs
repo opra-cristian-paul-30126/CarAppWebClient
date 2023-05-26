@@ -69,6 +69,9 @@ namespace CarAppWebClient
                       "- Cel putin o cifra\n" +
                       "- Cel putin un caracter special: (!@#$%^&*()-=_+[]{}|;':\",./<>?)";
                     break;
+                case 13:
+                    labelError.Text = "tesst";
+                    break;
                 default:
                     Console.WriteLine("Cod incorect");
                     break;

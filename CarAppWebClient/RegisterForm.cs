@@ -263,7 +263,7 @@ namespace CarAppWebClient
             {
                 imageLocation = oFD.FileName;
                 pictureBox.Image = Image.FromFile(imageLocation);
-                pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             }
         }
 

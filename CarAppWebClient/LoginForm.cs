@@ -37,12 +37,6 @@ namespace CarAppWebClient
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            BrowserForm bf = new BrowserForm(new User());
-
-            bf.ShowDialog();
-
-
-            /*
             email = textBoxUsername.Text;
             parola = textBoxPassword.Text;
 
@@ -59,14 +53,14 @@ namespace CarAppWebClient
                         if (!isAdmin)
                         {
                             user = loginService.ReturnUser(email);
-                            if (user.isBanned == 0)
+                            if (!user.isBanned)
                             {
                                 BrowserForm bf = new BrowserForm(user);
                                 bf.Show();
                             }
                             else
                             {
-                                new ErrorForm(1);
+                                new ErrorForm(13);
                             }
                         }
                         else
@@ -99,7 +93,6 @@ namespace CarAppWebClient
                 //eroare invalid email
                 new ErrorForm(3);
             }
-            */
         }
 
         private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

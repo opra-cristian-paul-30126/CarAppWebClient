@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnnounceAddModifyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnnounceAddModifyForm.Designer.cs">
+      <DependentUpon>AnnounceAddModifyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BrowserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\CreateAccountService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\CreateAnnouncementService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -94,6 +105,9 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AnnounceAddModifyForm.resx">
+      <DependentUpon>AnnounceAddModifyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BrowserForm.resx">
       <DependentUpon>BrowserForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,6 +136,13 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\CreateAccountService\CreateAccount.wsdl" />
+    <None Include="Connected Services\CreateAnnouncementService\CarAppWebClient.CreateAnnouncementService.addAnnounceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CreateAnnouncementService\CarAppWebClient.CreateAnnouncementService.updateAnnounceeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CreateAnnouncementService\CreateAnnouncement.wsdl" />
     <None Include="Connected Services\LoginService\CarAppWebClient.LoginService.Admin.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -161,6 +182,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\BrowseService\" />
     <WCFMetadataStorage Include="Connected Services\CreateAccountService\" />
+    <WCFMetadataStorage Include="Connected Services\CreateAnnouncementService\" />
     <WCFMetadataStorage Include="Connected Services\LoginService\" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +253,24 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CreateAnnouncementService\CreateAnnouncement.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CreateAnnouncementService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CreateAnnouncementService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CreateAnnouncementService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Announcement\default_announcement.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

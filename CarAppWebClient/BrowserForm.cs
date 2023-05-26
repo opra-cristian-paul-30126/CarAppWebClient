@@ -368,5 +368,11 @@ namespace CarAppWebClient
         {
             this.Hide();
         }
+
+        private void buttonAddAnnounce_Click(object sender, EventArgs e)
+        {
+            AnnounceAddModifyForm admf = new AnnounceAddModifyForm(user);
+            admf.ShowDialog();
+        }
     }
 }

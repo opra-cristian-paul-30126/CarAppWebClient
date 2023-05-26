@@ -48,9 +48,9 @@
             this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.textBoxPrenume = new System.Windows.Forms.TextBox();
             this.textBoxNume = new System.Windows.Forms.TextBox();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.button_Cancel = new System.Windows.Forms.Button();
             this.button_Ok = new System.Windows.Forms.Button();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox_default.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
@@ -196,6 +196,7 @@
             // 
             this.textBoxTelefon.Location = new System.Drawing.Point(57, 202);
             this.textBoxTelefon.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxTelefon.MaxLength = 10;
             this.textBoxTelefon.Name = "textBoxTelefon";
             this.textBoxTelefon.Size = new System.Drawing.Size(102, 20);
             this.textBoxTelefon.TabIndex = 11;
@@ -252,6 +253,19 @@
             this.textBoxNume.Size = new System.Drawing.Size(102, 20);
             this.textBoxNume.TabIndex = 7;
             // 
+            // pictureBox
+            // 
+            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
+            this.pictureBox.Location = new System.Drawing.Point(256, 45);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox.MaximumSize = new System.Drawing.Size(75, 81);
+            this.pictureBox.MinimumSize = new System.Drawing.Size(75, 81);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(75, 81);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 6;
+            this.pictureBox.TabStop = false;
+            // 
             // button_Cancel
             // 
             this.button_Cancel.Location = new System.Drawing.Point(286, 342);
@@ -273,19 +287,6 @@
             this.button_Ok.Text = "Ok";
             this.button_Ok.UseVisualStyleBackColor = true;
             this.button_Ok.Click += new System.EventHandler(this.button_Ok_Click);
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
-            this.pictureBox.Location = new System.Drawing.Point(256, 45);
-            this.pictureBox.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox.MaximumSize = new System.Drawing.Size(75, 81);
-            this.pictureBox.MinimumSize = new System.Drawing.Size(75, 81);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(75, 81);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox.TabIndex = 6;
-            this.pictureBox.TabStop = false;
             // 
             // RegisterForm
             // 
