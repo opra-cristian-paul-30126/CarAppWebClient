@@ -1,5 +1,5 @@
 ﻿using CarAppWebClient.LoginService;
-using CarAppWebClient.AnnounceService;
+using CarAppWebService.Model;
 using System;
 using System.Data;
 using System.IO;
@@ -11,10 +11,10 @@ namespace CarAppWebClient
     {
        private User user;
        private Admin admin;
-       
-        
-       //  this little f***er, nu inteleg de ce la user si admin de mai sus merge...
-       private  Announce announce;
+
+
+        //  this little f***er, nu inteleg de ce la user si admin de mai sus merge...
+        private Announce announce;
 
 
 

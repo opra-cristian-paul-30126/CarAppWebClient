@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\CarAppWebService\CarAppWebService\Model\Announce.cs">
+      <Link>Model\Announce.cs</Link>
+    </Compile>
     <Compile Include="AnnounceAddModifyForm.cs">
       <SubType>Form</SubType>
     </Compile>
