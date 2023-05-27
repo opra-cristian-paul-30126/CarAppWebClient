@@ -4,6 +4,7 @@ using System;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
+using System.Diagnostics.Eventing.Reader;
 
 namespace CarAppWebClient
 {
@@ -254,6 +255,7 @@ namespace CarAppWebClient
         private void buttonRemoveFilter_Click(object sender, EventArgs e)
         {
             resetFilters();
+
         }
 
         public System.Drawing.Image ConvertByteArrayToImage(byte[] byteArray)
@@ -265,26 +267,38 @@ namespace CarAppWebClient
 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
-            if (selectedRow.Cells[selectedRow.Cells.Count-1].Value != DBNull.Value)
-            {
-                byte[] lastColumnValue = (byte[])selectedRow.Cells[selectedRow.Cells.Count - 1].Value;
-                if (lastColumnValue.Length > 0)
-                    pictureBoxAnnounce.Image = ConvertByteArrayToImage(lastColumnValue);
+            if (e.RowIndex >= 0) { 
+                DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
+                if (selectedRow.Cells[selectedRow.Cells.Count-1].Value != DBNull.Value)
+                {
+                    byte[] lastColumnValue = (byte[])selectedRow.Cells[selectedRow.Cells.Count - 1].Value;
+                    if (lastColumnValue.Length > 0)
+                        pictureBoxAnnounce.Image = ConvertByteArrayToImage(lastColumnValue);
+                }
+                int id = int.Parse(selectedRow.Cells[1].Value.ToString());
+                Console.WriteLine(id);
+                announce = BrowseService.getAnounceData(id);
             }
+            else
+                announce = null;
         }
 
         private void buttonMyAnnounces_Click(object sender, EventArgs e)
         {
             if (admin != null)
             {
-                //deschide admintoolsform
+                AdminToolsForm atf = new AdminToolsForm();
+                atf.ShowDialog();
             }
             else
             {
-                MyAnnounces ma = new MyAnnounces(user);
-                ma.Show();
-                //deschide myannouncesfrom
+                if (user != null)
+                {
+                    MyAnnounces ma = new MyAnnounces(user);
+                    ma.Show();
+                    //deschide myannouncesfrom
+                }
+
             }
         }
 
@@ -294,7 +308,16 @@ namespace CarAppWebClient
 
         private void buttonViewAnnounce_Click(object sender, EventArgs e)
         {
-            //deschide viewannounceform
+            // daca e selectat anuntu
+            if (announce != null)
+            {
+                // daca e user
+                if (user != null) { ViewAnnounceForm vaf = new ViewAnnounceForm(announce, user); }
+                else
+                // daca e admin
+                    if (admin != null) {ViewAnnounceForm vaf = new ViewAnnounceForm(announce, admin);}
+            }
+
         }
 
         private void BrowserForm_FormClosing(object sender, FormClosingEventArgs e)

@@ -8,26 +8,38 @@ namespace CarAppWebClient
 {
     public partial class MyAnnounces : Form
     {
-        User user;
-        DataSet dsAnnounces;
-        Announce announce;
-        MyAnnouncesService.MyAnnouncesServicesSoapClient Service = new MyAnnouncesService.MyAnnouncesServicesSoapClient();
-        BrowseService.BrowseServiceSoapClient Service2 = new BrowseService.BrowseServiceSoapClient();
+        private User user;
+        private DataSet dsAnnounces;
+        private Announce announce;
+        private MyAnnouncesService.MyAnnouncesServicesSoapClient Service = new MyAnnouncesService.MyAnnouncesServicesSoapClient();
+        private BrowseServiceSoapClient Service2 = new BrowseServiceSoapClient();
         public MyAnnounces(User user)
         {
             InitializeComponent();
             this.user = user;
-            dsAnnounces = Service.PopulateGrid(user.id);
-            Console.WriteLine(user.id);
-            dataGridView.DataSource = dsAnnounces.Tables["Announces"].DefaultView;
-            dataGridView.Columns["IdUser"].Visible  = false;
-            dataGridView.Columns["IdAnunt"].Visible = false;
-            dataGridView.Columns["Imagine1"].Visible  = false;
-            dataGridView.Columns["Imagine2"].Visible  = false;
-            dataGridView.Columns["Imagine3"].Visible  = false;
+            refresh();
+
         }
 
+        private void refresh()
+        {
+            dsAnnounces = Service.PopulateGrid(user.id);
+            dataGridView.DataSource = dsAnnounces.Tables["Announces"].DefaultView;
+            dataGridView.Columns["IdUser"].Visible = false;
+            dataGridView.Columns["IdAnunt"].Visible = false;
+            dataGridView.Columns["Imagine1"].Visible = false;
+            dataGridView.Columns["Imagine2"].Visible = false;
+            dataGridView.Columns["Imagine3"].Visible = false;
 
+            // sa selecteze primul element automat, daca exista
+            if (dataGridView.Rows.Count > 0)
+            {
+                int id = int.Parse(dataGridView.Rows[0].Cells[1].Value.ToString());
+                Console.WriteLine(id);
+                announce = Service2.getAnounceData(id);
+            }
+
+        }
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -36,17 +48,21 @@ namespace CarAppWebClient
 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
-            if (selectedRow.Cells[selectedRow.Cells.Count - 1].Value != DBNull.Value)
+            if (e.RowIndex >= 0)
             {
-                byte[] lastColumnValue = (byte[])selectedRow.Cells[selectedRow.Cells.Count - 1].Value;
-                if (lastColumnValue.Length > 0)
-                    pictureBox.Image = ConvertByteArrayToImage(lastColumnValue);
+                DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
+                if (selectedRow.Cells[selectedRow.Cells.Count - 1].Value != DBNull.Value)
+                {
+                    byte[] lastColumnValue = (byte[])selectedRow.Cells[selectedRow.Cells.Count - 1].Value;
+                    if (lastColumnValue.Length > 0)
+                        pictureBox.Image = ConvertByteArrayToImage(lastColumnValue);
+                }
+                int id = int.Parse(selectedRow.Cells[1].Value.ToString());
+                Console.WriteLine(id);
+                announce = Service2.getAnounceData(id);
             }
-
-            int id = int.Parse(selectedRow.Cells[1].Value.ToString());
-            Console.WriteLine(id);
-            announce = Service2.getAnounceData(id);
+            else
+                announce = null;
         }
 
         public System.Drawing.Image ConvertByteArrayToImage(byte[] byteArray)
@@ -58,7 +74,12 @@ namespace CarAppWebClient
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            Service.deleteAnnounce(announce.idAnunt);
+            if (announce != null)
+            {
+                Service.deleteAnnounce(announce.idAnunt);
+                refresh();
+            }
+
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -69,8 +90,11 @@ namespace CarAppWebClient
 
         private void buttonModift_Click(object sender, EventArgs e)
         {
-            AnnounceAddModifyForm admf = new AnnounceAddModifyForm(announce,user);
-            admf.ShowDialog();
+            if(announce != null)
+            {
+                AnnounceAddModifyForm admf = new AnnounceAddModifyForm(announce, user);
+                admf.ShowDialog();
+            }
         }
     }
 }

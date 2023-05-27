@@ -18,11 +18,12 @@ namespace CarAppWebClient
         private byte[] image1;
         private byte[] image2;
         private byte[] image3;
-
+        bool modify;
 
         public AnnounceAddModifyForm(User user)
         {
             this.user = user;
+            modify = false;
             InitializeComponent();
             init();
         }
@@ -32,6 +33,7 @@ namespace CarAppWebClient
         {
             this.user = user;
             this.announce = announce;
+            modify = true;
             InitializeComponent();
             initAlt();
         }
@@ -105,6 +107,7 @@ namespace CarAppWebClient
         
         private void initAlt()
         {
+            init();
             textBoxMarca.Text = announce.marca;
             textBoxModel.Text = announce.model;
             textBoxVarianta.Text = announce.varianta;
@@ -128,7 +131,7 @@ namespace CarAppWebClient
            // pictureBox2.Image        = ConvertByteArrayToImage(announce.imag2);
            // pictureBox3.Image        = ConvertByteArrayToImage(announce.imag3);
 
-            init();
+
         }
         
 
@@ -193,6 +196,7 @@ namespace CarAppWebClient
             int putereKW;
             int cc;
 
+
             if (string.IsNullOrEmpty(marca))       marca = "Neselectat";
             if (string.IsNullOrEmpty(model))       model = "Neselectat";
             if (string.IsNullOrEmpty(varianta)) varianta = "Neselectat";
@@ -245,14 +249,18 @@ namespace CarAppWebClient
                 new ErrorForm(16);
                 return;
             }
-
             if (modify)
-                service.updateAnnouncee(id, caroserie, marca, model, varianta, pret, an, km,
-                putere, putereKW, combustibil, cutieViteze, cc, culoare, locatie, descriere, 
+            {
+                int idAnnounce = announce.idAnunt;
+
+                Console.WriteLine("ID ANUNT: " + announce.idAnunt.ToString());
+                service.updateAnnouncee(idAnnounce, caroserie, marca, model, varianta, pret, an, km,
+                putere, putereKW, combustibil, cutieViteze, cc, culoare, locatie, descriere,
                 imageAnnounce, image1, image2, image3);
+            }
             else
                 service.addAnnounce(id, caroserie, marca, model, varianta, pret, an, km,
-                putere, putereKW, combustibil, cutieViteze, cc, culoare, locatie, descriere, 
+                putere, putereKW, combustibil, cutieViteze, cc, culoare, locatie, descriere,
                 imageAnnounce, image1, image2, image3);
 
             Close();
@@ -260,10 +268,7 @@ namespace CarAppWebClient
 
         private void buttonAction_Click(object sender, EventArgs e)
         {
-            //if(buttonAction.Text)
-            addOrModify(false);
-            //else
-            //addOrModify(true);
+            addOrModify(modify);
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)

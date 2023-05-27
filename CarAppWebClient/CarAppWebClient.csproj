@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminToolsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminToolsForm.Designer.cs">
+      <DependentUpon>AdminToolsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AnnounceAddModifyForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +65,11 @@
     </Compile>
     <Compile Include="BrowserForm.Designer.cs">
       <DependentUpon>BrowserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\AdminService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\BrowseService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -116,6 +127,15 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewAnnounceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewAnnounceForm.Designer.cs">
+      <DependentUpon>ViewAnnounceForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AdminToolsForm.resx">
+      <DependentUpon>AdminToolsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AnnounceAddModifyForm.resx">
       <DependentUpon>AnnounceAddModifyForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +159,10 @@
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ViewAnnounceForm.resx">
+      <DependentUpon>ViewAnnounceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Connected Services\AdminService\AdminService.wsdl" />
     <None Include="Connected Services\BrowseService\BrowseService.wsdl" />
     <None Include="Connected Services\BrowseService\CarAppWebClient.BrowseService.Announce.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -198,6 +222,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\AdminService\" />
     <WCFMetadataStorage Include="Connected Services\BrowseService\" />
     <WCFMetadataStorage Include="Connected Services\CreateAccountService\" />
     <WCFMetadataStorage Include="Connected Services\CreateAnnouncementService\" />
@@ -302,6 +327,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\BrowseService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AdminService\AdminService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AdminService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AdminService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AdminService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
