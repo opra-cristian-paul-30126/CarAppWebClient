@@ -17,6 +17,7 @@ namespace CarAppWebClient
         AdminService.AdminServiceSoapClient service = new AdminService.AdminServiceSoapClient();
         private Admin admin;
         private int userId;
+        private DataSet dsUsers;
         public AdminToolsForm()
         {
             admin = null;
@@ -28,7 +29,8 @@ namespace CarAppWebClient
             InitializeComponent();
             userId = -1;
             this.admin = admin;
-            service.PopulateUsers(false);
+            dsUsers = service.PopulateUsers(false);
+            dataGridViewUsers.DataSource = dsUsers.Tables["Users"].DefaultView;
         }
 
         private void buttonBan_Click(object sender, EventArgs e)
@@ -52,21 +54,25 @@ namespace CarAppWebClient
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow selectedRow = dataGridViewUsers.SelectedRows[0];
+                
                 userId = int.Parse(selectedRow.Cells[0].Value.ToString());
+                Console.WriteLine("USER ID:" + userId);
             }
             else
-                userId = -1;
+                userId=-1;
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             if(checkBox.Checked)
             {
-                service.PopulateUsers(true);
+                dsUsers=service.PopulateUsers(true);
+                dataGridViewUsers.DataSource = dsUsers.Tables["Users"].DefaultView;
             }
             else
             {
-                service.PopulateUsers(false);
+                dsUsers = service.PopulateUsers(false);
+                dataGridViewUsers.DataSource = dsUsers.Tables["Users"].DefaultView;
             }
         }
     }

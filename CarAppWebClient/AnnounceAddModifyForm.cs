@@ -22,19 +22,23 @@ namespace CarAppWebClient
 
         public AnnounceAddModifyForm(User user)
         {
-            this.user = user;
-            modify = false;
             InitializeComponent();
+            this.user         = user;
+            announce          = null;
+            modify            = false;
+            buttonAction.Text = "Adauga";
+
             init();
         }
 
         
         public AnnounceAddModifyForm(Announce announce, User user)
         {
-            this.user = user;
-            this.announce = announce;
-            modify = true;
             InitializeComponent();
+            this.user         = user;
+            this.announce     = announce;
+            modify            = true;
+            buttonAction.Text = "Modifica";
             initAlt();
         }
         
@@ -123,9 +127,8 @@ namespace CarAppWebClient
             textBoxLocatie.Text = announce.locatie;
             imageAnnounce = announce.imagAnunt;
             image1 = announce.imag1;
-            Console.WriteLine("CACA"+ BitConverter.ToString(image1));
-            //pictureBox1.Image = ConvertByteArrayToImage(image1);
-            Console.WriteLine(BitConverter.ToString(announce.imagAnunt));
+          
+           // pictureBox1.Image = ConvertByteArrayToImage(image1);
            // pictureBoxAnnounce.Image = ConvertByteArrayToImage(announce.imagAnunt);
            // pictureBox1.Image        = ConvertByteArrayToImage(announce.imag1);
            // pictureBox2.Image        = ConvertByteArrayToImage(announce.imag2);

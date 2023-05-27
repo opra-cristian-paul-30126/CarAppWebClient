@@ -24,7 +24,6 @@ namespace CarAppWebClient
         BrowseService.BrowseServiceSoapClient BrowseService = new BrowseService.BrowseServiceSoapClient();
         public BrowserForm(User user)
         {
-           // this.announce = new Announce();
             InitializeComponent();
             this.user = user;
             label18.Text = user.nume + " " + user.prenume;
@@ -311,11 +310,17 @@ namespace CarAppWebClient
             // daca e selectat anuntu
             if (announce != null)
             {
+                if (user != null) 
+                { 
+                    ViewAnnounceForm vaf = new ViewAnnounceForm(announce, user);
+                    vaf.ShowDialog();
+                }
                 // daca e user
-                if (user != null) { ViewAnnounceForm vaf = new ViewAnnounceForm(announce, user); }
-                else
-                // daca e admin
-                    if (admin != null) {ViewAnnounceForm vaf = new ViewAnnounceForm(announce, admin);}
+                if (admin != null) 
+                {
+                    ViewAnnounceForm vaf = new ViewAnnounceForm(announce, admin);
+                    vaf.ShowDialog();
+                }
             }
 
         }

@@ -52,8 +52,17 @@ namespace CarAppWebClient
         private void buttonBack_Click(object sender, EventArgs e)
         {
             this.Close();
-            BrowserForm bf = new BrowserForm(user);
-            bf.ShowDialog();
+            if (admin != null)
+            {
+                BrowserForm bf = new BrowserForm(admin);
+                bf.ShowDialog();
+            }
+            else
+            {
+                BrowserForm bf = new BrowserForm(user);
+                bf.ShowDialog();
+            }
+
         }
     }
 }

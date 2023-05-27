@@ -97,11 +97,11 @@ namespace CarAppWebClient
                     return;
                 }
 
-                if (!IsValidEmail(email))
+               // if (!IsValidEmail(email))
                 {
                     //emailul nu are forma corecta
-                    new ErrorForm(3);
-                    return;
+                 //   new ErrorForm(3);
+                  //  return;
                 }
 
                 if (String.IsNullOrEmpty(parola))
@@ -146,14 +146,15 @@ namespace CarAppWebClient
                     return;
                 }
             }
-            else if (createAccountService.checkPass(pass))
+            else if (createAccountService.checkPass(textBoxTelefon.Text))
             {
-                prenume = textBoxNume.Text;
-                nume    = textBoxPrenume.Text;
-                email   = textBoxEmail.Text;
-                parola  = textBoxParola.Text;
-                pass    = textBoxTelefon.Text;
-                adresa  = textBoxAdresa.Text;
+                prenume          = textBoxNume.Text;
+                nume             = textBoxPrenume.Text;
+                email            = textBoxEmail.Text;
+                parola           = textBoxParola.Text;
+                confirmareParola = textBoxConfirmareParola.Text;
+                pass             = textBoxTelefon.Text;
+                adresa           = textBoxAdresa.Text;
 
                 if (String.IsNullOrEmpty(prenume))
                 {
@@ -176,12 +177,12 @@ namespace CarAppWebClient
                     return;
                 }
 
-                if (IsValidEmail(email))
-                {
+                //if (IsValidEmail(email))
+                //{
                     //emailul nu are forma corecta
-                    new ErrorForm(3);
-                    return;
-                }
+                //   new ErrorForm(3);
+                //   return;
+                //}
 
                 if (String.IsNullOrEmpty(parola))
                 {
