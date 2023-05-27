@@ -22,6 +22,13 @@ namespace CarAppWebClient.MyAnnouncesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PopulateGrid", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> PopulateGridAsync(int idUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/deleteAnnounce", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        void deleteAnnounce(int idAnnounce);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/deleteAnnounce", ReplyAction="*")]
+        System.Threading.Tasks.Task deleteAnnounceAsync(int idAnnounce);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -57,6 +64,14 @@ namespace CarAppWebClient.MyAnnouncesService {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> PopulateGridAsync(int idUser) {
             return base.Channel.PopulateGridAsync(idUser);
+        }
+        
+        public void deleteAnnounce(int idAnnounce) {
+            base.Channel.deleteAnnounce(idAnnounce);
+        }
+        
+        public System.Threading.Tasks.Task deleteAnnounceAsync(int idAnnounce) {
+            return base.Channel.deleteAnnounceAsync(idAnnounce);
         }
     }
 }

@@ -43,7 +43,8 @@ namespace CarAppWebClient
                 if (lastColumnValue.Length > 0)
                     pictureBox.Image = ConvertByteArrayToImage(lastColumnValue);
             }
-            int id = int.Parse(selectedRow.Cells[0].Value.ToString());
+
+            int id = int.Parse(selectedRow.Cells[1].Value.ToString());
             Console.WriteLine(id);
             announce = Service2.getAnounceData(id);
         }
@@ -57,7 +58,7 @@ namespace CarAppWebClient
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-
+            Service.deleteAnnounce(announce.idAnunt);
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)

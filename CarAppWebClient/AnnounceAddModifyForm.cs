@@ -3,6 +3,7 @@ using CarAppWebClient.LoginService;
 using CarAppWebClient.BrowseService;
 using System.Windows.Forms;
 using System.IO;
+using System.Collections;
 
 namespace CarAppWebClient
 {
@@ -117,11 +118,15 @@ namespace CarAppWebClient
 
             richTextBoxDescriere.Text = announce.descriere;
             textBoxLocatie.Text = announce.locatie;
-
-            pictureBoxAnnounce.Image = ConvertByteArrayToImage(announce.imagAnunt);
-            pictureBox1.Image = ConvertByteArrayToImage(announce.imag1);
-            pictureBox2.Image = ConvertByteArrayToImage(announce.imag2);
-            pictureBox3.Image = ConvertByteArrayToImage(announce.imag3);
+            imageAnnounce = announce.imagAnunt;
+            image1 = announce.imag1;
+            Console.WriteLine("CACA"+ BitConverter.ToString(image1));
+            //pictureBox1.Image = ConvertByteArrayToImage(image1);
+            Console.WriteLine(BitConverter.ToString(announce.imagAnunt));
+           // pictureBoxAnnounce.Image = ConvertByteArrayToImage(announce.imagAnunt);
+           // pictureBox1.Image        = ConvertByteArrayToImage(announce.imag1);
+           // pictureBox2.Image        = ConvertByteArrayToImage(announce.imag2);
+           // pictureBox3.Image        = ConvertByteArrayToImage(announce.imag3);
 
             init();
         }
@@ -130,9 +135,11 @@ namespace CarAppWebClient
         public System.Drawing.Image ConvertByteArrayToImage(byte[] byteArray)
         {
             MemoryStream ms = new MemoryStream(byteArray);
+            //Console.WriteLine(ms);
             System.Drawing.Image rez = System.Drawing.Image.FromStream(ms);
             return rez;
         }
+
 
 
         private byte[] ConvertImageToByteArray(System.Drawing.Image image, System.Drawing.Imaging.ImageFormat format)
