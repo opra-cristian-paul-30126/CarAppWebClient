@@ -22,17 +22,7 @@ namespace CarAppWebClient
             InitializeComponent();
             this.user = user;
             this.announce = announce;
-            Console.WriteLine(announce.imagAnunt.Length);
-            foreach (byte b in announce.imagAnunt)
-            {
-                Console.Write($"{b}");
-            }
-            Console.WriteLine();
-            pictureBoxAnnounce.Image = ConvertByteArrayToImage(announce.imagAnunt);
-            pictureBoxImage1.Image   = ConvertByteArrayToImage(announce.imag1);
-            pictureBoxImage2.Image   = ConvertByteArrayToImage(announce.imag2);
-            pictureBoxImage3.Image   = ConvertByteArrayToImage(announce.imag3);
-            richTextBox1.Text = announce.ToString();
+            init();
         }
 
 
@@ -42,12 +32,52 @@ namespace CarAppWebClient
             InitializeComponent();
             this.admin = admin;
             this.announce = announce;
-            //pictureBoxAnnounce.Image = ConvertByteArrayToImage(announce.imagAnunt);
-            //pictureBoxImage1.Image = ConvertByteArrayToImage(announce.imag1);
-            //pictureBoxImage2.Image = ConvertByteArrayToImage(announce.imag2);
-            //pictureBoxImage3.Image = ConvertByteArrayToImage(announce.imag3);
+            init();
         }
 
+
+        private void init()
+        {
+            pictureBoxAnnounce.Image = ConvertByteArrayToImage(announce.imagAnunt);
+            pictureBoxImage1.Image = ConvertByteArrayToImage(announce.imag1);
+            pictureBoxImage2.Image = ConvertByteArrayToImage(announce.imag2);
+            pictureBoxImage3.Image = ConvertByteArrayToImage(announce.imag3);
+
+
+            string announceData = $"Marca: {announce.marca}\n";
+            announceData += "\n";
+            announceData += $"Model: {announce.model}\n";
+            announceData += "\n";
+            announceData += $"Varianta: {announce.varianta}\n";
+            announceData += "\n";
+            announceData += $"Caroserie: {announce.caroserie}\n";
+            announceData += "\n";
+            announceData += $"Culoare: {announce.culoare}\n";
+            announceData += "\n";
+            announceData += $"An fabricatie: {announce.an}\n";
+            announceData += "\n";
+            announceData += $"Locatie: {announce.locatie}\n";
+            announceData += "\n";
+            announceData += $"Pret: {announce.pret}\n";
+            announceData += "\n";
+            announceData += $"Kilometraj: {announce.km}\n";
+            announceData += "\n";
+            announceData += $"Combustibil: {announce.combustibil}\n";
+            announceData += "\n";
+            announceData += $"Capacitate cilindrica: {announce.cc}\n";
+            announceData += "\n";
+            announceData += $"Putere: {announce.putere}\n";
+            announceData += "\n";
+            announceData += $"PutereKw: {announce.putereKw}\n";
+            announceData += "\n";
+            announceData += $"Cutie de viteze: {announce.cutieViteze}\n";
+            announceData += "\n";
+            announceData += $"Descriere: {announce.descriere}\n";
+            announceData += "\n";
+
+            richTextBox1.Text = announceData;
+
+        }
 
         public System.Drawing.Image ConvertByteArrayToImage(byte[] byteArray)
         {
@@ -73,21 +103,36 @@ namespace CarAppWebClient
         }
 
 
-        private void fullPicture(object sender, MouseEventArgs e)
+        private void fullPicture(PictureBox pb)
         {
-            if (pictureBoxAnnounce.Image != null)
+            if (pb.Image != null)
             {
-                System.Drawing.Image image = pictureBoxAnnounce.Image;
+                System.Drawing.Image image = pb.Image;
                 int width = image.Width;
                 int height = image.Height;
-                PictureForm pf = new PictureForm(width, height, image);
+                PictureForm pf = new PictureForm(image);
                 pf.ShowDialog();
             }
         }
 
         private void pictureBoxAnnounce_DoubleClick(object sender, EventArgs e)
         {
+            fullPicture(pictureBoxAnnounce);
+        }
 
+        private void pictureBoxImage1_DoubleClick(object sender, EventArgs e)
+        {
+            fullPicture(pictureBoxImage1);
+        }
+
+        private void pictureBoxImage2_DoubleClick(object sender, EventArgs e)
+        {
+            fullPicture(pictureBoxImage2);
+        }
+
+        private void pictureBoxImage3_DoubleClick(object sender, EventArgs e)
+        {
+            fullPicture(pictureBoxImage3);
         }
     }
 }

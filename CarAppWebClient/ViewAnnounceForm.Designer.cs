@@ -66,6 +66,7 @@
             this.pictureBoxImage3.Size = new System.Drawing.Size(200, 200);
             this.pictureBoxImage3.TabIndex = 3;
             this.pictureBoxImage3.TabStop = false;
+            this.pictureBoxImage3.DoubleClick += new System.EventHandler(this.pictureBoxImage3_DoubleClick);
             // 
             // pictureBoxImage2
             // 
@@ -74,6 +75,7 @@
             this.pictureBoxImage2.Size = new System.Drawing.Size(200, 200);
             this.pictureBoxImage2.TabIndex = 2;
             this.pictureBoxImage2.TabStop = false;
+            this.pictureBoxImage2.DoubleClick += new System.EventHandler(this.pictureBoxImage2_DoubleClick);
             // 
             // pictureBoxImage1
             // 
@@ -82,6 +84,7 @@
             this.pictureBoxImage1.Size = new System.Drawing.Size(200, 200);
             this.pictureBoxImage1.TabIndex = 1;
             this.pictureBoxImage1.TabStop = false;
+            this.pictureBoxImage1.DoubleClick += new System.EventHandler(this.pictureBoxImage1_DoubleClick);
             // 
             // pictureBoxAnnounce
             // 

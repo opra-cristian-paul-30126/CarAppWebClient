@@ -332,11 +332,14 @@ namespace CarAppWebClient
 
         private void pictureBoxAnnounce_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            System.Drawing.Image image = pictureBoxAnnounce.Image;
-            int width = image.Width;
-            int height = image.Height;
-            PictureForm pf = new PictureForm(width, height,image);
-            pf.ShowDialog();
+            if(pictureBoxAnnounce.Image!=null)
+            {
+                System.Drawing.Image image = pictureBoxAnnounce.Image;
+                int width = image.Width;
+                int height = image.Height;
+                PictureForm pf = new PictureForm(image);
+                pf.ShowDialog();
+            }
         }
     }
 }

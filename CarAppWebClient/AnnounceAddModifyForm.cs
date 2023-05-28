@@ -189,7 +189,7 @@ namespace CarAppWebClient
             image1        = ConvertImageToByteArray(pictureBox1.Image,        System.Drawing.Imaging.ImageFormat.Png);
             image2        = ConvertImageToByteArray(pictureBox2.Image,        System.Drawing.Imaging.ImageFormat.Png);
             image3        = ConvertImageToByteArray(pictureBox3.Image,        System.Drawing.Imaging.ImageFormat.Png);
-            Console.WriteLine(imageAnnounce.ToString());
+
             int id = user.id;
             int km;
             int pret;

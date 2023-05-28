@@ -12,13 +12,29 @@ namespace CarAppWebClient
 {
     public partial class PictureForm : Form
     {
-        public PictureForm(int width, int height, System.Drawing.Image image)
+        public PictureForm(System.Drawing.Image image)
         {
             InitializeComponent();
+            panel.Dock = DockStyle.Fill;
+            panel.AutoScroll = true;
+            panel.AutoScrollMinSize = new Size(0, 0);
+
+            pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBox.Image = image;
-            pictureBox.Width= width; pictureBox.Height = height;
-            this.Height = height+40;
-            this.Width = width+20;
+
+            panel.Controls.Add(pictureBox);
+            Controls.Add(panel);
+            AdjustFormSize();
+        }
+        private void AdjustFormSize()
+        {
+            int maxWidth = 1920;
+            int maxHeight = 1080;
+
+            Size imageSize = pictureBox.Image.Size;
+            int formWidth = Math.Min(imageSize.Width, maxWidth);
+            int formHeight = Math.Min(imageSize.Height, maxHeight);
+            ClientSize= new Size(formWidth, formHeight);
         }
     }
 }

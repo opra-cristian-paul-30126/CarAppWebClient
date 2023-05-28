@@ -29,27 +29,40 @@
         private void InitializeComponent()
         {
             this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.panel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox
             // 
-            this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Location = new System.Drawing.Point(12, 11);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(200, 200);
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             // 
+            // panel
+            // 
+            this.panel.Controls.Add(this.pictureBox);
+            this.panel.Location = new System.Drawing.Point(0, 1);
+            this.panel.MaximumSize = new System.Drawing.Size(1900, 1050);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(230, 227);
+            this.panel.TabIndex = 1;
+            // 
             // PictureForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(199, 198);
-            this.Controls.Add(this.pictureBox);
+            this.ClientSize = new System.Drawing.Size(240, 240);
+            this.Controls.Add(this.panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.Name = "PictureForm";
             this.Text = "PictureForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -57,5 +70,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.Panel panel;
     }
 }
