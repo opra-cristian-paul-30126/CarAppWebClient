@@ -30,51 +30,57 @@ namespace CarAppWebClient
 
             if (IsValidEmail(email))
             {
-                //adresa de email valida
+                // EMAIL IS VALID FORM
                 if (loginService.FoundEmail(email, isAdmin))
                 {
-                    //emailul este in database
+                    // EMAIL IS IN DATABASE
                     if (loginService.CheckPassword(email, parola, isAdmin))
                     {
-                        //login success new catalogue form
+                        // SUCCESSFUL LOGIN, OPENING BROWSER FORM
+                        // REGULAR USER
                         if (!isAdmin)
                         {
                             user = loginService.ReturnUser(email);
+                            // CHECK IF BANNED
                             if (!user.isBanned)
                             {
                                 BrowserForm bf = new BrowserForm(user);
-                                bf.Show();
+
+                                this.Hide();
+                                bf.ShowDialog();
+                                this.Show();
                             }
                             else
                             {
-                                new ErrorForm(13);
+                                // BANNED USER
+                                new ErrorForm(0,1);
                             }
                         }
+                        // ADMIN
                         else
                         {
                             admin = loginService.ReturnAdmin(email);
                             BrowserForm bf = new BrowserForm(admin);
-                            this.Tag = bf;
-                            bf.Tag=this;
                             bf.Show();
+                            this.Hide();
                         }
                     }
                     else
                     {
-                        //parola incorecta
-                        new ErrorForm(1);
+                        //WRONG PASSWORD
+                        new ErrorForm(0,0);
                     }
                 }
                 else
                 {
-                    //eroare emailul nu este in database
-                    new ErrorForm(2);
+                    // EMAIL NOT IN DATABASE
+                    new ErrorForm(0,2);
                 }
             }
             else
             {
-                //eroare invalid email
-                new ErrorForm(3);
+                // INVALID EMAIL FORM
+                new ErrorForm(0,3);
             }
         }
 

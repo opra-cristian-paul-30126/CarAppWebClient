@@ -28,24 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonSearch = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
             this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
             this.buttonBan = new System.Windows.Forms.Button();
             this.buttonUnBan = new System.Windows.Forms.Button();
             this.checkBox = new System.Windows.Forms.CheckBox();
+            this.buttonDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             this.SuspendLayout();
-            // 
-            // buttonSearch
-            // 
-            this.buttonSearch.Location = new System.Drawing.Point(684, 39);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(65, 25);
-            this.buttonSearch.TabIndex = 2;
-            this.buttonSearch.Text = "Refresh";
-            this.buttonSearch.UseVisualStyleBackColor = true;
-            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // buttonBack
             // 
@@ -68,7 +58,7 @@
             // 
             // buttonBan
             // 
-            this.buttonBan.Location = new System.Drawing.Point(684, 166);
+            this.buttonBan.Location = new System.Drawing.Point(686, 119);
             this.buttonBan.Name = "buttonBan";
             this.buttonBan.Size = new System.Drawing.Size(75, 73);
             this.buttonBan.TabIndex = 6;
@@ -78,7 +68,7 @@
             // 
             // buttonUnBan
             // 
-            this.buttonUnBan.Location = new System.Drawing.Point(684, 245);
+            this.buttonUnBan.Location = new System.Drawing.Point(686, 198);
             this.buttonUnBan.Name = "buttonUnBan";
             this.buttonUnBan.Size = new System.Drawing.Size(75, 73);
             this.buttonUnBan.TabIndex = 7;
@@ -95,18 +85,29 @@
             this.checkBox.TabIndex = 8;
             this.checkBox.Text = "Banned?";
             this.checkBox.UseVisualStyleBackColor = true;
+            this.checkBox.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(686, 277);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(75, 73);
+            this.buttonDelete.TabIndex = 9;
+            this.buttonDelete.Text = "DELETE";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // AdminToolsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 425);
+            this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.checkBox);
             this.Controls.Add(this.buttonUnBan);
             this.Controls.Add(this.buttonBan);
             this.Controls.Add(this.dataGridViewUsers);
             this.Controls.Add(this.buttonBack);
-            this.Controls.Add(this.buttonSearch);
             this.Name = "AdminToolsForm";
             this.Text = "AdminTools";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
@@ -116,11 +117,11 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.DataGridView dataGridViewUsers;
         private System.Windows.Forms.Button buttonBan;
         private System.Windows.Forms.Button buttonUnBan;
         private System.Windows.Forms.CheckBox checkBox;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }

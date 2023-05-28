@@ -20,8 +20,9 @@ namespace CarAppWebClient
         private DataSet dsUsers;
         public AdminToolsForm()
         {
-            admin = null;
             InitializeComponent();
+            admin = null;
+            userId = -1;
         }
 
         public AdminToolsForm(Admin admin)
@@ -29,7 +30,7 @@ namespace CarAppWebClient
             InitializeComponent();
             userId = -1;
             this.admin = admin;
-            dsUsers = service.PopulateUsers(false);
+            dsUsers = service.PopulateUsers(true);
             dataGridViewUsers.DataSource = dsUsers.Tables["Users"].DefaultView;
         }
 
@@ -37,7 +38,9 @@ namespace CarAppWebClient
         {
             if (admin != null && userId != -1)
             {
+                Console.WriteLine("O SA BANEZ PE OMU CU IDU:" + userId);
                     service.banUser(userId);
+                refresh();
             }
         }
 
@@ -46,6 +49,7 @@ namespace CarAppWebClient
             if (admin != null && userId != -1)
             {
                 service.unbanUser(userId);
+                   refresh();
             }
         }
 
@@ -62,17 +66,30 @@ namespace CarAppWebClient
                 userId=-1;
         }
 
-        private void buttonSearch_Click(object sender, EventArgs e)
+        private void refresh()
         {
-            if(checkBox.Checked)
+            if (checkBox.Checked)
             {
-                dsUsers=service.PopulateUsers(true);
+                dsUsers = service.PopulateUsers(true);
                 dataGridViewUsers.DataSource = dsUsers.Tables["Users"].DefaultView;
             }
             else
             {
                 dsUsers = service.PopulateUsers(false);
                 dataGridViewUsers.DataSource = dsUsers.Tables["Users"].DefaultView;
+            }
+        }
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (admin != null && userId != -1)
+            {
+                service.deleteUser(userId);
+                refresh();
             }
         }
     }

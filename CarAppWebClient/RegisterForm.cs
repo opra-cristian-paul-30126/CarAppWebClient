@@ -78,50 +78,50 @@ namespace CarAppWebClient
 
                 if (String.IsNullOrEmpty(prenume))
                 {
-                    //numele nu poate fi nul
-                    new ErrorForm(5);
+                    // LAST NAME IS EMPTY
+                    new ErrorForm(1,0);
                     return;
                 }
 
                 if (String.IsNullOrEmpty(nume))
                 {
-                    //prenumele nu poate fi nul
-                    new ErrorForm(4);
+                    // FIRST NAME IS EMPTY
+                    new ErrorForm(1,1);
                     return;
                 }
 
                 if (String.IsNullOrEmpty(email))
                 {
-                    //emailul nu poate fi nul
-                    new ErrorForm(6);
+                    // EMAIL IS EMPTY
+                    new ErrorForm(1,2);
                     return;
                 }
 
-               // if (!IsValidEmail(email))
+                if (!IsValidEmail(email))
                 {
-                    //emailul nu are forma corecta
-                 //   new ErrorForm(3);
-                  //  return;
+                    // EMAIL FORMAT NOT CORRECT
+                    new ErrorForm(1,3);
+                    return;
                 }
 
                 if (String.IsNullOrEmpty(parola))
                 {
-                    //parola nu poate fi nula
-                    new ErrorForm(7);
+                    // PASSWORD IS EMPTY
+                    new ErrorForm(1,4);
                     return;
                 }
 
                 if (!confirmareParola.Equals(parola))
                 {
-                    //parolele nu coincid
-                    new ErrorForm(9);
+                    // PASSWORDS ARE NOT THE SAME
+                    new ErrorForm(1,5);
                     return;
                 }
 
                 if(!ValidatePassword(parola))
                 {
-                    //parola nu are forma corecta
-                    new ErrorForm(11);
+                    // PASSWORD FORMAT NOT CORECT
+                    new ErrorForm(1,6);
                     return;
                 }
 
@@ -142,7 +142,8 @@ namespace CarAppWebClient
                 if (success) Console.WriteLine("Contul a fost inregistrat cu success!");
                 else
                 {
-                    new ErrorForm(10);
+                    // ACCOUNT ALREADY IN DATABASE
+                    new ErrorForm(1,7);
                     return;
                 }
             }
@@ -158,50 +159,50 @@ namespace CarAppWebClient
 
                 if (String.IsNullOrEmpty(prenume))
                 {
-                    //numele nu poate fi nul
-                    new ErrorForm(5);
+                    // LAST NAME IS EMPTY
+                    new ErrorForm(1,0);
                     return;
                 }
 
                 if (String.IsNullOrEmpty(nume))
                 {
-                    //prenumele nu poate fi nul
-                    new ErrorForm(4);
+                    // FIRST NAME IS EMPTY
+                    new ErrorForm(1,1);
                     return;
                 }
 
                 if (String.IsNullOrEmpty(email))
                 {
-                    //emailul nu poate fi nul
-                    new ErrorForm(6);
+                    // EMAIL IS EMPTY
+                    new ErrorForm(1,2);
                     return;
                 }
 
-                //if (IsValidEmail(email))
-                //{
-                    //emailul nu are forma corecta
-                //   new ErrorForm(3);
-                //   return;
-                //}
+                if (IsValidEmail(email))
+                {
+                    // EMAIL FORMAT NOT CORRECT
+                    new ErrorForm(1,3);
+                    return;
+                }
 
                 if (String.IsNullOrEmpty(parola))
                 {
-                    //parola nu poate fi nula
-                    new ErrorForm(7);
+                    // PASSWORD IS EMPTY
+                    new ErrorForm(1,4);
                     return;
                 }
                 
                 if (!confirmareParola.Equals(parola))
                 {
-                    //parolele nu coincid
-                    new ErrorForm(9);
+                    // PASSWORDS ARE NOT THE SAME
+                    new ErrorForm(1,5);
                     return;
                 }
 
                 if (!ValidatePassword(parola))
                 {
-                    //parola nu are forma corecta
-                    new ErrorForm(11);
+                    // PASSWORD FORMAT NOT CORRECT
+                    new ErrorForm(1,6);
                     return;
                 }
 
@@ -221,13 +222,15 @@ namespace CarAppWebClient
                 if (success) Console.WriteLine("Contul a fost inregistrat cu success!");
                 else
                 {
-                    new ErrorForm(10);
+                    // ACCOUNT ALREADY IN DATABASE
+                    new ErrorForm(1,7);
                     return;
                 }
             }
             else
             {
-                new ErrorForm(8);
+                // WRONG ADMIN PASS
+                new ErrorForm(1,8);
                 return;
             }
 

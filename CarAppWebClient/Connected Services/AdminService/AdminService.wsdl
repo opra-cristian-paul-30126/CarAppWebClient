@@ -23,32 +23,10 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="SearchUsers">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="isBanned" type="s:boolean" />
-            <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="SearchUsersResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="SearchUsersResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="banUser">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -58,7 +36,7 @@
       <s:element name="unbanUser">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -83,12 +61,6 @@
   <wsdl:message name="PopulateUsersSoapOut">
     <wsdl:part name="parameters" element="tns:PopulateUsersResponse" />
   </wsdl:message>
-  <wsdl:message name="SearchUsersSoapIn">
-    <wsdl:part name="parameters" element="tns:SearchUsers" />
-  </wsdl:message>
-  <wsdl:message name="SearchUsersSoapOut">
-    <wsdl:part name="parameters" element="tns:SearchUsersResponse" />
-  </wsdl:message>
   <wsdl:message name="banUserSoapIn">
     <wsdl:part name="parameters" element="tns:banUser" />
   </wsdl:message>
@@ -112,10 +84,6 @@
       <wsdl:input message="tns:PopulateUsersSoapIn" />
       <wsdl:output message="tns:PopulateUsersSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="SearchUsers">
-      <wsdl:input message="tns:SearchUsersSoapIn" />
-      <wsdl:output message="tns:SearchUsersSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="banUser">
       <wsdl:input message="tns:banUserSoapIn" />
       <wsdl:output message="tns:banUserSoapOut" />
@@ -133,15 +101,6 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="PopulateUsers">
       <soap:operation soapAction="http://tempuri.org/PopulateUsers" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SearchUsers">
-      <soap:operation soapAction="http://tempuri.org/SearchUsers" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -181,15 +140,6 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="PopulateUsers">
       <soap12:operation soapAction="http://tempuri.org/PopulateUsers" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SearchUsers">
-      <soap12:operation soapAction="http://tempuri.org/SearchUsers" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

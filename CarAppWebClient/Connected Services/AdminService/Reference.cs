@@ -23,26 +23,19 @@ namespace CarAppWebClient.AdminService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PopulateUsers", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Data.DataSet> PopulateUsersAsync(bool isBanned);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SearchUsers", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet SearchUsers(bool isBanned, int Id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SearchUsers", ReplyAction="*")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SearchUsersAsync(bool isBanned, int Id);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/banUser", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        void banUser(int Id);
+        void banUser(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/banUser", ReplyAction="*")]
-        System.Threading.Tasks.Task banUserAsync(int Id);
+        System.Threading.Tasks.Task banUserAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/unbanUser", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        void unbanUser(int Id);
+        void unbanUser(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/unbanUser", ReplyAction="*")]
-        System.Threading.Tasks.Task unbanUserAsync(int Id);
+        System.Threading.Tasks.Task unbanUserAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/deleteUser", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -87,28 +80,20 @@ namespace CarAppWebClient.AdminService {
             return base.Channel.PopulateUsersAsync(isBanned);
         }
         
-        public System.Data.DataSet SearchUsers(bool isBanned, int Id) {
-            return base.Channel.SearchUsers(isBanned, Id);
+        public void banUser(int id) {
+            base.Channel.banUser(id);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> SearchUsersAsync(bool isBanned, int Id) {
-            return base.Channel.SearchUsersAsync(isBanned, Id);
+        public System.Threading.Tasks.Task banUserAsync(int id) {
+            return base.Channel.banUserAsync(id);
         }
         
-        public void banUser(int Id) {
-            base.Channel.banUser(Id);
+        public void unbanUser(int id) {
+            base.Channel.unbanUser(id);
         }
         
-        public System.Threading.Tasks.Task banUserAsync(int Id) {
-            return base.Channel.banUserAsync(Id);
-        }
-        
-        public void unbanUser(int Id) {
-            base.Channel.unbanUser(Id);
-        }
-        
-        public System.Threading.Tasks.Task unbanUserAsync(int Id) {
-            return base.Channel.unbanUserAsync(Id);
+        public System.Threading.Tasks.Task unbanUserAsync(int id) {
+            return base.Channel.unbanUserAsync(id);
         }
         
         public void deleteUser(int id) {

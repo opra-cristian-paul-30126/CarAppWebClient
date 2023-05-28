@@ -1,17 +1,16 @@
-﻿using CarAppWebClient.LoginService;
-using CarAppWebClient.BrowseService;
+﻿using CarAppWebClient.BrowseService;
+using CarAppWebClient.LoginService;
 using System;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
-using System.Diagnostics.Eventing.Reader;
 
 namespace CarAppWebClient
 {
     public partial class BrowserForm : Form
     {
-       private User user;
-       private Admin admin;
+        private User user;
+        private Admin admin;
         private Announce announce;
         private DataSet dsAnnounces;
         BrowseService.BrowseServiceSoapClient BrowseService = new BrowseService.BrowseServiceSoapClient();
@@ -40,7 +39,7 @@ namespace CarAppWebClient
             dataGridView.DataSource = dsAnnounces.Tables["Announces"].DefaultView;
 
             buttonMyAnnounces.Text = "Admin Tools";
-            
+
             init();
             resetFilters();
         }
@@ -48,8 +47,8 @@ namespace CarAppWebClient
 
         private void init()
         {
-            dataGridView.Columns["IdUser"].Visible   = false;
-            dataGridView.Columns["IdAnunt"].Visible  = false;
+            dataGridView.Columns["IdUser"].Visible = false;
+            dataGridView.Columns["IdAnunt"].Visible = false;
             dataGridView.Columns["Imagine1"].Visible = false;
             dataGridView.Columns["Imagine2"].Visible = false;
             dataGridView.Columns["Imagine3"].Visible = false;
@@ -58,16 +57,16 @@ namespace CarAppWebClient
 
         private void resetFilters()
         {
-            textBoxMarca.Text    = "Nespecificat";
-            textBoxModel.Text    = "Nespecificat";
-            textBoxPretMin.Text  = "De la";
-            textBoxPretMax.Text  = "Pana la";
+            textBoxMarca.Text = "Nespecificat";
+            textBoxModel.Text = "Nespecificat";
+            textBoxPretMin.Text = "De la";
+            textBoxPretMax.Text = "Pana la";
             textBoxVarianta.Text = "GTI,RS,OPC,ST";
-            textBoxPwMin.Text    = "De la";
-            textBoxPwMax.Text    = "Pana la";
-            textBoxKmMin.Text    = "De la";
-            textBoxKmMax.Text    = "Pana la";
-            textBoxLocatie.Text  = "Nespecificat";
+            textBoxPwMin.Text = "De la";
+            textBoxPwMax.Text = "Pana la";
+            textBoxKmMin.Text = "De la";
+            textBoxKmMax.Text = "Pana la";
+            textBoxLocatie.Text = "Nespecificat";
 
             comboBoxAn.Items.Clear();
             comboBoxAn.Items.Add("Nespecificat");
@@ -154,22 +153,22 @@ namespace CarAppWebClient
         {
             DataSet dsAnnounces = new DataSet();
 
-            string marca        = textBoxMarca.Text;
-            string model        = textBoxModel.Text;
-            string pretmin      = textBoxPretMin.Text;
-            string pretmax      = textBoxPretMax.Text;
-            string varianta     = textBoxVarianta.Text;
-            string combustibil  = comboBoxCombustibil.SelectedItem.ToString();
+            string marca = textBoxMarca.Text;
+            string model = textBoxModel.Text;
+            string pretmin = textBoxPretMin.Text;
+            string pretmax = textBoxPretMax.Text;
+            string varianta = textBoxVarianta.Text;
+            string combustibil = comboBoxCombustibil.SelectedItem.ToString();
             string anFabricatie = comboBoxAn.SelectedItem.ToString();
-            string cc           = comboBoxCC.SelectedItem.ToString();
-            string putereMin    = textBoxPwMin.Text;
-            string putereMax    = textBoxPwMax.Text;
-            string kmMin        = textBoxKmMin.Text;
-            string kmMax        = textBoxKmMax.Text;
-            string caroserie    = comboBoxCaroserie.SelectedItem.ToString();
-            string culoare      = comboBoxCuloare.SelectedItem.ToString();
-            string cutieViteze  = comboBoxCutieViteze.SelectedItem.ToString();
-            string locatie      = textBoxLocatie.Text;
+            string cc = comboBoxCC.SelectedItem.ToString();
+            string putereMin = textBoxPwMin.Text;
+            string putereMax = textBoxPwMax.Text;
+            string kmMin = textBoxKmMin.Text;
+            string kmMax = textBoxKmMax.Text;
+            string caroserie = comboBoxCaroserie.SelectedItem.ToString();
+            string culoare = comboBoxCuloare.SelectedItem.ToString();
+            string cutieViteze = comboBoxCutieViteze.SelectedItem.ToString();
+            string locatie = textBoxLocatie.Text;
             string anMin = "0", anMax = "0";
             string ccMin = "0", ccMax = "0";
 
@@ -199,35 +198,35 @@ namespace CarAppWebClient
             if (kmMin.Equals("De la")) kmMin = "0";
             if (kmMax.Equals("Pana la")) kmMax = "0";
             // ------------------------------------AN------------------------------------
-            if (anFabricatie.Equals("Nespecificat")) { anMin = "0";    anMax = "0";    }
-            if (anFabricatie.Equals("< 1970"))       { anMin = "0";    anMax = "1970"; }
-            if (anFabricatie.Equals("1971 - 1975"))  { anMin = "1971"; anMax = "1975"; }
-            if (anFabricatie.Equals("1976 - 1980"))  { anMin = "1976"; anMax = "1980"; }
-            if (anFabricatie.Equals("1981 - 1985"))  { anMin = "1981"; anMax = "1985"; }
-            if (anFabricatie.Equals("1991 - 1995"))  { anMin = "1991"; anMax = "1995"; }
-            if (anFabricatie.Equals("1996 - 2000"))  { anMin = "1996"; anMax = "2000"; }
-            if (anFabricatie.Equals("2001 - 2005"))  { anMin = "2001"; anMax = "2005"; }
-            if (anFabricatie.Equals("2006 - 2010"))  { anMin = "2006"; anMax = "2010"; }
-            if (anFabricatie.Equals("2011 - 2015"))  { anMin = "2011"; anMax = "2015"; }
-            if (anFabricatie.Equals("2016 - 2020"))  { anMin = "2016"; anMax = "2020"; }
-            if (anFabricatie.Equals("> 2020"))       { anMin = "2020"; anMax = "2025"; }
+            if (anFabricatie.Equals("Nespecificat")) { anMin = "0"; anMax = "0"; }
+            if (anFabricatie.Equals("< 1970")) { anMin = "0"; anMax = "1970"; }
+            if (anFabricatie.Equals("1971 - 1975")) { anMin = "1971"; anMax = "1975"; }
+            if (anFabricatie.Equals("1976 - 1980")) { anMin = "1976"; anMax = "1980"; }
+            if (anFabricatie.Equals("1981 - 1985")) { anMin = "1981"; anMax = "1985"; }
+            if (anFabricatie.Equals("1991 - 1995")) { anMin = "1991"; anMax = "1995"; }
+            if (anFabricatie.Equals("1996 - 2000")) { anMin = "1996"; anMax = "2000"; }
+            if (anFabricatie.Equals("2001 - 2005")) { anMin = "2001"; anMax = "2005"; }
+            if (anFabricatie.Equals("2006 - 2010")) { anMin = "2006"; anMax = "2010"; }
+            if (anFabricatie.Equals("2011 - 2015")) { anMin = "2011"; anMax = "2015"; }
+            if (anFabricatie.Equals("2016 - 2020")) { anMin = "2016"; anMax = "2020"; }
+            if (anFabricatie.Equals("> 2020")) { anMin = "2020"; anMax = "2025"; }
             // ------------------------------------CC------------------------------------
-            if (cc.Equals("Nespecificat"))      { ccMin = "0"; ccMax = "0";        }
-            if (cc.Equals("< 50 cc"))           { ccMin = "0"; ccMax = "50";       }
-            if (cc.Equals("51 - 200 cc"))       { ccMin = "51"; ccMax = "200";     }
-            if (cc.Equals("201 - 400 cc"))      { ccMin = "201"; ccMax = "400";    }
-            if (cc.Equals("401 - 600 cc"))      { ccMin = "401"; ccMax = "600";    }
-            if (cc.Equals("601 - 800 cc"))      { ccMin = "601"; ccMax = "800";    }
-            if (cc.Equals("801 - 1000 cc"))     { ccMin = "801"; ccMax = "1000";   }
-            if (cc.Equals("1001 - 1400 cc"))    { ccMin = "1001"; ccMax = "1400";  }
-            if (cc.Equals("1401 - 1800 cc"))    { ccMin = "1401"; ccMax = "1800";  }
-            if (cc.Equals("1801 - 2200 cc"))    { ccMin = "1801"; ccMax = "2200";  }
-            if (cc.Equals("2201 - 3000 cc"))    { ccMin = "2201"; ccMax = "3000";  }
-            if (cc.Equals("> 3001 cc"))         { ccMin = "3001"; ccMax = "30000"; }
+            if (cc.Equals("Nespecificat")) { ccMin = "0"; ccMax = "0"; }
+            if (cc.Equals("< 50 cc")) { ccMin = "0"; ccMax = "50"; }
+            if (cc.Equals("51 - 200 cc")) { ccMin = "51"; ccMax = "200"; }
+            if (cc.Equals("201 - 400 cc")) { ccMin = "201"; ccMax = "400"; }
+            if (cc.Equals("401 - 600 cc")) { ccMin = "401"; ccMax = "600"; }
+            if (cc.Equals("601 - 800 cc")) { ccMin = "601"; ccMax = "800"; }
+            if (cc.Equals("801 - 1000 cc")) { ccMin = "801"; ccMax = "1000"; }
+            if (cc.Equals("1001 - 1400 cc")) { ccMin = "1001"; ccMax = "1400"; }
+            if (cc.Equals("1401 - 1800 cc")) { ccMin = "1401"; ccMax = "1800"; }
+            if (cc.Equals("1801 - 2200 cc")) { ccMin = "1801"; ccMax = "2200"; }
+            if (cc.Equals("2201 - 3000 cc")) { ccMin = "2201"; ccMax = "3000"; }
+            if (cc.Equals("> 3001 cc")) { ccMin = "3001"; ccMax = "30000"; }
 
-            dsAnnounces = BrowseService.PopulateAnunturi(marca, model, pretmin, pretmax, varianta, 
-                                                         combustibil, anMin, anMax, ccMin, ccMax, 
-                                                         putereMin, putereMax, kmMin, kmMax, caroserie, 
+            dsAnnounces = BrowseService.PopulateAnunturi(marca, model, pretmin, pretmax, varianta,
+                                                         combustibil, anMin, anMax, ccMin, ccMax,
+                                                         putereMin, putereMax, kmMin, kmMax, caroserie,
                                                          culoare, cutieViteze, locatie);
 
             this.dataGridView.DataSource = dsAnnounces.Tables["Announces"].DefaultView;
@@ -235,10 +234,11 @@ namespace CarAppWebClient
 
         private void checkBoxFiltre_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBoxFiltre.Checked)
+            if (checkBoxFiltre.Checked)
             {
                 groupBox2.Enabled = true;
-            }else
+            }
+            else
             {
                 groupBox2.Enabled = false;
             }
@@ -259,9 +259,10 @@ namespace CarAppWebClient
 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) { 
+            if (e.RowIndex >= 0)
+            {
                 DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
-                if (selectedRow.Cells[selectedRow.Cells.Count-1].Value != DBNull.Value)
+                if (selectedRow.Cells[selectedRow.Cells.Count - 1].Value != DBNull.Value)
                 {
                     byte[] announceImageCollumValue = (byte[])selectedRow.Cells[selectedRow.Cells.Count - 4].Value;
                     if (announceImageCollumValue.Length > 0)
@@ -281,7 +282,7 @@ namespace CarAppWebClient
         {
             if (admin != null)
             {
-                AdminToolsForm atf = new AdminToolsForm();
+                AdminToolsForm atf = new AdminToolsForm(admin);
                 atf.ShowDialog();
             }
             else
@@ -305,13 +306,13 @@ namespace CarAppWebClient
             // daca e selectat anuntu
             if (announce != null)
             {
-                if (user != null) 
+                if (user != null)
                 {
                     ViewAnnounceForm vaf = new ViewAnnounceForm(announce, user);
                     vaf.ShowDialog();
                 }
                 // daca e user
-                if (admin != null) 
+                if (admin != null)
                 {
                     ViewAnnounceForm vaf = new ViewAnnounceForm(announce, admin);
                     vaf.ShowDialog();
@@ -327,12 +328,14 @@ namespace CarAppWebClient
 
         private void buttonLogOut_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Close();
+            LoginForm lf = new LoginForm();
+            
         }
 
         private void pictureBoxAnnounce_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if(pictureBoxAnnounce.Image!=null)
+            if (pictureBoxAnnounce.Image != null)
             {
                 System.Drawing.Image image = pictureBoxAnnounce.Image;
                 int width = image.Width;

@@ -95,38 +95,25 @@ namespace CarAppWebClient
             comboBoxCombustibil.Items.Add("Altul");
             comboBoxCombustibil.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxCombustibil.SelectedIndex = 0;
-
-            textBoxAn.Text = "2001";
-            textBoxCC.Text = "100";
-            textBoxKm.Text = "1000";
-            textBoxLocatie.Text = "locatie";
-            textBoxMarca.Text = "marca";
-            textBoxModel.Text = "model";
-            textBoxPret.Text = "21";
-            textBoxPutere.Text = "321";
-            textBoxPutereKW.Text = "323";
-            textBoxVarianta.Text = "varianta";
-            richTextBoxDescriere.Text = "Description";
         }
         
         private void initAlt()
         {
             init();
-            textBoxMarca.Text    = announce.marca;
-            textBoxModel.Text    = announce.model;
-            textBoxVarianta.Text = announce.varianta;
+            textBoxMarca.Text         = announce.marca;
+            textBoxModel.Text         = announce.model;
+            textBoxVarianta.Text      = announce.varianta;
+            textBoxAn.Text            = announce.an.ToString();
+            textBoxKm.Text            = announce.km.ToString();
+            textBoxPutere.Text        = announce.putere.ToString();
+            textBoxPutereKW.Text      = announce.putereKw.ToString();
 
-            textBoxAn.Text = announce.an.ToString();
-            textBoxKm.Text = announce.km.ToString();
-            textBoxPutere.Text = announce.putere.ToString();
-            textBoxPutereKW.Text = announce.putereKw.ToString();
-
-            textBoxCC.Text = announce.cc.ToString(); ;
+            textBoxCC.Text            = announce.cc.ToString(); ;
 
             richTextBoxDescriere.Text = announce.descriere;
-            textBoxLocatie.Text = announce.locatie;
-            imageAnnounce = announce.imagAnunt;
-            image1 = announce.imag1;
+            textBoxLocatie.Text       = announce.locatie;
+            imageAnnounce             = announce.imagAnunt;
+            image1                    = announce.imag1;
           
             pictureBoxAnnounce.Image = ConvertByteArrayToImage(announce.imagAnunt);
             pictureBox1.Image        = ConvertByteArrayToImage(announce.imag1);
@@ -140,7 +127,6 @@ namespace CarAppWebClient
         public System.Drawing.Image ConvertByteArrayToImage(byte[] byteArray)
         {
             MemoryStream ms = new MemoryStream(byteArray);
-            //Console.WriteLine(ms);
             System.Drawing.Image rez = System.Drawing.Image.FromStream(ms);
             return rez;
         }
@@ -168,7 +154,6 @@ namespace CarAppWebClient
                 {
                     throw;
                 }
-                Console.WriteLine(rez.Length);
                 return rez;
             }
         }
@@ -202,60 +187,66 @@ namespace CarAppWebClient
             if (string.IsNullOrEmpty(marca))       marca = "Neselectat";
             if (string.IsNullOrEmpty(model))       model = "Neselectat";
             if (string.IsNullOrEmpty(varianta)) varianta = "Neselectat";
-            if (string.IsNullOrEmpty(locatie))   locatie = user.adresa;
 
+            if (string.IsNullOrEmpty(culoare))
+                if (string.IsNullOrEmpty(user.adresa))
+                    locatie = "Nespecificat";
+                else
+                    locatie = user.adresa;
+            else
+                locatie = textBoxLocatie.Text;
 
-            if (!int.TryParse(textBoxPret.Text, out pret))
+            if (string.IsNullOrEmpty(textBoxPret.Text) || !int.TryParse(textBoxPret.Text, out pret))
             {
-                //Eroare nu se poate transforma pretul de vanzare din text in int
-                new ErrorForm(10);
+                // PRICE IS EMPTY OR SOMEHOW IS NOT INT
+                new ErrorForm(4,0);
                 return;
             }
 
-            if (string.IsNullOrEmpty(textBoxAn.Text)) an = 1;
-            else if (!int.TryParse(textBoxAn.Text, out an))
+            if (string.IsNullOrEmpty(textBoxAn.Text) || !int.TryParse(textBoxAn.Text, out an))
             {
-                //Eroare nu se poate transforma anul de fabricatie din text in int
-                new ErrorForm(12);
+                // YEAR IS EMPTY OR SOMEHOW IS NOT INT
+                new ErrorForm(4,1);
+                return;
+            } 
+            else if (an <1900)
+            {
+                // TOO OLD
+                new ErrorForm(4,2);
                 return;
             }
 
-            if (string.IsNullOrEmpty(textBoxKm.Text)) km = 1;
-            else if (!int.TryParse(textBoxKm.Text, out km))
+            if (string.IsNullOrEmpty(textBoxKm.Text) || !int.TryParse(textBoxKm.Text, out km))
             {
-                //Eroare nu se poate transforma km din text in int
-                new ErrorForm(13);
+                // KM IS EMPTY OR SOMEHOW NOT INT
+                new ErrorForm(4,3);
                 return;
             }
 
-            if (string.IsNullOrEmpty(textBoxPutere.Text)) putere = 1;
-            else if (!int.TryParse(textBoxPutere.Text, out  putere))
+            if (string.IsNullOrEmpty(textBoxPutere.Text) || !int.TryParse(textBoxPutere.Text, out  putere))
             {
-                //Eroare nu se poate transforma cp din text in int
-                new ErrorForm(14);
+                // PUTERE (CP) IS EMPTY OR SOMEHOW NOT INT
+                new ErrorForm(4,4);
                 return;
             }
 
-            if (string.IsNullOrEmpty(textBoxPutereKW.Text)) putereKW = 1;
-            else if (!int.TryParse(textBoxPutereKW.Text, out  putereKW))
+            if (string.IsNullOrEmpty(textBoxPutereKW.Text)|| !int.TryParse(textBoxPutereKW.Text, out putereKW))
             {
-                //Eroare nu se poate transforma kw din text in int
-                new ErrorForm(15);
+                // PUTERE(KW) IS EMPTY OR SOMEHOW NOT INT
+                new ErrorForm(4,5);
                 return;
             }
 
-            if (string.IsNullOrEmpty(textBoxCC.Text)) cc = 1;
-            else if (!int.TryParse(textBoxCC.Text, out cc))
+            if (string.IsNullOrEmpty(textBoxCC.Text) || !int.TryParse(textBoxCC.Text, out cc)) 
             {
-                //Eroare nu se poate transforma cc din text in int
-                new ErrorForm(16);
+                // CC IS EMPTY OR SOMEHOW NOT INT
+                new ErrorForm(4,6);
                 return;
             }
+
             if (modify)
             {
                 int idAnnounce = announce.idAnunt;
-
-                Console.WriteLine("ID ANUNT: " + announce.idAnunt.ToString());
                 service.updateAnnouncee(idAnnounce, caroserie, marca, model, varianta, pret, an, km,
                 putere, putereKW, combustibil, cutieViteze, cc, culoare, locatie, descriere,
                 imageAnnounce, image1, image2, image3);
@@ -270,7 +261,6 @@ namespace CarAppWebClient
 
         private void buttonAction_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(modify.ToString());
             addOrModify(modify);
         }
 
@@ -308,5 +298,25 @@ namespace CarAppWebClient
         private void textBoxPutere_KeyPress(object sender, KeyPressEventArgs e)   { onlyNumbers(sender, e); }
         private void textBoxPutereKW_KeyPress(object sender, KeyPressEventArgs e) { onlyNumbers(sender, e); }
         private void textBoxCC_KeyPress(object sender, KeyPressEventArgs e)       { onlyNumbers(sender, e); }
+
+        private void textBoxPutere_TextChanged(object sender, EventArgs e)
+        {
+            textBoxPutereKW.TextChanged -= textBoxPutereKW_TextChanged;
+            if (int.TryParse(textBoxPutere.Text, out int cp))
+            {
+                textBoxPutereKW.Text = Math.Truncate(cp * 0.745).ToString();
+            }
+            textBoxPutereKW.TextChanged += textBoxPutereKW_TextChanged;
+        }
+
+        private void textBoxPutereKW_TextChanged(object sender, EventArgs e)
+        {
+            textBoxPutere.TextChanged -= textBoxPutere_TextChanged;
+            if (int.TryParse(textBoxPutereKW.Text, out int kw))
+            {
+                textBoxPutere.Text = Math.Truncate(kw / 0.745).ToString();
+            }
+            textBoxPutere.TextChanged += textBoxPutere_TextChanged;
+        }
     }
 }
