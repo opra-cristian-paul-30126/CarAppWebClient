@@ -3,6 +3,7 @@ using System;
 using System.Windows.Forms;
 using CarAppWebClient.LoginService;
 using System.IO;
+using System.Collections;
 
 namespace CarAppWebClient
 {
@@ -21,10 +22,16 @@ namespace CarAppWebClient
             InitializeComponent();
             this.user = user;
             this.announce = announce;
-           // pictureBoxAnnounce.Image = ConvertByteArrayToImage(announce.imagAnunt);
-           // pictureBoxImage1.Image   = ConvertByteArrayToImage(announce.imag1);
-           // pictureBoxImage2.Image   = ConvertByteArrayToImage(announce.imag2);
-           // pictureBoxImage3.Image   = ConvertByteArrayToImage(announce.imag3);
+            Console.WriteLine(announce.imagAnunt.Length);
+            foreach (byte b in announce.imagAnunt)
+            {
+                Console.Write($"{b}");
+            }
+            Console.WriteLine();
+            pictureBoxAnnounce.Image = ConvertByteArrayToImage(announce.imagAnunt);
+            pictureBoxImage1.Image   = ConvertByteArrayToImage(announce.imag1);
+            pictureBoxImage2.Image   = ConvertByteArrayToImage(announce.imag2);
+            pictureBoxImage3.Image   = ConvertByteArrayToImage(announce.imag3);
             richTextBox1.Text = announce.ToString();
         }
 
@@ -62,6 +69,24 @@ namespace CarAppWebClient
                 BrowserForm bf = new BrowserForm(user);
                 bf.ShowDialog();
             }
+
+        }
+
+
+        private void fullPicture(object sender, MouseEventArgs e)
+        {
+            if (pictureBoxAnnounce.Image != null)
+            {
+                System.Drawing.Image image = pictureBoxAnnounce.Image;
+                int width = image.Width;
+                int height = image.Height;
+                PictureForm pf = new PictureForm(width, height, image);
+                pf.ShowDialog();
+            }
+        }
+
+        private void pictureBoxAnnounce_DoubleClick(object sender, EventArgs e)
+        {
 
         }
     }

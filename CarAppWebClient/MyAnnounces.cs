@@ -53,9 +53,9 @@ namespace CarAppWebClient
                 DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
                 if (selectedRow.Cells[selectedRow.Cells.Count - 1].Value != DBNull.Value)
                 {
-                    byte[] lastColumnValue = (byte[])selectedRow.Cells[selectedRow.Cells.Count - 1].Value;
-                    if (lastColumnValue.Length > 0)
-                        pictureBox.Image = ConvertByteArrayToImage(lastColumnValue);
+                    byte[] announceImageCollumValue = (byte[])selectedRow.Cells[selectedRow.Cells.Count - 4].Value;
+                    if (announceImageCollumValue.Length > 0)
+                        pictureBox.Image = ConvertByteArrayToImage(announceImageCollumValue);
                 }
                 int id = int.Parse(selectedRow.Cells[1].Value.ToString());
                 Console.WriteLine(id);

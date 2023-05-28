@@ -12,15 +12,8 @@ namespace CarAppWebClient
     {
        private User user;
        private Admin admin;
-
-
-        //  this little f***er, nu inteleg de ce la user si admin de mai sus merge...
         private Announce announce;
-
-
-
-
-        DataSet dsAnnounces;
+        private DataSet dsAnnounces;
         BrowseService.BrowseServiceSoapClient BrowseService = new BrowseService.BrowseServiceSoapClient();
         public BrowserForm(User user)
         {
@@ -270,13 +263,15 @@ namespace CarAppWebClient
                 DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
                 if (selectedRow.Cells[selectedRow.Cells.Count-1].Value != DBNull.Value)
                 {
-                    byte[] lastColumnValue = (byte[])selectedRow.Cells[selectedRow.Cells.Count - 1].Value;
-                    if (lastColumnValue.Length > 0)
-                        pictureBoxAnnounce.Image = ConvertByteArrayToImage(lastColumnValue);
+                    byte[] announceImageCollumValue = (byte[])selectedRow.Cells[selectedRow.Cells.Count - 4].Value;
+                    if (announceImageCollumValue.Length > 0)
+                        pictureBoxAnnounce.Image = ConvertByteArrayToImage(announceImageCollumValue);
                 }
                 int id = int.Parse(selectedRow.Cells[1].Value.ToString());
                 Console.WriteLine(id);
+
                 announce = BrowseService.getAnounceData(id);
+                Console.WriteLine(announce.imag1.Length);
             }
             else
                 announce = null;
@@ -311,7 +306,7 @@ namespace CarAppWebClient
             if (announce != null)
             {
                 if (user != null) 
-                { 
+                {
                     ViewAnnounceForm vaf = new ViewAnnounceForm(announce, user);
                     vaf.ShowDialog();
                 }
@@ -335,5 +330,13 @@ namespace CarAppWebClient
             this.Hide();
         }
 
+        private void pictureBoxAnnounce_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            System.Drawing.Image image = pictureBoxAnnounce.Image;
+            int width = image.Width;
+            int height = image.Height;
+            PictureForm pf = new PictureForm(width, height,image);
+            pf.ShowDialog();
+        }
     }
 }

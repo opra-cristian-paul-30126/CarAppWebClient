@@ -112,8 +112,8 @@ namespace CarAppWebClient
         private void initAlt()
         {
             init();
-            textBoxMarca.Text = announce.marca;
-            textBoxModel.Text = announce.model;
+            textBoxMarca.Text    = announce.marca;
+            textBoxModel.Text    = announce.model;
             textBoxVarianta.Text = announce.varianta;
 
             textBoxAn.Text = announce.an.ToString();
@@ -128,11 +128,10 @@ namespace CarAppWebClient
             imageAnnounce = announce.imagAnunt;
             image1 = announce.imag1;
           
-           // pictureBox1.Image = ConvertByteArrayToImage(image1);
-           // pictureBoxAnnounce.Image = ConvertByteArrayToImage(announce.imagAnunt);
-           // pictureBox1.Image        = ConvertByteArrayToImage(announce.imag1);
-           // pictureBox2.Image        = ConvertByteArrayToImage(announce.imag2);
-           // pictureBox3.Image        = ConvertByteArrayToImage(announce.imag3);
+            pictureBoxAnnounce.Image = ConvertByteArrayToImage(announce.imagAnunt);
+            pictureBox1.Image        = ConvertByteArrayToImage(announce.imag1);
+            pictureBox2.Image        = ConvertByteArrayToImage(announce.imag2);
+            pictureBox3.Image        = ConvertByteArrayToImage(announce.imag3);
 
 
         }
@@ -271,6 +270,7 @@ namespace CarAppWebClient
 
         private void buttonAction_Click(object sender, EventArgs e)
         {
+            Console.WriteLine(modify.ToString());
             addOrModify(modify);
         }
 

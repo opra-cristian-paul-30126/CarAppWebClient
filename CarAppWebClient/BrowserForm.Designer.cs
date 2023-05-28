@@ -476,6 +476,7 @@
             this.pictureBoxAnnounce.Size = new System.Drawing.Size(186, 187);
             this.pictureBoxAnnounce.TabIndex = 1;
             this.pictureBoxAnnounce.TabStop = false;
+            this.pictureBoxAnnounce.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxAnnounce_MouseDoubleClick);
             // 
             // dataGridView
             // 
