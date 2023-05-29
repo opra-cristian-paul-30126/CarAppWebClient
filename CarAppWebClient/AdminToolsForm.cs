@@ -92,5 +92,32 @@ namespace CarAppWebClient
                 refresh();
             }
         }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            if (admin != null)
+            {
+                this.Dispose();
+                new BrowserForm(admin).Show();
+            }
+        }
+
+        private void AdminToolsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (admin != null && userId != -1)
+            {
+                service.deleteUser(userId);
+                refresh();
+            }
+        }
     }
 }

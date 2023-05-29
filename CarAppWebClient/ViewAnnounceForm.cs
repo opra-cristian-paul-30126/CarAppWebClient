@@ -60,6 +60,8 @@ namespace CarAppWebClient
             announceData += "\n";
             announceData += $"Pret: {announce.pret}\n";
             announceData += "\n";
+            announceData += $"Telefon: {announce.telefon}\n";
+            announceData += "\n";
             announceData += $"Kilometraj: {announce.km}\n";
             announceData += "\n";
             announceData += $"Combustibil: {announce.combustibil}\n";
@@ -88,18 +90,16 @@ namespace CarAppWebClient
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            this.Close();
             if (admin != null)
             {
-                BrowserForm bf = new BrowserForm(admin);
-                bf.ShowDialog();
+                this.Dispose();
+                new BrowserForm(admin).Show();
             }
             else
             {
-                BrowserForm bf = new BrowserForm(user);
-                bf.ShowDialog();
+                this.Dispose();
+                new BrowserForm(user).Show();
             }
-
         }
 
 
@@ -133,6 +133,11 @@ namespace CarAppWebClient
         private void pictureBoxImage3_DoubleClick(object sender, EventArgs e)
         {
             fullPicture(pictureBoxImage3);
+        }
+
+        private void ViewAnnounceForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

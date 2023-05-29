@@ -16,9 +16,16 @@ namespace CarAppWebClient.BrowseService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BrowseService.BrowseServiceSoap")]
     public interface BrowseServiceSoap {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PopulateAnunturi", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PopulateGrid", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet PopulateAnunturi(
+        System.Data.DataSet PopulateGrid();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PopulateGrid", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> PopulateGridAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/FilterGrid", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet FilterGrid(
                     string marca, 
                     string model, 
                     string pretMin, 
@@ -38,8 +45,8 @@ namespace CarAppWebClient.BrowseService {
                     string cutieViteze, 
                     string locatie);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PopulateAnunturi", ReplyAction="*")]
-        System.Threading.Tasks.Task<System.Data.DataSet> PopulateAnunturiAsync(
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/FilterGrid", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> FilterGridAsync(
                     string marca, 
                     string model, 
                     string pretMin, 
@@ -94,6 +101,8 @@ namespace CarAppWebClient.BrowseService {
         private string locatieField;
         
         private string descriereField;
+        
+        private string telefonField;
         
         private int idUserField;
         
@@ -241,6 +250,18 @@ namespace CarAppWebClient.BrowseService {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public string telefon {
+            get {
+                return this.telefonField;
+            }
+            set {
+                this.telefonField = value;
+                this.RaisePropertyChanged("telefon");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
         public int idUser {
             get {
                 return this.idUserField;
@@ -252,7 +273,7 @@ namespace CarAppWebClient.BrowseService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
         public int idAnunt {
             get {
                 return this.idAnuntField;
@@ -264,7 +285,7 @@ namespace CarAppWebClient.BrowseService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
         public int pret {
             get {
                 return this.pretField;
@@ -276,7 +297,7 @@ namespace CarAppWebClient.BrowseService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
         public int an {
             get {
                 return this.anField;
@@ -288,7 +309,7 @@ namespace CarAppWebClient.BrowseService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
         public int km {
             get {
                 return this.kmField;
@@ -300,7 +321,7 @@ namespace CarAppWebClient.BrowseService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
         public int putere {
             get {
                 return this.putereField;
@@ -312,7 +333,7 @@ namespace CarAppWebClient.BrowseService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
         public int putereKw {
             get {
                 return this.putereKwField;
@@ -324,7 +345,7 @@ namespace CarAppWebClient.BrowseService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
         public int cc {
             get {
                 return this.ccField;
@@ -336,7 +357,7 @@ namespace CarAppWebClient.BrowseService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=18)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=19)]
         public byte[] imagAnunt {
             get {
                 return this.imagAnuntField;
@@ -348,7 +369,7 @@ namespace CarAppWebClient.BrowseService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=19)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=20)]
         public byte[] imag1 {
             get {
                 return this.imag1Field;
@@ -360,7 +381,7 @@ namespace CarAppWebClient.BrowseService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=20)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=21)]
         public byte[] imag2 {
             get {
                 return this.imag2Field;
@@ -372,7 +393,7 @@ namespace CarAppWebClient.BrowseService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=21)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=22)]
         public byte[] imag3 {
             get {
                 return this.imag3Field;
@@ -420,29 +441,15 @@ namespace CarAppWebClient.BrowseService {
                 base(binding, remoteAddress) {
         }
         
-        public System.Data.DataSet PopulateAnunturi(
-                    string marca, 
-                    string model, 
-                    string pretMin, 
-                    string pretMax, 
-                    string varianta, 
-                    string combustibil, 
-                    string anMin, 
-                    string anMax, 
-                    string ccMin, 
-                    string ccMax, 
-                    string putereCPMin, 
-                    string putereCPMax, 
-                    string kmMin, 
-                    string kmMax, 
-                    string caroserie, 
-                    string culoare, 
-                    string cutieViteze, 
-                    string locatie) {
-            return base.Channel.PopulateAnunturi(marca, model, pretMin, pretMax, varianta, combustibil, anMin, anMax, ccMin, ccMax, putereCPMin, putereCPMax, kmMin, kmMax, caroserie, culoare, cutieViteze, locatie);
+        public System.Data.DataSet PopulateGrid() {
+            return base.Channel.PopulateGrid();
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> PopulateAnunturiAsync(
+        public System.Threading.Tasks.Task<System.Data.DataSet> PopulateGridAsync() {
+            return base.Channel.PopulateGridAsync();
+        }
+        
+        public System.Data.DataSet FilterGrid(
                     string marca, 
                     string model, 
                     string pretMin, 
@@ -461,7 +468,29 @@ namespace CarAppWebClient.BrowseService {
                     string culoare, 
                     string cutieViteze, 
                     string locatie) {
-            return base.Channel.PopulateAnunturiAsync(marca, model, pretMin, pretMax, varianta, combustibil, anMin, anMax, ccMin, ccMax, putereCPMin, putereCPMax, kmMin, kmMax, caroserie, culoare, cutieViteze, locatie);
+            return base.Channel.FilterGrid(marca, model, pretMin, pretMax, varianta, combustibil, anMin, anMax, ccMin, ccMax, putereCPMin, putereCPMax, kmMin, kmMax, caroserie, culoare, cutieViteze, locatie);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> FilterGridAsync(
+                    string marca, 
+                    string model, 
+                    string pretMin, 
+                    string pretMax, 
+                    string varianta, 
+                    string combustibil, 
+                    string anMin, 
+                    string anMax, 
+                    string ccMin, 
+                    string ccMax, 
+                    string putereCPMin, 
+                    string putereCPMax, 
+                    string kmMin, 
+                    string kmMax, 
+                    string caroserie, 
+                    string culoare, 
+                    string cutieViteze, 
+                    string locatie) {
+            return base.Channel.FilterGridAsync(marca, model, pretMin, pretMax, varianta, combustibil, anMin, anMax, ccMin, ccMax, putereCPMin, putereCPMax, kmMin, kmMax, caroserie, culoare, cutieViteze, locatie);
         }
         
         public CarAppWebClient.BrowseService.Announce getAnounceData(int IdAnunt) {

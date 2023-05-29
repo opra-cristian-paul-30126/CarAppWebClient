@@ -4,15 +4,15 @@ using CarAppWebClient.BrowseService;
 using System.Windows.Forms;
 using System.IO;
 using System.Collections;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CarAppWebClient
 {
     public partial class AnnounceAddModifyForm : Form
     {
 
-        CreateAnnouncementService.CreateAnnouncementSoapClient service
-        = new CreateAnnouncementService.CreateAnnouncementSoapClient();
-        User user;
+        private CreateAnnouncementService.CreateAnnouncementSoapClient service = new CreateAnnouncementService.CreateAnnouncementSoapClient();
+        private User user;
         private Announce announce;
         private byte[] imageAnnounce;
         private byte[] image1;
@@ -27,7 +27,6 @@ namespace CarAppWebClient
             announce          = null;
             modify            = false;
             buttonAction.Text = "Adauga";
-
             init();
         }
 
@@ -45,11 +44,12 @@ namespace CarAppWebClient
 
         private void init()
         {
+            // Pictures
             pictureBoxAnnounce.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox1.SizeMode        = PictureBoxSizeMode.CenterImage;
             pictureBox2.SizeMode        = PictureBoxSizeMode.CenterImage;
             pictureBox3.SizeMode        = PictureBoxSizeMode.CenterImage;
-
+            // ComboBox Caroserie
             comboBoxCaroserie.Items.Clear();
             comboBoxCaroserie.Items.Add("Nespecificat");
             comboBoxCaroserie.Items.Add("Hatchback");
@@ -62,7 +62,7 @@ namespace CarAppWebClient
             comboBoxCaroserie.Items.Add("Alta caroserie");
             comboBoxCaroserie.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxCaroserie.SelectedIndex = 0;
-
+            // ComboBox Culoare
             comboBoxCuloare.Items.Clear();
             comboBoxCuloare.Items.Add("Nespecificat");
             comboBoxCuloare.Items.Add("Albastru");
@@ -75,7 +75,7 @@ namespace CarAppWebClient
             comboBoxCuloare.Items.Add("Maro");
             comboBoxCuloare.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxCuloare.SelectedIndex = 0;
-
+            // ComboBox Cutie Viteze
             comboBoxCutieViteze.Items.Clear();
             comboBoxCutieViteze.Items.Add("Nespecificat");
             comboBoxCutieViteze.Items.Add("Manuala");
@@ -84,7 +84,7 @@ namespace CarAppWebClient
             comboBoxCutieViteze.Items.Add("Secventiala");
             comboBoxCutieViteze.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxCutieViteze.SelectedIndex = 0;
-
+            // ComboBox Combustibil
             comboBoxCombustibil.Items.Clear();
             comboBoxCombustibil.Items.Add("Nespecificat");
             comboBoxCombustibil.Items.Add("Benzina FTW");
@@ -100,29 +100,33 @@ namespace CarAppWebClient
         private void initAlt()
         {
             init();
-            textBoxMarca.Text         = announce.marca;
-            textBoxModel.Text         = announce.model;
-            textBoxVarianta.Text      = announce.varianta;
+
+            // TextBoxes
+            textBoxMarca.Text         = announce.marca.ToString();
+            textBoxModel.Text         = announce.model.ToString();
+            textBoxVarianta.Text      = announce.varianta.ToString();
             textBoxAn.Text            = announce.an.ToString();
             textBoxKm.Text            = announce.km.ToString();
             textBoxPutere.Text        = announce.putere.ToString();
             textBoxPutereKW.Text      = announce.putereKw.ToString();
-
-            textBoxCC.Text            = announce.cc.ToString(); ;
-
+            textBoxPret.Text          = announce.pret.ToString();
+            textBoxCC.Text            = announce.cc.ToString();
+            textBoxLocatie.Text       = announce.locatie.ToString();
             richTextBoxDescriere.Text = announce.descriere;
-            textBoxLocatie.Text       = announce.locatie;
-            imageAnnounce             = announce.imagAnunt;
-            image1                    = announce.imag1;
-          
+            
+            // PictureBoxes
             pictureBoxAnnounce.Image = ConvertByteArrayToImage(announce.imagAnunt);
             pictureBox1.Image        = ConvertByteArrayToImage(announce.imag1);
             pictureBox2.Image        = ConvertByteArrayToImage(announce.imag2);
             pictureBox3.Image        = ConvertByteArrayToImage(announce.imag3);
 
-
+            // ComboBoxes
+            comboIndex(announce.caroserie.ToString(),   comboBoxCaroserie);
+            comboIndex(announce.combustibil.ToString(), comboBoxCombustibil);
+            comboIndex(announce.culoare.ToString(),     comboBoxCuloare);
+            comboIndex(announce.cutieViteze.ToString(), comboBoxCutieViteze);
         }
-        
+
 
         public System.Drawing.Image ConvertByteArrayToImage(byte[] byteArray)
         {
@@ -169,6 +173,7 @@ namespace CarAppWebClient
             string cutieViteze = comboBoxCutieViteze.SelectedItem.ToString();
             string descriere   = richTextBoxDescriere.Text;
             string locatie     = textBoxLocatie.Text;
+            string telefon     = user.telefon;
 
             imageAnnounce = ConvertImageToByteArray(pictureBoxAnnounce.Image, System.Drawing.Imaging.ImageFormat.Png);
             image1        = ConvertImageToByteArray(pictureBox1.Image,        System.Drawing.Imaging.ImageFormat.Png);
@@ -244,19 +249,26 @@ namespace CarAppWebClient
                 return;
             }
 
+
             if (modify)
             {
+
                 int idAnnounce = announce.idAnunt;
-                service.updateAnnouncee(idAnnounce, caroserie, marca, model, varianta, pret, an, km,
-                putere, putereKW, combustibil, cutieViteze, cc, culoare, locatie, descriere,
+                int idUser = announce.idUser;
+                service.updateAnnouncee(idAnnounce, idUser,  caroserie, marca, model, varianta, pret, an, km,
+                putere, putereKW, combustibil, cutieViteze, cc, culoare, locatie, telefon, descriere,
                 imageAnnounce, image1, image2, image3);
+                this.Dispose();
+                new MyAnnounces(user).Show();
             }
             else
+            {
                 service.addAnnounce(id, caroserie, marca, model, varianta, pret, an, km,
-                putere, putereKW, combustibil, cutieViteze, cc, culoare, locatie, descriere,
+                putere, putereKW, combustibil, cutieViteze, cc, culoare, locatie, telefon, descriere,
                 imageAnnounce, image1, image2, image3);
-
-            Close();
+                this.Dispose();
+                new MyAnnounces(user).Show();
+            }
         }
 
         private void buttonAction_Click(object sender, EventArgs e)
@@ -266,7 +278,8 @@ namespace CarAppWebClient
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Dispose();
+            new MyAnnounces(user).Show();
         }
 
 
@@ -309,6 +322,16 @@ namespace CarAppWebClient
             textBoxPutereKW.TextChanged += textBoxPutereKW_TextChanged;
         }
 
+        private void comboIndex(string text, System.Windows.Forms.ComboBox cb)
+        {
+            int index = cb.FindStringExact(text);
+
+            // Set the selected item based on the index
+            if (index != -1)
+            {
+                cb.SelectedIndex = index;
+            }
+        }
         private void textBoxPutereKW_TextChanged(object sender, EventArgs e)
         {
             textBoxPutere.TextChanged -= textBoxPutere_TextChanged;
@@ -317,6 +340,12 @@ namespace CarAppWebClient
                 textBoxPutere.Text = Math.Truncate(kw / 0.745).ToString();
             }
             textBoxPutere.TextChanged += textBoxPutere_TextChanged;
+        }
+
+        private void AnnounceAddModifyForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Dispose();
+            new MyAnnounces(user).Show();
         }
     }
 }

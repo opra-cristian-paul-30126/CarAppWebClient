@@ -45,6 +45,7 @@
             this.buttonBack.TabIndex = 3;
             this.buttonBack.Text = "Inapoi";
             this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
             // dataGridViewUsers
             // 
@@ -110,6 +111,7 @@
             this.Controls.Add(this.buttonBack);
             this.Name = "AdminToolsForm";
             this.Text = "AdminTools";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdminToolsForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

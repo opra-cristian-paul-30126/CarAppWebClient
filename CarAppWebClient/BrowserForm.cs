@@ -21,11 +21,19 @@ namespace CarAppWebClient
             label18.Text = user.nume + " " + user.prenume;
             pictureBoxUser.Image = ConvertByteArrayToImage(user.pozaProfil);
 
-            dsAnnounces = BrowseService.PopulateAnunturi("Neselectat", "Neselectat", "0", "0", "Neselectat", "Neselectat", "0", "0", "0", "0", "0", "0", "0", "0", "Neselectat", "Neselectat", "Neselectat", "Neselectat");
+            dsAnnounces = BrowseService.PopulateGrid();
             dataGridView.DataSource = dsAnnounces.Tables["Announces"].DefaultView;
-
+           
+            if (dataGridView.Rows.Count > 0)
+            {
+                int id = int.Parse(dataGridView.Rows[0].Cells[1].Value.ToString());
+                byte[] announceImageCollumValue = (byte[])dataGridView.Rows[0].Cells[dataGridView.Rows[0].Cells.Count - 4].Value;
+                pictureBoxAnnounce.Image = ConvertByteArrayToImage(announceImageCollumValue);
+                announce=BrowseService.getAnounceData(id);
+            }
             init();
             resetFilters();
+
         }
 
         public BrowserForm(Admin admin)
@@ -35,7 +43,7 @@ namespace CarAppWebClient
             label18.Text = admin.nume + " " + admin.prenume;
             pictureBoxUser.Image = ConvertByteArrayToImage(admin.pozaProfil);
 
-            dsAnnounces = BrowseService.PopulateAnunturi("Neselectat", "Neselectat", "0", "0", "Neselectat", "Neselectat", "0", "0", "0", "0", "0", "0", "0", "0", "Neselectat", "Neselectat", "Neselectat", "Neselectat");
+            dsAnnounces = BrowseService.PopulateGrid();
             dataGridView.DataSource = dsAnnounces.Tables["Announces"].DefaultView;
 
             buttonMyAnnounces.Text = "Admin Tools";
@@ -177,7 +185,7 @@ namespace CarAppWebClient
             // ------------------------------MODEL------------------------------
             if (model.Equals("Nespecificat")) model = "Neselectat";
             // -----------------------------VARIANTA----------------------------
-            if (varianta.Equals("ex:GTI,RS,OPC,ST")) varianta = "Neselectat";
+            if (varianta.Equals("GTI,RS,OPC,ST")) varianta = "Neselectat";
             // ---------------------------COMBUSTIBIL---------------------------
             if (combustibil.Equals("Nespecificat")) combustibil = "Neselectat";
             // ----------------------------CAROSERIE----------------------------
@@ -224,7 +232,7 @@ namespace CarAppWebClient
             if (cc.Equals("2201 - 3000 cc")) { ccMin = "2201"; ccMax = "3000"; }
             if (cc.Equals("> 3001 cc")) { ccMin = "3001"; ccMax = "30000"; }
 
-            dsAnnounces = BrowseService.PopulateAnunturi(marca, model, pretmin, pretmax, varianta,
+            dsAnnounces = BrowseService.FilterGrid(marca, model, pretmin, pretmax, varianta,
                                                          combustibil, anMin, anMax, ccMin, ccMax,
                                                          putereMin, putereMax, kmMin, kmMax, caroserie,
                                                          culoare, cutieViteze, locatie);
@@ -247,7 +255,8 @@ namespace CarAppWebClient
         private void buttonRemoveFilter_Click(object sender, EventArgs e)
         {
             resetFilters();
-
+            dsAnnounces = BrowseService.PopulateGrid();
+            dataGridView.DataSource = dsAnnounces.Tables["Announces"].DefaultView;
         }
 
         public System.Drawing.Image ConvertByteArrayToImage(byte[] byteArray)
@@ -269,10 +278,7 @@ namespace CarAppWebClient
                         pictureBoxAnnounce.Image = ConvertByteArrayToImage(announceImageCollumValue);
                 }
                 int id = int.Parse(selectedRow.Cells[1].Value.ToString());
-                Console.WriteLine(id);
-
                 announce = BrowseService.getAnounceData(id);
-                Console.WriteLine(announce.imag1.Length);
             }
             else
                 announce = null;
@@ -283,15 +289,24 @@ namespace CarAppWebClient
             if (admin != null)
             {
                 AdminToolsForm atf = new AdminToolsForm(admin);
-                atf.ShowDialog();
+                this.Hide();
+                atf.Show();
+                if (atf.IsDisposed)
+                {
+                    this.Show();
+                }
             }
             else
             {
                 if (user != null)
                 {
                     MyAnnounces ma = new MyAnnounces(user);
+                    this.Hide();
                     ma.Show();
-                    //deschide myannouncesfrom
+                    if (ma.IsDisposed)
+                    {
+                        this.Show();
+                    }
                 }
 
             }
@@ -309,13 +324,23 @@ namespace CarAppWebClient
                 if (user != null)
                 {
                     ViewAnnounceForm vaf = new ViewAnnounceForm(announce, user);
-                    vaf.ShowDialog();
+                    this.Hide();
+                    vaf.Show();
+                    if (vaf.IsDisposed)
+                    {
+                        this.Show();
+                    }
                 }
                 // daca e user
                 if (admin != null)
                 {
                     ViewAnnounceForm vaf = new ViewAnnounceForm(announce, admin);
-                    vaf.ShowDialog();
+                    this.Hide();
+                    vaf.Show();
+                    if (vaf.IsDisposed)
+                    {
+                        this.Show();
+                    }
                 }
             }
 
@@ -328,9 +353,8 @@ namespace CarAppWebClient
 
         private void buttonLogOut_Click(object sender, EventArgs e)
         {
-            Close();
-            LoginForm lf = new LoginForm();
-            
+            this.Dispose();
+            new LoginForm().Show();
         }
 
         private void pictureBoxAnnounce_MouseDoubleClick(object sender, MouseEventArgs e)

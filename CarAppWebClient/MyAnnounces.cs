@@ -37,12 +37,8 @@ namespace CarAppWebClient
                 int id = int.Parse(dataGridView.Rows[0].Cells[1].Value.ToString());
                 Console.WriteLine(id);
                 announce = Service2.getAnounceData(id);
+                pictureBox.Image = ConvertByteArrayToImage(announce.imagAnunt);
             }
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -85,16 +81,40 @@ namespace CarAppWebClient
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             AnnounceAddModifyForm admf = new AnnounceAddModifyForm(user);
-            admf.ShowDialog();
+            this.Hide();
+            admf.Show();
+            if(admf.IsDisposed)
+            {
+                this.Show();
+                refresh();
+            }
+
         }
 
         private void buttonModift_Click(object sender, EventArgs e)
         {
-            if(announce != null)
+            if(announce!=null)
             {
                 AnnounceAddModifyForm admf = new AnnounceAddModifyForm(announce, user);
-                admf.ShowDialog();
+                this.Hide();
+                admf.Show();
+                if (admf.IsDisposed)
+                {
+                    this.Show();
+                    refresh();
+                }
             }
+        }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            new BrowserForm(user).Show();
+        }
+
+        private void MyAnnounces_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

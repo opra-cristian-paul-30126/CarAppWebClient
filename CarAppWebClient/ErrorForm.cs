@@ -67,8 +67,12 @@ namespace CarAppWebClient
                     case 8:
                         labelError.Text = "Nu stii pass-ul? urat, foarte urat...";
                         break;
-                    // DEFAULT
-                    default:
+                    // TELEPHONE IS EMPTY
+                    case 9:
+                        labelError.Text = "Telefonul nu poate sa fie necompletat";
+                        break;
+                        // DEFAULT
+                        default:
                     break;
                 }
                 break; 

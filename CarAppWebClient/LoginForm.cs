@@ -45,10 +45,12 @@ namespace CarAppWebClient
                             if (!user.isBanned)
                             {
                                 BrowserForm bf = new BrowserForm(user);
-
                                 this.Hide();
-                                bf.ShowDialog();
-                                this.Show();
+                                bf.Show();
+                                if (bf.IsDisposed)
+                                {
+                                    this.Show();
+                                }
                             }
                             else
                             {
@@ -61,8 +63,12 @@ namespace CarAppWebClient
                         {
                             admin = loginService.ReturnAdmin(email);
                             BrowserForm bf = new BrowserForm(admin);
-                            bf.Show();
                             this.Hide();
+                            bf.Show();
+                            if (bf.IsDisposed)
+                            {
+                                this.Show();
+                            }
                         }
                     }
                     else
@@ -112,6 +118,11 @@ namespace CarAppWebClient
             else
             //passBox.BackgroundImage = Image.FromFile(eyeClose);
             textBoxPassword.UseSystemPasswordChar = true;
+        }
+
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

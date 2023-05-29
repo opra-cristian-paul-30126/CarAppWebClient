@@ -2,7 +2,24 @@
 <wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
-      <s:element name="PopulateAnunturi">
+      <s:element name="PopulateGrid">
+        <s:complexType />
+      </s:element>
+      <s:element name="PopulateGridResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PopulateGridResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FilterGrid">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="marca" type="s:string" />
@@ -26,10 +43,10 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="PopulateAnunturiResponse">
+      <s:element name="FilterGridResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="PopulateAnunturiResult">
+            <s:element minOccurs="0" maxOccurs="1" name="FilterGridResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -66,6 +83,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="dataAnunt" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="locatie" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="descriere" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefon" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="idUser" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="idAnunt" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="pret" type="s:int" />
@@ -82,11 +100,17 @@
       </s:complexType>
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="PopulateAnunturiSoapIn">
-    <wsdl:part name="parameters" element="tns:PopulateAnunturi" />
+  <wsdl:message name="PopulateGridSoapIn">
+    <wsdl:part name="parameters" element="tns:PopulateGrid" />
   </wsdl:message>
-  <wsdl:message name="PopulateAnunturiSoapOut">
-    <wsdl:part name="parameters" element="tns:PopulateAnunturiResponse" />
+  <wsdl:message name="PopulateGridSoapOut">
+    <wsdl:part name="parameters" element="tns:PopulateGridResponse" />
+  </wsdl:message>
+  <wsdl:message name="FilterGridSoapIn">
+    <wsdl:part name="parameters" element="tns:FilterGrid" />
+  </wsdl:message>
+  <wsdl:message name="FilterGridSoapOut">
+    <wsdl:part name="parameters" element="tns:FilterGridResponse" />
   </wsdl:message>
   <wsdl:message name="getAnounceDataSoapIn">
     <wsdl:part name="parameters" element="tns:getAnounceData" />
@@ -95,9 +119,13 @@
     <wsdl:part name="parameters" element="tns:getAnounceDataResponse" />
   </wsdl:message>
   <wsdl:portType name="BrowseServiceSoap">
-    <wsdl:operation name="PopulateAnunturi">
-      <wsdl:input message="tns:PopulateAnunturiSoapIn" />
-      <wsdl:output message="tns:PopulateAnunturiSoapOut" />
+    <wsdl:operation name="PopulateGrid">
+      <wsdl:input message="tns:PopulateGridSoapIn" />
+      <wsdl:output message="tns:PopulateGridSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FilterGrid">
+      <wsdl:input message="tns:FilterGridSoapIn" />
+      <wsdl:output message="tns:FilterGridSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="getAnounceData">
       <wsdl:input message="tns:getAnounceDataSoapIn" />
@@ -106,8 +134,17 @@
   </wsdl:portType>
   <wsdl:binding name="BrowseServiceSoap" type="tns:BrowseServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="PopulateAnunturi">
-      <soap:operation soapAction="http://tempuri.org/PopulateAnunturi" style="document" />
+    <wsdl:operation name="PopulateGrid">
+      <soap:operation soapAction="http://tempuri.org/PopulateGrid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterGrid">
+      <soap:operation soapAction="http://tempuri.org/FilterGrid" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -127,8 +164,17 @@
   </wsdl:binding>
   <wsdl:binding name="BrowseServiceSoap12" type="tns:BrowseServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="PopulateAnunturi">
-      <soap12:operation soapAction="http://tempuri.org/PopulateAnunturi" style="document" />
+    <wsdl:operation name="PopulateGrid">
+      <soap12:operation soapAction="http://tempuri.org/PopulateGrid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilterGrid">
+      <soap12:operation soapAction="http://tempuri.org/FilterGrid" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

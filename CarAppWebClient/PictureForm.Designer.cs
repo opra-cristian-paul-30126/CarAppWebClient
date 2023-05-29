@@ -44,6 +44,7 @@
             // 
             // panel
             // 
+            this.panel.BackColor = System.Drawing.Color.Snow;
             this.panel.Controls.Add(this.pictureBox);
             this.panel.Location = new System.Drawing.Point(0, 1);
             this.panel.MaximumSize = new System.Drawing.Size(1900, 1050);
@@ -55,6 +56,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.SeaGreen;
             this.ClientSize = new System.Drawing.Size(240, 240);
             this.Controls.Add(this.panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;

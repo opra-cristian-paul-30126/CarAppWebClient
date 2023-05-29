@@ -32,17 +32,17 @@ namespace CarAppWebClient
 
         public RegisterForm(LoginForm lf)
         {
-            this.lf = lf;
             InitializeComponent();
-            lf.Visible = false;
+            this.lf = lf;
+            lf.Enabled = false;
             textBoxParola.UseSystemPasswordChar = false;
             textBoxConfirmareParola.UseSystemPasswordChar = false;
         }
 
         private void button_Cancel_Click(object sender, EventArgs e)
         {
-            lf.Visible = false;
-            this.Close();
+            this.Dispose();
+            lf.Enabled = true;
         }
 
         private byte[] ConvertImageToByteArray(System.Drawing.Image image, System.Drawing.Imaging.ImageFormat format)
@@ -125,10 +125,11 @@ namespace CarAppWebClient
                     return;
                 }
 
-
                 if (String.IsNullOrEmpty(telefon))
                 {
-                    telefon = String.Empty;
+                    // TELEFON IS EMPTY
+                    new ErrorForm(1, 9);
+                    return;
                 }
 
                 if (String.IsNullOrEmpty(adresa))
@@ -235,8 +236,9 @@ namespace CarAppWebClient
             }
 
 
-            lf.Visible = true;
-            this.Close();
+            this.Dispose();
+            lf.Enabled = true;
+            
         }
 
         private void checkBoxAdmin_CheckedChanged(object sender, EventArgs e)
@@ -299,6 +301,16 @@ namespace CarAppWebClient
                    hasLowercase &&
                    hasDigits &&
                    hasSpecialCharachters;
+        }
+
+        private void RegisterForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            lf.Enabled = true;
+        }
+
+        private void pictureBox_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
