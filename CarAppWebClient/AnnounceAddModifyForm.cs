@@ -18,8 +18,12 @@ namespace CarAppWebClient
         private byte[] image1;
         private byte[] image2;
         private byte[] image3;
-        bool modify;
+        private bool modify;
 
+        // DEFAULT CONSTRUCTOR
+        public AnnounceAddModifyForm() { }
+        
+        // USER CONSTRUCTIR
         public AnnounceAddModifyForm(User user)
         {
             InitializeComponent();
@@ -27,10 +31,11 @@ namespace CarAppWebClient
             announce          = null;
             modify            = false;
             buttonAction.Text = "Adauga";
+            Text              = Text + " <Add Announce>";
             init();
         }
 
-        
+        // MODIFY ANNOUNCE CONSTRUCTOR
         public AnnounceAddModifyForm(Announce announce, User user)
         {
             InitializeComponent();
@@ -38,17 +43,13 @@ namespace CarAppWebClient
             this.announce     = announce;
             modify            = true;
             buttonAction.Text = "Modifica";
+            this.Text         = this.Text + " <Modify Announce>";
             initAlt();
         }
         
-
+        // INITIALISE
         private void init()
         {
-            // Pictures
-            pictureBoxAnnounce.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox1.SizeMode        = PictureBoxSizeMode.CenterImage;
-            pictureBox2.SizeMode        = PictureBoxSizeMode.CenterImage;
-            pictureBox3.SizeMode        = PictureBoxSizeMode.CenterImage;
             // ComboBox Caroserie
             comboBoxCaroserie.Items.Clear();
             comboBoxCaroserie.Items.Add("Nespecificat");
@@ -97,6 +98,7 @@ namespace CarAppWebClient
             comboBoxCombustibil.SelectedIndex = 0;
         }
         
+        // INITIALISE WITH ALTERNATIVE DATA
         private void initAlt()
         {
             init();
@@ -128,6 +130,7 @@ namespace CarAppWebClient
         }
 
 
+        // CONVERTS BYTE ARRAY TO IMAGE
         public System.Drawing.Image ConvertByteArrayToImage(byte[] byteArray)
         {
             MemoryStream ms = new MemoryStream(byteArray);
@@ -136,7 +139,7 @@ namespace CarAppWebClient
         }
 
 
-
+        // CONVERTS IMAGE TO BYTE ARRAY
         private byte[] ConvertImageToByteArray(System.Drawing.Image image, System.Drawing.Imaging.ImageFormat format)
         {
             byte[] rez;
@@ -162,8 +165,10 @@ namespace CarAppWebClient
             }
         }
 
+        // ADDS OR MODIFIES ANNOUNCE
         private void addOrModify(bool modify)
         {
+            // GET DATA
             string marca       = textBoxMarca.Text;
             string model       = textBoxModel.Text;
             string varianta    = textBoxVarianta.Text;
@@ -189,6 +194,7 @@ namespace CarAppWebClient
             int cc;
 
 
+            // CHANGE INCORRECT DATA
             if (string.IsNullOrEmpty(marca))       marca = "Neselectat";
             if (string.IsNullOrEmpty(model))       model = "Neselectat";
             if (string.IsNullOrEmpty(varianta)) varianta = "Neselectat";
@@ -249,10 +255,9 @@ namespace CarAppWebClient
                 return;
             }
 
-
+            // IF THERE IS AN ANNOUNCE TO BE MODIFY 
             if (modify)
             {
-
                 int idAnnounce = announce.idAnunt;
                 int idUser = announce.idUser;
                 service.updateAnnouncee(idAnnounce, idUser,  caroserie, marca, model, varianta, pret, an, km,
@@ -261,6 +266,7 @@ namespace CarAppWebClient
                 this.Dispose();
                 new MyAnnounces(user).Show();
             }
+            // IF THERE IS AN ANNOUNCE TO BE ADDED 
             else
             {
                 service.addAnnounce(id, caroserie, marca, model, varianta, pret, an, km,
@@ -276,6 +282,7 @@ namespace CarAppWebClient
             addOrModify(modify);
         }
 
+        // CLOSES FORM, REOPENS MyAnnouncesForm
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Dispose();
@@ -283,6 +290,7 @@ namespace CarAppWebClient
         }
 
 
+        // GETS PICTURE FROM PICTUREBOX pb
         private void setImage(PictureBox pb)
         {
             OpenFileDialog oFD = new OpenFileDialog();
@@ -297,7 +305,7 @@ namespace CarAppWebClient
         private void buttonImag2_Click(object sender, EventArgs e)        { setImage(pictureBox2); }
         private void buttonImag3_Click(object sender, EventArgs e)        { setImage(pictureBox3); }
 
-
+        // ALLOWS ONL NUMBERS TO BE TYPED
         private void onlyNumbers(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -312,6 +320,7 @@ namespace CarAppWebClient
         private void textBoxPutereKW_KeyPress(object sender, KeyPressEventArgs e) { onlyNumbers(sender, e); }
         private void textBoxCC_KeyPress(object sender, KeyPressEventArgs e)       { onlyNumbers(sender, e); }
 
+        // CONVERTS POWER(WP) TO POWER(MW)
         private void textBoxPutere_TextChanged(object sender, EventArgs e)
         {
             textBoxPutereKW.TextChanged -= textBoxPutereKW_TextChanged;
@@ -321,17 +330,7 @@ namespace CarAppWebClient
             }
             textBoxPutereKW.TextChanged += textBoxPutereKW_TextChanged;
         }
-
-        private void comboIndex(string text, System.Windows.Forms.ComboBox cb)
-        {
-            int index = cb.FindStringExact(text);
-
-            // Set the selected item based on the index
-            if (index != -1)
-            {
-                cb.SelectedIndex = index;
-            }
-        }
+        // CONVERTS POWER(MW) TO POWER(CP)
         private void textBoxPutereKW_TextChanged(object sender, EventArgs e)
         {
             textBoxPutere.TextChanged -= textBoxPutere_TextChanged;
@@ -342,6 +341,19 @@ namespace CarAppWebClient
             textBoxPutere.TextChanged += textBoxPutere_TextChanged;
         }
 
+
+        // SETS COMBOBOX INDEX 
+        private void comboIndex(string text, System.Windows.Forms.ComboBox cb)
+        {
+            int index = cb.FindStringExact(text);
+
+            if (index != -1)
+            {
+                cb.SelectedIndex = index;
+            }
+        }
+
+        // CLOSES APPLICATION
         private void AnnounceAddModifyForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Dispose();

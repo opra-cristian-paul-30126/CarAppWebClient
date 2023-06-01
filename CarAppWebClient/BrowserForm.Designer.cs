@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBoxFiltre = new System.Windows.Forms.CheckBox();
             this.textBoxLocatie = new System.Windows.Forms.TextBox();
@@ -164,9 +165,12 @@
             this.textBoxPretMax.ForeColor = System.Drawing.Color.Snow;
             this.textBoxPretMax.Location = new System.Drawing.Point(184, 180);
             this.textBoxPretMax.Name = "textBoxPretMax";
+            this.textBoxPretMax.ShortcutsEnabled = false;
             this.textBoxPretMax.Size = new System.Drawing.Size(100, 22);
             this.textBoxPretMax.TabIndex = 12;
             this.textBoxPretMax.Text = "Pana la";
+            this.textBoxPretMax.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxPretMax_MouseClick);
+            this.textBoxPretMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPretMax_KeyPress);
             // 
             // textBoxPretMin
             // 
@@ -175,9 +179,12 @@
             this.textBoxPretMin.ForeColor = System.Drawing.Color.Snow;
             this.textBoxPretMin.Location = new System.Drawing.Point(23, 180);
             this.textBoxPretMin.Name = "textBoxPretMin";
+            this.textBoxPretMin.ShortcutsEnabled = false;
             this.textBoxPretMin.Size = new System.Drawing.Size(100, 22);
             this.textBoxPretMin.TabIndex = 11;
             this.textBoxPretMin.Text = "De la";
+            this.textBoxPretMin.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxPretMin_MouseClick);
+            this.textBoxPretMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPretMin_KeyPress);
             // 
             // textBoxVarianta
             // 
@@ -207,9 +214,9 @@
             this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(20, 164);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 16);
+            this.label4.Size = new System.Drawing.Size(74, 16);
             this.label4.TabIndex = 8;
-            this.label4.Text = "pret";
+            this.label4.Text = "Pret (Euro)";
             // 
             // label3
             // 
@@ -405,9 +412,12 @@
             this.textBoxPwMax.ForeColor = System.Drawing.Color.Snow;
             this.textBoxPwMax.Location = new System.Drawing.Point(269, 148);
             this.textBoxPwMax.Name = "textBoxPwMax";
+            this.textBoxPwMax.ShortcutsEnabled = false;
             this.textBoxPwMax.Size = new System.Drawing.Size(100, 22);
             this.textBoxPwMax.TabIndex = 11;
             this.textBoxPwMax.Text = "Pana la";
+            this.textBoxPwMax.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxPwMax_MouseClick);
+            this.textBoxPwMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPwMax_KeyPress);
             // 
             // textBoxKmMin
             // 
@@ -416,9 +426,12 @@
             this.textBoxKmMin.ForeColor = System.Drawing.Color.Snow;
             this.textBoxKmMin.Location = new System.Drawing.Point(118, 188);
             this.textBoxKmMin.Name = "textBoxKmMin";
+            this.textBoxKmMin.ShortcutsEnabled = false;
             this.textBoxKmMin.Size = new System.Drawing.Size(100, 22);
             this.textBoxKmMin.TabIndex = 10;
             this.textBoxKmMin.Text = "De la";
+            this.textBoxKmMin.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxKmMin_MouseClick);
+            this.textBoxKmMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxKmMin_KeyPress);
             // 
             // textBoxKmMax
             // 
@@ -427,9 +440,12 @@
             this.textBoxKmMax.ForeColor = System.Drawing.Color.Snow;
             this.textBoxKmMax.Location = new System.Drawing.Point(269, 188);
             this.textBoxKmMax.Name = "textBoxKmMax";
+            this.textBoxKmMax.ShortcutsEnabled = false;
             this.textBoxKmMax.Size = new System.Drawing.Size(100, 22);
             this.textBoxKmMax.TabIndex = 9;
             this.textBoxKmMax.Text = "Pana la";
+            this.textBoxKmMax.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxKmMax_MouseClick);
+            this.textBoxKmMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxKmMax_KeyPress);
             // 
             // textBoxPwMin
             // 
@@ -438,9 +454,12 @@
             this.textBoxPwMin.ForeColor = System.Drawing.Color.Snow;
             this.textBoxPwMin.Location = new System.Drawing.Point(118, 149);
             this.textBoxPwMin.Name = "textBoxPwMin";
+            this.textBoxPwMin.ShortcutsEnabled = false;
             this.textBoxPwMin.Size = new System.Drawing.Size(100, 22);
             this.textBoxPwMin.TabIndex = 8;
             this.textBoxPwMin.Text = "De la";
+            this.textBoxPwMin.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxPwMin_MouseClick);
+            this.textBoxPwMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPwMin_KeyPress);
             // 
             // label11
             // 
@@ -672,11 +691,11 @@
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Bauhaus 93", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Green;
-            this.label19.Location = new System.Drawing.Point(370, 7);
+            this.label19.Location = new System.Drawing.Point(6, 7);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(366, 33);
+            this.label19.Size = new System.Drawing.Size(168, 33);
             this.label19.TabIndex = 12;
-            this.label19.Text = "Stealy Wheely Automobiley";
+            this.label19.Text = "Car-Ma App";
             // 
             // BrowserForm
             // 
@@ -690,11 +709,13 @@
             this.Controls.Add(this.groupBox1);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1149, 691);
             this.MinimumSize = new System.Drawing.Size(1149, 691);
             this.Name = "BrowserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "App Name";
+            this.Text = "Car-Ma App <Browser>";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BrowserForm_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

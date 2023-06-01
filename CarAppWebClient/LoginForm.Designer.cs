@@ -84,7 +84,6 @@
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(210, 22);
             this.textBoxUsername.TabIndex = 2;
-            this.textBoxUsername.Text = "mail@mail.com";
             this.textBoxUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxPassword
@@ -98,7 +97,6 @@
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(210, 22);
             this.textBoxPassword.TabIndex = 3;
-            this.textBoxPassword.Text = "Parolat1!";
             this.textBoxPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button_Login
@@ -225,13 +223,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Bauhaus 93", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Bauhaus 93", 36F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Green;
-            this.label1.Location = new System.Drawing.Point(101, 27);
+            this.label1.Location = new System.Drawing.Point(137, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(366, 33);
+            this.label1.Size = new System.Drawing.Size(288, 54);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Stealy Wheely Automobiley";
+            this.label1.Text = "Car-Ma App ";
             // 
             // LoginForm
             // 
@@ -245,6 +243,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(820, 540);
@@ -252,7 +251,7 @@
             this.Name = "LoginForm";
             this.Opacity = 0.99D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CarApp";
+            this.Text = "Car-Ma App";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginForm_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

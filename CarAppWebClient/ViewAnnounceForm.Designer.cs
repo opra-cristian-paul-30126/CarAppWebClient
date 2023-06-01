@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewAnnounceForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label19 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -66,11 +67,11 @@
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Bauhaus 93", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Green;
-            this.label19.Location = new System.Drawing.Point(224, 9);
+            this.label19.Location = new System.Drawing.Point(331, 9);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(366, 33);
+            this.label19.Size = new System.Drawing.Size(168, 33);
             this.label19.TabIndex = 13;
-            this.label19.Text = "Stealy Wheely Automobiley";
+            this.label19.Text = "Car-Ma App";
             // 
             // groupBox4
             // 
@@ -147,7 +148,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(6, 19);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(683, 326);
+            this.richTextBox1.Size = new System.Drawing.Size(687, 326);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -168,7 +169,7 @@
             this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.buttonBack.ForeColor = System.Drawing.Color.Snow;
-            this.buttonBack.Location = new System.Drawing.Point(14, 122);
+            this.buttonBack.Location = new System.Drawing.Point(14, 251);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(113, 78);
             this.buttonBack.TabIndex = 0;
@@ -187,12 +188,13 @@
             this.Controls.Add(this.groupBox1);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(885, 695);
             this.MinimumSize = new System.Drawing.Size(885, 695);
             this.Name = "ViewAnnounceForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "ViewAnnounceForm";
+            this.Text = "Car-Ma App <Viewer>";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ViewAnnounceForm_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

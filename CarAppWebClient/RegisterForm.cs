@@ -10,15 +10,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Xml.Schema;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CarAppWebClient
 {
     public partial class RegisterForm : Form
     {
-        CarAppWebClient.CreateAccountService.CreateAccountSoapClient createAccountService
-    = new CarAppWebClient.CreateAccountService.CreateAccountSoapClient();
-
+        private CreateAccountService.CreateAccountSoapClient createAccountService = new CreateAccountService.CreateAccountSoapClient();
         private string imageLocation;
         private string nume;
         private string prenume;
@@ -35,17 +34,19 @@ namespace CarAppWebClient
             InitializeComponent();
             this.lf = lf;
             lf.Enabled = false;
-            textBoxParola.UseSystemPasswordChar = false;
-            textBoxConfirmareParola.UseSystemPasswordChar = false;
+            textBoxParola.UseSystemPasswordChar = true;
+            textBoxConfirmareParola.UseSystemPasswordChar = true;
         }
 
+        // CLOSES WINDOW, RE-ENABLES LOGIN WINDOW
         private void button_Cancel_Click(object sender, EventArgs e)
         {
             this.Dispose();
             lf.Enabled = true;
         }
 
-        private byte[] ConvertImageToByteArray(System.Drawing.Image image, System.Drawing.Imaging.ImageFormat format)
+        // CONVERTS IMAGE TO BYTE ARRAY
+        private byte[] ConvertImageToByteArray(Image image, System.Drawing.Imaging.ImageFormat format)
         {
             byte[] rez;
             try
@@ -64,8 +65,10 @@ namespace CarAppWebClient
         }
 
 
+        // REGISTERS A NEW ACCOUNT
         private void button_Ok_Click(object sender, EventArgs e)
         {
+            // USER REGISTRATION
             if (!checkBoxAdmin.Checked)
             {
                 prenume          = textBoxNume.Text;
@@ -111,17 +114,17 @@ namespace CarAppWebClient
                     return;
                 }
 
-                if (!confirmareParola.Equals(parola))
-                {
-                    // PASSWORDS ARE NOT THE SAME
-                    new ErrorForm(1,5);
-                    return;
-                }
-
                 if(!ValidatePassword(parola))
                 {
                     // PASSWORD FORMAT NOT CORECT
                     new ErrorForm(1,6);
+                    return;
+                }
+
+                if (!confirmareParola.Equals(parola))
+                {
+                    // PASSWORDS ARE NOT THE SAME
+                    new ErrorForm(1, 5);
                     return;
                 }
 
@@ -137,9 +140,10 @@ namespace CarAppWebClient
                     adresa = String.Empty;
                 }
 
+                // CONVERTS GIVEN PROFILE PICTURE
                 byte[] userImage = ConvertImageToByteArray(pictureBox.Image, System.Drawing.Imaging.ImageFormat.Png);
+                bool success = createAccountService.createUserAccount(nume, prenume, email, parola, adresa, telefon, userImage);
 
-                bool success = createAccountService.createUserAcount(nume, prenume, email, parola, adresa, telefon, userImage);
                 if (success) Console.WriteLine("Contul a fost inregistrat cu success!");
                 else
                 {
@@ -148,6 +152,7 @@ namespace CarAppWebClient
                     return;
                 }
             }
+            // ADMIN REGISTRATION
             else if (createAccountService.checkPass(textBoxTelefon.Text))
             {
                 prenume          = textBoxNume.Text;
@@ -193,13 +198,6 @@ namespace CarAppWebClient
                     return;
                 }
                 
-                if (!confirmareParola.Equals(parola))
-                {
-                    // PASSWORDS ARE NOT THE SAME
-                    new ErrorForm(1,5);
-                    return;
-                }
-
                 if (!ValidatePassword(parola))
                 {
                     // PASSWORD FORMAT NOT CORRECT
@@ -207,9 +205,17 @@ namespace CarAppWebClient
                     return;
                 }
 
+                if (!confirmareParola.Equals(parola))
+                {
+                    // PASSWORDS ARE NOT THE SAME
+                    new ErrorForm(1, 5);
+                    return;
+                }
+
                 if (String.IsNullOrEmpty(telefon))
                 {
-                    telefon = String.Empty;
+                    new ErrorForm(1, 7);
+                    return;
                 }
 
                 if (String.IsNullOrEmpty(adresa))
@@ -217,9 +223,10 @@ namespace CarAppWebClient
                     adresa = String.Empty;
                 }
 
+                // CONVERTS GIVEN PROFILE PICTURE
                 byte[] userImage = ConvertImageToByteArray(pictureBox.Image, System.Drawing.Imaging.ImageFormat.Png);
 
-                bool success = createAccountService.createAdminAcount(nume, prenume, email, parola, adresa, userImage);
+                bool success = createAccountService.createAdminAccount(nume, prenume, email, parola, adresa, userImage);
                 if (success) Console.WriteLine("Contul a fost inregistrat cu success!");
                 else
                 {
@@ -235,12 +242,13 @@ namespace CarAppWebClient
                 return;
             }
 
-
+            // CLOSE REGISTRATION WINDOW, RE-ENABLES LOGIN FORM
             this.Dispose();
             lf.Enabled = true;
             
         }
 
+        // CHANGES BACK AND FORTH REGISTRATION TYPE
         private void checkBoxAdmin_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxAdmin.Checked)
@@ -259,30 +267,29 @@ namespace CarAppWebClient
             }
         }
 
+        // LOADS IMAGE FROM USER
         private void button_Imagine_Click(object sender, EventArgs e)
         {
             OpenFileDialog oFD = new OpenFileDialog();
 
-            if (oFD.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (oFD.ShowDialog() == DialogResult.OK)
             {
-                imageLocation = oFD.FileName;
-                pictureBox.Image = Image.FromFile(imageLocation);
+                imageLocation       = oFD.FileName;
+                pictureBox.Image    = Image.FromFile(imageLocation);
                 pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             }
         }
 
+        // CHECKS IF EMAIL IS IN CORRECT FORMAT (USERNAME@DOMAIN.TDL)
         private bool IsValidEmail(string email)
         {
             string pattern = @"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$";
-
             Regex regex = new Regex(pattern);
-
             Match match = regex.Match(email);
-
             return match.Success;
-
         }
 
+        // CHECKS IF PASSWORD IS IN CORRECT FORMAT (LONGER THAN 8 CHARACTERS, AT LEAST 1 UPPER CHARACTER, 1 LOWER CHARACTER AND 1 SPECIAL CHARACTER)
         private bool ValidatePassword(string password)
         {
             int minLength = 8;
@@ -303,14 +310,23 @@ namespace CarAppWebClient
                    hasSpecialCharachters;
         }
 
+        // RE-ENABLES LOGIN FORM IF CANCELED
         private void RegisterForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             lf.Enabled = true;
         }
 
-        private void pictureBox_Click(object sender, EventArgs e)
+        // ENSURES THAT ONLY NUMBERS ARE INSERTED FOR TELEPHONE
+        private void textBoxTelefon_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (!checkBoxAdmin.Checked)
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                    
+            }
         }
     }
 }

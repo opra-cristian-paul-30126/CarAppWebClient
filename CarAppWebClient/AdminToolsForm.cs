@@ -1,23 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CarAppWebClient.BrowseService;
 using CarAppWebClient.LoginService;
 namespace CarAppWebClient
 {
     public partial class AdminToolsForm : Form
     {
 
-        AdminService.AdminServiceSoapClient service = new AdminService.AdminServiceSoapClient();
+        private AdminService.AdminServiceSoapClient service = new AdminService.AdminServiceSoapClient();
         private Admin admin;
         private int userId;
         private DataSet dsUsers;
+
+        // DEFAUL CONSTRUCTOR
         public AdminToolsForm()
         {
             InitializeComponent();
@@ -25,25 +20,26 @@ namespace CarAppWebClient
             userId = -1;
         }
 
+        // ADMIN CONSTRUCTOR
         public AdminToolsForm(Admin admin)
         {
             InitializeComponent();
             userId = -1;
             this.admin = admin;
-            dsUsers = service.PopulateUsers(true);
-            dataGridViewUsers.DataSource = dsUsers.Tables["Users"].DefaultView;
+            refresh();
         }
 
+        // BANS USER
         private void buttonBan_Click(object sender, EventArgs e)
         {
             if (admin != null && userId != -1)
-            {
-                Console.WriteLine("O SA BANEZ PE OMU CU IDU:" + userId);
-                    service.banUser(userId);
+            { 
+                service.banUser(userId);
                 refresh();
             }
         }
 
+        // UNBANS USER
         private void buttonUnBan_Click(object sender, EventArgs e)
         {
             if (admin != null && userId != -1)
@@ -53,6 +49,7 @@ namespace CarAppWebClient
             }
         }
 
+        // SELECTS USER FORM DATAGRIDVIEW, IF THERE IS ANY
         private void dataGridViewUsers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -66,6 +63,7 @@ namespace CarAppWebClient
                 userId=-1;
         }
 
+        // REFRESHES DATAGRIDVIEW
         private void refresh()
         {
             if (checkBox.Checked)
@@ -78,12 +76,20 @@ namespace CarAppWebClient
                 dsUsers = service.PopulateUsers(false);
                 dataGridViewUsers.DataSource = dsUsers.Tables["Users"].DefaultView;
             }
+            if (dataGridViewUsers.Rows.Count > 0)
+            {
+                userId = int.Parse(dataGridViewUsers.Rows[0].Cells[0].Value.ToString());
+            }
+            else
+                userId = 0;
         }
+
         private void checkBox_CheckedChanged(object sender, EventArgs e)
         {
             refresh();
         }
 
+        // DELETS USER
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             if (admin != null && userId != -1)
@@ -93,6 +99,7 @@ namespace CarAppWebClient
             }
         }
 
+        // CLOSES FORM, REOPENS BrowserForm
         private void buttonBack_Click(object sender, EventArgs e)
         {
             if (admin != null)
@@ -102,6 +109,7 @@ namespace CarAppWebClient
             }
         }
 
+        // CLOSES APPLICATION
         private void AdminToolsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();

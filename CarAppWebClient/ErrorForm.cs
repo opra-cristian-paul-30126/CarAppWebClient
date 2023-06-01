@@ -19,66 +19,41 @@ namespace CarAppWebClient
             InitializeComponent();
             this.form       = form;
             this.code       = code;
-            ShowError(form, code);
-            this.Show();
+            ShowError();
+            Show();
         }
 
-        public void ShowError(int fromForm, int errorCode)
+        public void ShowError()
         {
-            switch (fromForm)
+            switch (form)
             {
                 // LOGIN FORM
             case 0:
-                switch (errorCode)
+                switch (code)
                     {
-                    // PRICE IS EMPTY 
-                    case 0:
-                        labelError.Text = "Pretul nu poate sa fie gol";
-                        break;
-                    // FIRST NAME IS EMPTY
-                    case 1:
-                        labelError.Text = "Prenumele nu poate fi gol";
-                        break;
-                    // EMAIL IS EMPTY
-                    case 2:
-                        labelError.Text = "Email-ul nu poate fi gol";
-                        break;
-                    // EMAIL FORMAT NOT CORRECT
-                    case 3:
-                        labelError.Text = "Email-ul nu este in formatul corect";
-                        break;
-                    // PASSWORD IS EMPTY
-                    case 4:
-                        labelError.Text = "Parola nu poate fi goala";
-                        break;
-                    // PASSWORDS ARE NOT THE SAME
-                    case 5:
-                       labelError.Text = "Parolele nu sunt la fel";
-                       break;
-                    // PASSWORD FORMAT NOT CORRECT
-                    case 6:
-                       labelError.Text = "Parola nu este in formatul corect";
-                       break;
-                    // ACCOUNT ALREADY IN DATABASE
-                    case 7:
-                       labelError.Text = "Contul este deja in data de baze";
-                       break;
-                    // WRONG ADMIN PASS
-                    case 8:
-                        labelError.Text = "Nu stii pass-ul? urat, foarte urat...";
-                        break;
-                    // TELEPHONE IS EMPTY
-                    case 9:
-                        labelError.Text = "Telefonul nu poate sa fie necompletat";
-                        break;
-                        // DEFAULT
+                        // WRONG PASSWORD
+                        case 0:
+                            labelError.Text = "Parola gresita, mai incearca";
+                            break;
+                        // BANNED USER
+                        case 1:
+                            labelError.Text = "BANNED :o";
+                            break;
+                        // EMAIL NOT IN DATABASE
+                        case 2:
+                            labelError.Text = "Email-ul este gresit sau nu exista";
+                            break;
+                        // INVALID EMAIL FORM 
+                        case 3:
+                            labelError.Text = "Email-ul nu este complet/Format Gresit";
+                            break;
                         default:
                     break;
                 }
                 break; 
                 // REGISTER FORM
             case 1:
-                switch (errorCode)
+                switch (code)
                 {
                     // LAST NAME IS EMPTY
                     case 0:
@@ -106,7 +81,7 @@ namespace CarAppWebClient
                         break;
                     // PASSWORD FORMAT NOT CORRECT
                     case 6:
-                        labelError.Text = "Parola nu este in formatul corect";
+                        labelError.Text = "Parola nu este in formatul corect!";
                         break;
                     // ACCOUNT ALREADY IN DATABASE
                     case 7:
@@ -116,14 +91,17 @@ namespace CarAppWebClient
                     case 8:
                         labelError.Text = "Nu stii pass-ul? urat, foarte urat...";
                         break;
-                    // DEFAULT
-                    default:
+                    case 9:
+                            labelError.Text = "Telefonul nu poate fi gol";
+                    break;
+                        // DEFAULT
+                        default:
                     break;
                 }
                 break;
             // BROWSER FORM
             case 2:
-                switch (errorCode)
+                switch (code)
                 {
                     // DEFAULT
                     default:
@@ -132,7 +110,7 @@ namespace CarAppWebClient
             break;
             // MY ANNOUNCES FORM
             case 3:
-                switch (errorCode)
+                switch (code)
                 {
                     // NO SELECTION
                     case 1:
@@ -145,7 +123,7 @@ namespace CarAppWebClient
                 break;
                 // ADD/MODIFY FORM
             case 4:
-                switch (errorCode)
+                switch (code)
                 {
                     // PRICE IS EMPTY OR SOMEHOW IS NOT INT
                     case 0:

@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarAppWebClient
 {
     public partial class PictureForm : Form
     {
-        public PictureForm(System.Drawing.Image image)
+        public PictureForm(Image image)
         {
             InitializeComponent();
             panel.Dock = DockStyle.Fill;
@@ -26,6 +20,7 @@ namespace CarAppWebClient
             Controls.Add(panel);
             AdjustFormSize();
         }
+        // ADJUSTS PICTURE SIZE
         private void AdjustFormSize()
         {
             int maxWidth = 1920;

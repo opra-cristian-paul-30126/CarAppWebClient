@@ -13,46 +13,68 @@ namespace CarAppWebClient
         private Admin admin;
         private Announce announce;
         private DataSet dsAnnounces;
-        BrowseService.BrowseServiceSoapClient BrowseService = new BrowseService.BrowseServiceSoapClient();
+        private BrowseServiceSoapClient BrowseService = new BrowseServiceSoapClient();
+        // DEFAULT CONSTRUCTOR
+        public BrowserForm(){ InitializeComponent(); }
+
+        // USER CONSTRUCTOR
         public BrowserForm(User user)
         {
             InitializeComponent();
             this.user = user;
+
             label18.Text = user.nume + " " + user.prenume;
             pictureBoxUser.Image = ConvertByteArrayToImage(user.pozaProfil);
 
+            // POPULATE GRIDVIEW
             dsAnnounces = BrowseService.PopulateGrid();
             dataGridView.DataSource = dsAnnounces.Tables["Announces"].DefaultView;
-           
+
+            // IF THERE ARE ANNOUNCES 
             if (dataGridView.Rows.Count > 0)
             {
+                // SELECT THE FIRST ANNOUNCE AND GET ITS ID
                 int id = int.Parse(dataGridView.Rows[0].Cells[1].Value.ToString());
                 byte[] announceImageCollumValue = (byte[])dataGridView.Rows[0].Cells[dataGridView.Rows[0].Cells.Count - 4].Value;
+                // DRAW THE PICTURE OF THE ANNOUNCE
                 pictureBoxAnnounce.Image = ConvertByteArrayToImage(announceImageCollumValue);
-                announce=BrowseService.getAnounceData(id);
+                announce = BrowseService.getAnounceData(id);
             }
             init();
             resetFilters();
 
         }
 
+        // ADMIN CONSTRUCTOR
         public BrowserForm(Admin admin)
         {
             InitializeComponent();
             this.admin = admin;
             label18.Text = admin.nume + " " + admin.prenume;
-            pictureBoxUser.Image = ConvertByteArrayToImage(admin.pozaProfil);
 
+            pictureBoxUser.Image = ConvertByteArrayToImage(admin.pozaProfil);
+            buttonMyAnnounces.Text = "Admin Tools";
+
+            // POPULATE GRIDVIEW
             dsAnnounces = BrowseService.PopulateGrid();
             dataGridView.DataSource = dsAnnounces.Tables["Announces"].DefaultView;
 
-            buttonMyAnnounces.Text = "Admin Tools";
+            // IF THERE ARE ANNOUNCES 
+            if (dataGridView.Rows.Count > 0)
+            {
+                // SELECT THE FIRST ANNOUNCE AND GET ITS ID
+                int id = int.Parse(dataGridView.Rows[0].Cells[1].Value.ToString());
+                byte[] announceImageCollumValue = (byte[])dataGridView.Rows[0].Cells[dataGridView.Rows[0].Cells.Count - 4].Value;
+                // DRAW THE PICTURE OF THE ANNOUNCE
+                pictureBoxAnnounce.Image = ConvertByteArrayToImage(announceImageCollumValue);
+                announce = BrowseService.getAnounceData(id);
+            }
 
             init();
             resetFilters();
         }
 
-
+        // INITIALISE 
         private void init()
         {
             dataGridView.Columns["IdUser"].Visible = false;
@@ -63,18 +85,8 @@ namespace CarAppWebClient
 
         }
 
-        private void resetFilters()
-        {
-            textBoxMarca.Text = "Nespecificat";
-            textBoxModel.Text = "Nespecificat";
-            textBoxPretMin.Text = "De la";
-            textBoxPretMax.Text = "Pana la";
-            textBoxVarianta.Text = "GTI,RS,OPC,ST";
-            textBoxPwMin.Text = "De la";
-            textBoxPwMax.Text = "Pana la";
-            textBoxKmMin.Text = "De la";
-            textBoxKmMax.Text = "Pana la";
-            textBoxLocatie.Text = "Nespecificat";
+        // RESET ADVANCED FILTERS
+        private void resetAdvancedFilters() {
 
             comboBoxAn.Items.Clear();
             comboBoxAn.Items.Add("Nespecificat");
@@ -154,8 +166,28 @@ namespace CarAppWebClient
             comboBoxCombustibil.Items.Add("Altul");
             comboBoxCombustibil.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxCombustibil.SelectedIndex = 0;
+
+            textBoxPwMin.Text = "De la";
+            textBoxPwMax.Text = "Pana la";
+            textBoxKmMin.Text = "De la";
+            textBoxKmMax.Text = "Pana la";
         }
 
+        // RESET ALL FILTERS
+        private void resetFilters()
+        {
+            textBoxMarca.Text = "Nespecificat";
+            textBoxModel.Text = "Nespecificat";
+            textBoxPretMin.Text = "De la";
+            textBoxPretMax.Text = "Pana la";
+            textBoxVarianta.Text = "GTI,RS,OPC,ST";
+            textBoxLocatie.Text = "Nespecificat";
+            resetAdvancedFilters();
+           
+        }
+
+
+        // FILTER ANNOUNCES
 
         private void buttonFilter_Click(object sender, EventArgs e)
         {
@@ -180,31 +212,32 @@ namespace CarAppWebClient
             string anMin = "0", anMax = "0";
             string ccMin = "0", ccMax = "0";
 
-            // ------------------------------MARCA------------------------------
-            if (marca.Equals("Nespecificat")) marca = "Neselectat";
-            // ------------------------------MODEL------------------------------
-            if (model.Equals("Nespecificat")) model = "Neselectat";
-            // -----------------------------VARIANTA----------------------------
-            if (varianta.Equals("GTI,RS,OPC,ST")) varianta = "Neselectat";
-            // ---------------------------COMBUSTIBIL---------------------------
-            if (combustibil.Equals("Nespecificat")) combustibil = "Neselectat";
-            // ----------------------------CAROSERIE----------------------------
-            if (caroserie.Equals("Nespecificat")) caroserie = "Neselectat";
-            // ---------------------------CUTIEVITEZE---------------------------
-            if (cutieViteze.Equals("Nespecificat")) cutieViteze = "Neselectat";
-            // -----------------------------LOCATIE-----------------------------
-            if (locatie.Equals("Nespecificat")) locatie = "Neselectat";
-            // -----------------------------CULOARE-----------------------------
-            if (culoare.Equals("Nespecificat")) culoare = "Neselectat";
-            // ------------------------------PRET-------------------------------
-            if (pretmin.Equals("De la")) pretmin = "0";
-            if (pretmax.Equals("Pana la")) pretmax = "0";
-            // -----------------------------PUTERE------------------------------
-            if (putereMin.Equals("De la")) putereMin = "0";
-            if (putereMax.Equals("Pana la")) putereMax = "0";
-            // ---------------------------KILOMETRAJ----------------------------
-            if (kmMin.Equals("De la")) kmMin = "0";
-            if (kmMax.Equals("Pana la")) kmMax = "0";
+            // ------------------------------------------MARCA--------------------------------------
+            if (marca.Equals("Nespecificat") || string.IsNullOrEmpty(marca)) marca = "Neselectat";
+            // -------------------------------------------MODEL------------------------------------------
+            if (model.Equals("Nespecificat") || string.IsNullOrEmpty(model)) model = "Neselectat";
+            // ------------------------------------------VARIANTA--------------------------------------------------
+            if (varianta.Equals("GTI,RS,OPC,ST") || string.IsNullOrEmpty(varianta)) varianta = "Neselectat";
+            // ----------------------------------------COMBUSTIBIL--------------------------------------------------
+            if (combustibil.Equals("Nespecificat") || string.IsNullOrEmpty(combustibil)) combustibil = "Neselectat";
+            // -----------------------------------------CAROSERIE---------------------------------------------
+            if (caroserie.Equals("Nespecificat") || string.IsNullOrEmpty(caroserie)) caroserie = "Neselectat";
+            // ----------------------------------------CUTIEVITEZE--------------------------------------------------
+            if (cutieViteze.Equals("Nespecificat") || string.IsNullOrEmpty(cutieViteze)) cutieViteze = "Neselectat";
+            // ------------------------------------------LOCATIE------------------------------------------
+            if (locatie.Equals("Nespecificat") || string.IsNullOrEmpty(locatie)) locatie = "Neselectat";
+            // ------------------------------------------CULOARE------------------------------------------
+            if (culoare.Equals("Nespecificat") || string.IsNullOrEmpty(culoare)) culoare = "Neselectat";
+            // -----------------------------------PRET------------------------------------
+            if (pretmin.Equals("De la") || string.IsNullOrEmpty(pretmin)) pretmin = "0";
+            if (pretmax.Equals("Pana la") || string.IsNullOrEmpty(pretmax)) pretmax = "0";
+            // -------------------------------------PUTERE---------------------------------------
+            if (putereMin.Equals("De la") || string.IsNullOrEmpty(putereMin)) putereMin = "0";
+            if (putereMax.Equals("Pana la") || string.IsNullOrEmpty(putereMax)) putereMax = "0";
+            // --------------------------------KILOMETRAJ---------------------------------
+            if (kmMin.Equals("De la") || string.IsNullOrEmpty(kmMin)) kmMin = "0";
+            if (kmMax.Equals("Pana la") || string.IsNullOrEmpty(kmMax)) kmMax = "0";
+
             // ------------------------------------AN------------------------------------
             if (anFabricatie.Equals("Nespecificat")) { anMin = "0"; anMax = "0"; }
             if (anFabricatie.Equals("< 1970")) { anMin = "0"; anMax = "1970"; }
@@ -240,6 +273,7 @@ namespace CarAppWebClient
             this.dataGridView.DataSource = dsAnnounces.Tables["Announces"].DefaultView;
         }
 
+        // DISABLES/ENABLES ADVANCE FILTERING
         private void checkBoxFiltre_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxFiltre.Checked)
@@ -248,17 +282,21 @@ namespace CarAppWebClient
             }
             else
             {
+                resetAdvancedFilters();
                 groupBox2.Enabled = false;
             }
         }
 
+        // REMOVES FILTERS
         private void buttonRemoveFilter_Click(object sender, EventArgs e)
         {
             resetFilters();
+            // REPOPULATE DATAGRIDVIEW WITH ALL THE ANNOUNCES
             dsAnnounces = BrowseService.PopulateGrid();
             dataGridView.DataSource = dsAnnounces.Tables["Announces"].DefaultView;
         }
 
+        // CONVERTS BYTE ARRAY TO IMAGE, USED FOR DISPLAYING ANNOUNCE PICTURE
         public System.Drawing.Image ConvertByteArrayToImage(byte[] byteArray)
         {
             MemoryStream ms = new MemoryStream(byteArray);
@@ -266,11 +304,14 @@ namespace CarAppWebClient
             return rez;
         }
 
+        // SELECTS THE ANNOUNCE AFTER CLICKKING 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            // IF CLICKED WITHIN THE DATAGRIDVIEW
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
+                // GETS THE ANNOUNCE PICTURE FOR THE PICTURE BOX, IF THERE IS ANY
                 if (selectedRow.Cells[selectedRow.Cells.Count - 1].Value != DBNull.Value)
                 {
                     byte[] announceImageCollumValue = (byte[])selectedRow.Cells[selectedRow.Cells.Count - 4].Value;
@@ -284,10 +325,13 @@ namespace CarAppWebClient
                 announce = null;
         }
 
+        // OPENS MY ANNOUNCES FORM, OR IF ADMIN, ADMIN TOOLS
         private void buttonMyAnnounces_Click(object sender, EventArgs e)
         {
+            // IF ADMIN
             if (admin != null)
             {
+                // OPENS AdminToolsForm, HIDES THIS FORM
                 AdminToolsForm atf = new AdminToolsForm(admin);
                 this.Hide();
                 atf.Show();
@@ -298,8 +342,10 @@ namespace CarAppWebClient
             }
             else
             {
+                // IF USER
                 if (user != null)
                 {
+                    // OPENS MyAnnouncesForm, HIDES THIS FORM
                     MyAnnounces ma = new MyAnnounces(user);
                     this.Hide();
                     ma.Show();
@@ -312,17 +358,16 @@ namespace CarAppWebClient
             }
         }
 
-
-
-
-
+        // OPENS ANNOUNCE IN NEW FORM
         private void buttonViewAnnounce_Click(object sender, EventArgs e)
         {
-            // daca e selectat anuntu
+            // IF AN ANNOUNCE HAS BEEN SELECTED BEFORE, THEREFOR IT EXISTS
             if (announce != null)
             {
+                // IF THERE IS A USER
                 if (user != null)
                 {
+                    // OPENS A ViewAnnounceForm FORM WITH THE SELECTED ANNOUNCE, CLOSES THIS ONE
                     ViewAnnounceForm vaf = new ViewAnnounceForm(announce, user);
                     this.Hide();
                     vaf.Show();
@@ -331,9 +376,10 @@ namespace CarAppWebClient
                         this.Show();
                     }
                 }
-                // daca e user
+                // IF THERE IS AN ADMIN
                 if (admin != null)
                 {
+                    // OPENS A ViewAnnounceForm FORM WITH THE SELECTED ANNOUNCE, CLOSES THIS ON
                     ViewAnnounceForm vaf = new ViewAnnounceForm(announce, admin);
                     this.Hide();
                     vaf.Show();
@@ -346,16 +392,22 @@ namespace CarAppWebClient
 
         }
 
+        // CLOSES THE APPLICATION
         private void BrowserForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
 
+        // LOGOUT
         private void buttonLogOut_Click(object sender, EventArgs e)
         {
             this.Dispose();
             new LoginForm().Show();
         }
+
+
+
+
 
         private void pictureBoxAnnounce_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -368,5 +420,34 @@ namespace CarAppWebClient
                 pf.ShowDialog();
             }
         }
+
+
+        private void textBoxPwMin_MouseClick(object sender, MouseEventArgs e) { textBoxPwMin.Text = null; }
+        private void textBoxPwMax_MouseClick(object sender, MouseEventArgs e) { textBoxPwMax.Text = null; }
+
+        private void textBoxKmMin_MouseClick(object sender, MouseEventArgs e) { textBoxKmMin.Text = null; }
+        private void textBoxKmMax_MouseClick(object sender, MouseEventArgs e) { textBoxKmMax.Text = null; }
+
+        private void textBoxPretMin_MouseClick(object sender, MouseEventArgs e) {textBoxPretMin.Text = null; }
+        private void textBoxPretMax_MouseClick(object sender, MouseEventArgs e) {textBoxPretMax.Text = null; }
+
+
+        private void onlyNumbers(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void textBoxPwMin_KeyPress(object sender, KeyPressEventArgs e) { onlyNumbers(sender, e); }
+        private void textBoxPwMax_KeyPress(object sender, KeyPressEventArgs e) { onlyNumbers(sender, e); }
+
+        private void textBoxKmMin_KeyPress(object sender, KeyPressEventArgs e) { onlyNumbers(sender, e); }
+        private void textBoxKmMax_KeyPress(object sender, KeyPressEventArgs e) { onlyNumbers(sender, e); }
+
+        private void textBoxPretMin_KeyPress(object sender, KeyPressEventArgs e) { onlyNumbers(sender, e); }
+        private void textBoxPretMax_KeyPress(object sender, KeyPressEventArgs e) { onlyNumbers(sender, e); }
+
+ 
     }
 }

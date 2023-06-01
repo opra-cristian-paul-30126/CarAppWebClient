@@ -9,41 +9,39 @@ namespace CarAppWebClient
     {
         private String parola;
         private String email;
-        bool isAdmin = false;
-        User user;
-        Admin admin;
-        LoginServiceSoapClient loginService = new LoginServiceSoapClient();
-        // string eyeOpen = Path.Combine(Application.StartupPath,  "eyeOpen.png");
-        // string eyeClose = Path.Combine(Application.StartupPath, "eyeClose.png");
-
+        private bool isAdmin = false;
+        private User user;
+        private Admin admin;
+        private LoginServiceSoapClient loginService = new LoginServiceSoapClient();
         public LoginForm()
         {
             InitializeComponent();
             textBoxPassword.UseSystemPasswordChar = true;
-            // passBox.BackgroundImage = Image.FromFile(eyeClose);
         }
 
+        // LOGIN
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            email = textBoxUsername.Text;
+            email  = textBoxUsername.Text;
             parola = textBoxPassword.Text;
 
+            // CHECKS IF EMAIL IS IN CORRECT FORMAT
             if (IsValidEmail(email))
             {
-                // EMAIL IS VALID FORM
+                // CHECKS IF EMAIL IS IN DATABASE
                 if (loginService.FoundEmail(email, isAdmin))
                 {
-                    // EMAIL IS IN DATABASE
+                    // CHECKS PASSWORD
                     if (loginService.CheckPassword(email, parola, isAdmin))
                     {
-                        // SUCCESSFUL LOGIN, OPENING BROWSER FORM
-                        // REGULAR USER
+                        // IF REGULAR USER
                         if (!isAdmin)
                         {
                             user = loginService.ReturnUser(email);
-                            // CHECK IF BANNED
+                            // CHECK IF NOT BANNED
                             if (!user.isBanned)
                             {
+                                // SUCCESSFUL LOGIN, OPENING BROWSER FORM
                                 BrowserForm bf = new BrowserForm(user);
                                 this.Hide();
                                 bf.Show();
@@ -61,6 +59,7 @@ namespace CarAppWebClient
                         // ADMIN
                         else
                         {
+                            // SUCCESSFUL LOGIN, OPENING BROWSER FORM
                             admin = loginService.ReturnAdmin(email);
                             BrowserForm bf = new BrowserForm(admin);
                             this.Hide();
@@ -90,12 +89,14 @@ namespace CarAppWebClient
             }
         }
 
+        // OPEN REGISTER FORM
         private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             RegisterForm rf = new RegisterForm(this);
             rf.ShowDialog();
         }
 
+        // CHEKS IF EMAIL IS IN VALID FORMAT (USERNAME@DOMAIN.TLD)
         private bool IsValidEmail(string email)
         {
             string pattern = @"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$";
@@ -104,22 +105,23 @@ namespace CarAppWebClient
             return match.Success;
         }
 
+        // CHANGES BACK AND FORTH THE LOGIN TYPE USER/ADMIN
         private void checkBox_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox.Checked) isAdmin = true;
             else isAdmin = false;   
         }
 
+        // SHOWS/HIDES THE PASSWORD
         private void passBox_CheckedChanged(object sender, EventArgs e)
         {
             if (passBox.Checked)
-            //passBox.BackgroundImage = Image.FromFile(eyeOpen);
-            textBoxPassword.UseSystemPasswordChar = false;
+                textBoxPassword.UseSystemPasswordChar = false;
             else
-            //passBox.BackgroundImage = Image.FromFile(eyeClose);
-            textBoxPassword.UseSystemPasswordChar = true;
+                textBoxPassword.UseSystemPasswordChar = true;
         }
 
+        // CLOSES THE APPLICATION
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();

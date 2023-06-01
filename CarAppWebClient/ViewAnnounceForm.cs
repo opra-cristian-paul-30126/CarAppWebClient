@@ -3,7 +3,7 @@ using System;
 using System.Windows.Forms;
 using CarAppWebClient.LoginService;
 using System.IO;
-using System.Collections;
+using System.Drawing;
 
 namespace CarAppWebClient
 {
@@ -43,8 +43,17 @@ namespace CarAppWebClient
             pictureBoxImage2.Image = ConvertByteArrayToImage(announce.imag2);
             pictureBoxImage3.Image = ConvertByteArrayToImage(announce.imag3);
 
+            richTextBox1.Font = new Font("Arial", 12);
+            richTextBox1.ForeColor = Color.Green;
+
+
 
             string announceData = $"Marca: {announce.marca}\n";
+            announceData += $"Pret: {announce.pret}\n"; // Highlighted: Price
+            announceData += "\n";
+            announceData += $"Telefon: {announce.telefon}\n"; // Highlighted: Telefon
+            announceData += "\n";
+            announceData += $"Locatie: {announce.locatie}\n"; // Highlighted: 
             announceData += "\n";
             announceData += $"Model: {announce.model}\n";
             announceData += "\n";
@@ -56,12 +65,7 @@ namespace CarAppWebClient
             announceData += "\n";
             announceData += $"An fabricatie: {announce.an}\n";
             announceData += "\n";
-            announceData += $"Locatie: {announce.locatie}\n";
-            announceData += "\n";
-            announceData += $"Pret: {announce.pret}\n";
-            announceData += "\n";
-            announceData += $"Telefon: {announce.telefon}\n";
-            announceData += "\n";
+
             announceData += $"Kilometraj: {announce.km}\n";
             announceData += "\n";
             announceData += $"Combustibil: {announce.combustibil}\n";
@@ -72,12 +76,14 @@ namespace CarAppWebClient
             announceData += "\n";
             announceData += $"PutereKw: {announce.putereKw}\n";
             announceData += "\n";
+
             announceData += $"Cutie de viteze: {announce.cutieViteze}\n";
             announceData += "\n";
             announceData += $"Descriere: {announce.descriere}\n";
             announceData += "\n";
-
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
             richTextBox1.Text = announceData;
+
 
         }
 
@@ -101,7 +107,6 @@ namespace CarAppWebClient
                 new BrowserForm(user).Show();
             }
         }
-
 
         private void fullPicture(PictureBox pb)
         {

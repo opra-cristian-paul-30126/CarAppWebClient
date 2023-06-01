@@ -188,7 +188,6 @@
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 6;
             this.pictureBox.TabStop = false;
-            this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
             // 
             // label3
             // 
@@ -211,8 +210,10 @@
             this.textBoxTelefon.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTelefon.MaxLength = 10;
             this.textBoxTelefon.Name = "textBoxTelefon";
+            this.textBoxTelefon.ShortcutsEnabled = false;
             this.textBoxTelefon.Size = new System.Drawing.Size(102, 22);
-            this.textBoxTelefon.TabIndex = 11;
+            this.textBoxTelefon.TabIndex = 10;
+            this.textBoxTelefon.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTelefon_KeyPress);
             // 
             // textBoxConfirmareParola
             // 
@@ -379,13 +380,13 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Bauhaus 93", 21.75F);
+            this.label4.Font = new System.Drawing.Font("Bauhaus 93", 36F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Green;
-            this.label4.Location = new System.Drawing.Point(70, 24);
+            this.label4.Location = new System.Drawing.Point(103, 3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(366, 33);
+            this.label4.Size = new System.Drawing.Size(288, 54);
             this.label4.TabIndex = 17;
-            this.label4.Text = "Stealy Wheely Automobiley";
+            this.label4.Text = "Car-Ma App ";
             // 
             // groupBox2
             // 
@@ -411,7 +412,8 @@
             this.MinimumSize = new System.Drawing.Size(335, 366);
             this.Name = "RegisterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Inregistrare";
+            this.Text = "Car-Ma App <REGISTER>";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RegisterForm_FormClosing);
             this.groupBox_default.ResumeLayout(false);
             this.groupBox_default.PerformLayout();
@@ -452,5 +454,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox3;
+
     }
 }

@@ -16,18 +16,18 @@ namespace CarAppWebClient.CreateAccountService {
     public interface CreateAccountSoap {
         
         // CODEGEN: Generating message contract since element name nume from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/createUserAcount", ReplyAction="*")]
-        CarAppWebClient.CreateAccountService.createUserAcountResponse createUserAcount(CarAppWebClient.CreateAccountService.createUserAcountRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/createUserAccount", ReplyAction="*")]
+        CarAppWebClient.CreateAccountService.createUserAccountResponse createUserAccount(CarAppWebClient.CreateAccountService.createUserAccountRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/createUserAcount", ReplyAction="*")]
-        System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createUserAcountResponse> createUserAcountAsync(CarAppWebClient.CreateAccountService.createUserAcountRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/createUserAccount", ReplyAction="*")]
+        System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createUserAccountResponse> createUserAccountAsync(CarAppWebClient.CreateAccountService.createUserAccountRequest request);
         
         // CODEGEN: Generating message contract since element name nume from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/createAdminAcount", ReplyAction="*")]
-        CarAppWebClient.CreateAccountService.createAdminAcountResponse createAdminAcount(CarAppWebClient.CreateAccountService.createAdminAcountRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/createAdminAccount", ReplyAction="*")]
+        CarAppWebClient.CreateAccountService.createAdminAccountResponse createAdminAccount(CarAppWebClient.CreateAccountService.createAdminAccountRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/createAdminAcount", ReplyAction="*")]
-        System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createAdminAcountResponse> createAdminAcountAsync(CarAppWebClient.CreateAccountService.createAdminAcountRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/createAdminAccount", ReplyAction="*")]
+        System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createAdminAccountResponse> createAdminAccountAsync(CarAppWebClient.CreateAccountService.createAdminAccountRequest request);
         
         // CODEGEN: Generating message contract since element name pass from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/checkPass", ReplyAction="*")]
@@ -41,15 +41,15 @@ namespace CarAppWebClient.CreateAccountService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class createUserAcountRequest {
+    public partial class createUserAccountRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="createUserAcount", Namespace="http://tempuri.org/", Order=0)]
-        public CarAppWebClient.CreateAccountService.createUserAcountRequestBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="createUserAccount", Namespace="http://tempuri.org/", Order=0)]
+        public CarAppWebClient.CreateAccountService.createUserAccountRequestBody Body;
         
-        public createUserAcountRequest() {
+        public createUserAccountRequest() {
         }
         
-        public createUserAcountRequest(CarAppWebClient.CreateAccountService.createUserAcountRequestBody Body) {
+        public createUserAccountRequest(CarAppWebClient.CreateAccountService.createUserAccountRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -58,7 +58,7 @@ namespace CarAppWebClient.CreateAccountService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class createUserAcountRequestBody {
+    public partial class createUserAccountRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
         public string nume;
@@ -81,10 +81,10 @@ namespace CarAppWebClient.CreateAccountService {
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
         public byte[] userImage;
         
-        public createUserAcountRequestBody() {
+        public createUserAccountRequestBody() {
         }
         
-        public createUserAcountRequestBody(string nume, string prenume, string email, string parola, string adresa, string telefon, byte[] userImage) {
+        public createUserAccountRequestBody(string nume, string prenume, string email, string parola, string adresa, string telefon, byte[] userImage) {
             this.nume = nume;
             this.prenume = prenume;
             this.email = email;
@@ -99,15 +99,15 @@ namespace CarAppWebClient.CreateAccountService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class createUserAcountResponse {
+    public partial class createUserAccountResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="createUserAcountResponse", Namespace="http://tempuri.org/", Order=0)]
-        public CarAppWebClient.CreateAccountService.createUserAcountResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="createUserAccountResponse", Namespace="http://tempuri.org/", Order=0)]
+        public CarAppWebClient.CreateAccountService.createUserAccountResponseBody Body;
         
-        public createUserAcountResponse() {
+        public createUserAccountResponse() {
         }
         
-        public createUserAcountResponse(CarAppWebClient.CreateAccountService.createUserAcountResponseBody Body) {
+        public createUserAccountResponse(CarAppWebClient.CreateAccountService.createUserAccountResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -116,16 +116,16 @@ namespace CarAppWebClient.CreateAccountService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class createUserAcountResponseBody {
+    public partial class createUserAccountResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public bool createUserAcountResult;
+        public bool createUserAccountResult;
         
-        public createUserAcountResponseBody() {
+        public createUserAccountResponseBody() {
         }
         
-        public createUserAcountResponseBody(bool createUserAcountResult) {
-            this.createUserAcountResult = createUserAcountResult;
+        public createUserAccountResponseBody(bool createUserAccountResult) {
+            this.createUserAccountResult = createUserAccountResult;
         }
     }
     
@@ -133,15 +133,15 @@ namespace CarAppWebClient.CreateAccountService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class createAdminAcountRequest {
+    public partial class createAdminAccountRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="createAdminAcount", Namespace="http://tempuri.org/", Order=0)]
-        public CarAppWebClient.CreateAccountService.createAdminAcountRequestBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="createAdminAccount", Namespace="http://tempuri.org/", Order=0)]
+        public CarAppWebClient.CreateAccountService.createAdminAccountRequestBody Body;
         
-        public createAdminAcountRequest() {
+        public createAdminAccountRequest() {
         }
         
-        public createAdminAcountRequest(CarAppWebClient.CreateAccountService.createAdminAcountRequestBody Body) {
+        public createAdminAccountRequest(CarAppWebClient.CreateAccountService.createAdminAccountRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -150,7 +150,7 @@ namespace CarAppWebClient.CreateAccountService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class createAdminAcountRequestBody {
+    public partial class createAdminAccountRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
         public string nume;
@@ -170,10 +170,10 @@ namespace CarAppWebClient.CreateAccountService {
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
         public byte[] userImage;
         
-        public createAdminAcountRequestBody() {
+        public createAdminAccountRequestBody() {
         }
         
-        public createAdminAcountRequestBody(string nume, string prenume, string email, string parola, string contact, byte[] userImage) {
+        public createAdminAccountRequestBody(string nume, string prenume, string email, string parola, string contact, byte[] userImage) {
             this.nume = nume;
             this.prenume = prenume;
             this.email = email;
@@ -187,15 +187,15 @@ namespace CarAppWebClient.CreateAccountService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class createAdminAcountResponse {
+    public partial class createAdminAccountResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="createAdminAcountResponse", Namespace="http://tempuri.org/", Order=0)]
-        public CarAppWebClient.CreateAccountService.createAdminAcountResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="createAdminAccountResponse", Namespace="http://tempuri.org/", Order=0)]
+        public CarAppWebClient.CreateAccountService.createAdminAccountResponseBody Body;
         
-        public createAdminAcountResponse() {
+        public createAdminAccountResponse() {
         }
         
-        public createAdminAcountResponse(CarAppWebClient.CreateAccountService.createAdminAcountResponseBody Body) {
+        public createAdminAccountResponse(CarAppWebClient.CreateAccountService.createAdminAccountResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -204,16 +204,16 @@ namespace CarAppWebClient.CreateAccountService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class createAdminAcountResponseBody {
+    public partial class createAdminAccountResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public bool createAdminAcountResult;
+        public bool createAdminAccountResult;
         
-        public createAdminAcountResponseBody() {
+        public createAdminAccountResponseBody() {
         }
         
-        public createAdminAcountResponseBody(bool createAdminAcountResult) {
-            this.createAdminAcountResult = createAdminAcountResult;
+        public createAdminAccountResponseBody(bool createAdminAccountResult) {
+            this.createAdminAccountResult = createAdminAccountResult;
         }
     }
     
@@ -313,13 +313,13 @@ namespace CarAppWebClient.CreateAccountService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        CarAppWebClient.CreateAccountService.createUserAcountResponse CarAppWebClient.CreateAccountService.CreateAccountSoap.createUserAcount(CarAppWebClient.CreateAccountService.createUserAcountRequest request) {
-            return base.Channel.createUserAcount(request);
+        CarAppWebClient.CreateAccountService.createUserAccountResponse CarAppWebClient.CreateAccountService.CreateAccountSoap.createUserAccount(CarAppWebClient.CreateAccountService.createUserAccountRequest request) {
+            return base.Channel.createUserAccount(request);
         }
         
-        public bool createUserAcount(string nume, string prenume, string email, string parola, string adresa, string telefon, byte[] userImage) {
-            CarAppWebClient.CreateAccountService.createUserAcountRequest inValue = new CarAppWebClient.CreateAccountService.createUserAcountRequest();
-            inValue.Body = new CarAppWebClient.CreateAccountService.createUserAcountRequestBody();
+        public bool createUserAccount(string nume, string prenume, string email, string parola, string adresa, string telefon, byte[] userImage) {
+            CarAppWebClient.CreateAccountService.createUserAccountRequest inValue = new CarAppWebClient.CreateAccountService.createUserAccountRequest();
+            inValue.Body = new CarAppWebClient.CreateAccountService.createUserAccountRequestBody();
             inValue.Body.nume = nume;
             inValue.Body.prenume = prenume;
             inValue.Body.email = email;
@@ -327,18 +327,18 @@ namespace CarAppWebClient.CreateAccountService {
             inValue.Body.adresa = adresa;
             inValue.Body.telefon = telefon;
             inValue.Body.userImage = userImage;
-            CarAppWebClient.CreateAccountService.createUserAcountResponse retVal = ((CarAppWebClient.CreateAccountService.CreateAccountSoap)(this)).createUserAcount(inValue);
-            return retVal.Body.createUserAcountResult;
+            CarAppWebClient.CreateAccountService.createUserAccountResponse retVal = ((CarAppWebClient.CreateAccountService.CreateAccountSoap)(this)).createUserAccount(inValue);
+            return retVal.Body.createUserAccountResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createUserAcountResponse> CarAppWebClient.CreateAccountService.CreateAccountSoap.createUserAcountAsync(CarAppWebClient.CreateAccountService.createUserAcountRequest request) {
-            return base.Channel.createUserAcountAsync(request);
+        System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createUserAccountResponse> CarAppWebClient.CreateAccountService.CreateAccountSoap.createUserAccountAsync(CarAppWebClient.CreateAccountService.createUserAccountRequest request) {
+            return base.Channel.createUserAccountAsync(request);
         }
         
-        public System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createUserAcountResponse> createUserAcountAsync(string nume, string prenume, string email, string parola, string adresa, string telefon, byte[] userImage) {
-            CarAppWebClient.CreateAccountService.createUserAcountRequest inValue = new CarAppWebClient.CreateAccountService.createUserAcountRequest();
-            inValue.Body = new CarAppWebClient.CreateAccountService.createUserAcountRequestBody();
+        public System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createUserAccountResponse> createUserAccountAsync(string nume, string prenume, string email, string parola, string adresa, string telefon, byte[] userImage) {
+            CarAppWebClient.CreateAccountService.createUserAccountRequest inValue = new CarAppWebClient.CreateAccountService.createUserAccountRequest();
+            inValue.Body = new CarAppWebClient.CreateAccountService.createUserAccountRequestBody();
             inValue.Body.nume = nume;
             inValue.Body.prenume = prenume;
             inValue.Body.email = email;
@@ -346,42 +346,42 @@ namespace CarAppWebClient.CreateAccountService {
             inValue.Body.adresa = adresa;
             inValue.Body.telefon = telefon;
             inValue.Body.userImage = userImage;
-            return ((CarAppWebClient.CreateAccountService.CreateAccountSoap)(this)).createUserAcountAsync(inValue);
+            return ((CarAppWebClient.CreateAccountService.CreateAccountSoap)(this)).createUserAccountAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        CarAppWebClient.CreateAccountService.createAdminAcountResponse CarAppWebClient.CreateAccountService.CreateAccountSoap.createAdminAcount(CarAppWebClient.CreateAccountService.createAdminAcountRequest request) {
-            return base.Channel.createAdminAcount(request);
+        CarAppWebClient.CreateAccountService.createAdminAccountResponse CarAppWebClient.CreateAccountService.CreateAccountSoap.createAdminAccount(CarAppWebClient.CreateAccountService.createAdminAccountRequest request) {
+            return base.Channel.createAdminAccount(request);
         }
         
-        public bool createAdminAcount(string nume, string prenume, string email, string parola, string contact, byte[] userImage) {
-            CarAppWebClient.CreateAccountService.createAdminAcountRequest inValue = new CarAppWebClient.CreateAccountService.createAdminAcountRequest();
-            inValue.Body = new CarAppWebClient.CreateAccountService.createAdminAcountRequestBody();
+        public bool createAdminAccount(string nume, string prenume, string email, string parola, string contact, byte[] userImage) {
+            CarAppWebClient.CreateAccountService.createAdminAccountRequest inValue = new CarAppWebClient.CreateAccountService.createAdminAccountRequest();
+            inValue.Body = new CarAppWebClient.CreateAccountService.createAdminAccountRequestBody();
             inValue.Body.nume = nume;
             inValue.Body.prenume = prenume;
             inValue.Body.email = email;
             inValue.Body.parola = parola;
             inValue.Body.contact = contact;
             inValue.Body.userImage = userImage;
-            CarAppWebClient.CreateAccountService.createAdminAcountResponse retVal = ((CarAppWebClient.CreateAccountService.CreateAccountSoap)(this)).createAdminAcount(inValue);
-            return retVal.Body.createAdminAcountResult;
+            CarAppWebClient.CreateAccountService.createAdminAccountResponse retVal = ((CarAppWebClient.CreateAccountService.CreateAccountSoap)(this)).createAdminAccount(inValue);
+            return retVal.Body.createAdminAccountResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createAdminAcountResponse> CarAppWebClient.CreateAccountService.CreateAccountSoap.createAdminAcountAsync(CarAppWebClient.CreateAccountService.createAdminAcountRequest request) {
-            return base.Channel.createAdminAcountAsync(request);
+        System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createAdminAccountResponse> CarAppWebClient.CreateAccountService.CreateAccountSoap.createAdminAccountAsync(CarAppWebClient.CreateAccountService.createAdminAccountRequest request) {
+            return base.Channel.createAdminAccountAsync(request);
         }
         
-        public System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createAdminAcountResponse> createAdminAcountAsync(string nume, string prenume, string email, string parola, string contact, byte[] userImage) {
-            CarAppWebClient.CreateAccountService.createAdminAcountRequest inValue = new CarAppWebClient.CreateAccountService.createAdminAcountRequest();
-            inValue.Body = new CarAppWebClient.CreateAccountService.createAdminAcountRequestBody();
+        public System.Threading.Tasks.Task<CarAppWebClient.CreateAccountService.createAdminAccountResponse> createAdminAccountAsync(string nume, string prenume, string email, string parola, string contact, byte[] userImage) {
+            CarAppWebClient.CreateAccountService.createAdminAccountRequest inValue = new CarAppWebClient.CreateAccountService.createAdminAccountRequest();
+            inValue.Body = new CarAppWebClient.CreateAccountService.createAdminAccountRequestBody();
             inValue.Body.nume = nume;
             inValue.Body.prenume = prenume;
             inValue.Body.email = email;
             inValue.Body.parola = parola;
             inValue.Body.contact = contact;
             inValue.Body.userImage = userImage;
-            return ((CarAppWebClient.CreateAccountService.CreateAccountSoap)(this)).createAdminAcountAsync(inValue);
+            return ((CarAppWebClient.CreateAccountService.CreateAccountSoap)(this)).createAdminAccountAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MyAnnounces));
             this.buttonModify = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
@@ -103,7 +104,7 @@
             // 
             // pictureBox
             // 
-            this.pictureBox.Location = new System.Drawing.Point(12, 30);
+            this.pictureBox.Location = new System.Drawing.Point(11, 28);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(200, 200);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -161,11 +162,11 @@
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Bauhaus 93", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Green;
-            this.label19.Location = new System.Drawing.Point(241, 16);
+            this.label19.Location = new System.Drawing.Point(332, 16);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(366, 33);
+            this.label19.Size = new System.Drawing.Size(168, 33);
             this.label19.TabIndex = 12;
-            this.label19.Text = "Stealy Wheely Automobiley";
+            this.label19.Text = "Car-Ma App";
             // 
             // groupBox4
             // 
@@ -188,10 +189,12 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(897, 568);
             this.MinimumSize = new System.Drawing.Size(897, 568);
             this.Name = "MyAnnounces";
-            this.Text = "MyAnnounces";
+            this.Text = "Car-Ma App <My Announces>";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MyAnnounces_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();

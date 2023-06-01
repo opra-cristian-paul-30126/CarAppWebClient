@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminToolsForm));
             this.buttonBack = new System.Windows.Forms.Button();
             this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
             this.buttonBan = new System.Windows.Forms.Button();
@@ -49,6 +50,8 @@
             // 
             // dataGridViewUsers
             // 
+            this.dataGridViewUsers.AllowUserToAddRows = false;
+            this.dataGridViewUsers.AllowUserToDeleteRows = false;
             this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewUsers.Location = new System.Drawing.Point(12, 12);
             this.dataGridViewUsers.Name = "dataGridViewUsers";
@@ -109,8 +112,13 @@
             this.Controls.Add(this.buttonBan);
             this.Controls.Add(this.dataGridViewUsers);
             this.Controls.Add(this.buttonBack);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(816, 464);
+            this.MinimumSize = new System.Drawing.Size(816, 464);
             this.Name = "AdminToolsForm";
-            this.Text = "AdminTools";
+            this.Text = "Car-Ma App <AdminTools>";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdminToolsForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
             this.ResumeLayout(false);

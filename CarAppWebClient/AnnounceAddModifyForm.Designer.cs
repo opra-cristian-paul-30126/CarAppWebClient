@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnnounceAddModifyForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonImag3 = new System.Windows.Forms.Button();
             this.buttonImag2 = new System.Windows.Forms.Button();
@@ -164,6 +165,7 @@
             this.pictureBox3.Location = new System.Drawing.Point(849, 19);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(200, 200);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
             // 
@@ -173,6 +175,7 @@
             this.pictureBox2.Location = new System.Drawing.Point(612, 19);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(200, 200);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             // 
@@ -182,6 +185,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(371, 19);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(200, 200);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
@@ -193,6 +197,7 @@
             this.pictureBoxAnnounce.Location = new System.Drawing.Point(51, 19);
             this.pictureBoxAnnounce.Name = "pictureBoxAnnounce";
             this.pictureBoxAnnounce.Size = new System.Drawing.Size(200, 200);
+            this.pictureBoxAnnounce.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxAnnounce.TabIndex = 0;
             this.pictureBoxAnnounce.TabStop = false;
             // 
@@ -273,6 +278,7 @@
             this.textBoxAn.Location = new System.Drawing.Point(92, 150);
             this.textBoxAn.MaxLength = 4;
             this.textBoxAn.Name = "textBoxAn";
+            this.textBoxAn.ShortcutsEnabled = false;
             this.textBoxAn.Size = new System.Drawing.Size(159, 22);
             this.textBoxAn.TabIndex = 41;
             this.textBoxAn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxAn_KeyPress);
@@ -285,6 +291,7 @@
             this.textBoxCC.Location = new System.Drawing.Point(92, 253);
             this.textBoxCC.MaxLength = 4;
             this.textBoxCC.Name = "textBoxCC";
+            this.textBoxCC.ShortcutsEnabled = false;
             this.textBoxCC.Size = new System.Drawing.Size(159, 22);
             this.textBoxCC.TabIndex = 40;
             this.textBoxCC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCC_KeyPress);
@@ -297,6 +304,7 @@
             this.textBoxPutereKW.Location = new System.Drawing.Point(92, 227);
             this.textBoxPutereKW.MaxLength = 4;
             this.textBoxPutereKW.Name = "textBoxPutereKW";
+            this.textBoxPutereKW.ShortcutsEnabled = false;
             this.textBoxPutereKW.Size = new System.Drawing.Size(159, 22);
             this.textBoxPutereKW.TabIndex = 39;
             this.textBoxPutereKW.TextChanged += new System.EventHandler(this.textBoxPutereKW_TextChanged);
@@ -310,6 +318,7 @@
             this.textBoxPutere.Location = new System.Drawing.Point(92, 201);
             this.textBoxPutere.MaxLength = 4;
             this.textBoxPutere.Name = "textBoxPutere";
+            this.textBoxPutere.ShortcutsEnabled = false;
             this.textBoxPutere.Size = new System.Drawing.Size(159, 22);
             this.textBoxPutere.TabIndex = 38;
             this.textBoxPutere.TextChanged += new System.EventHandler(this.textBoxPutere_TextChanged);
@@ -323,6 +332,7 @@
             this.textBoxKm.Location = new System.Drawing.Point(92, 175);
             this.textBoxKm.MaxLength = 7;
             this.textBoxKm.Name = "textBoxKm";
+            this.textBoxKm.ShortcutsEnabled = false;
             this.textBoxKm.Size = new System.Drawing.Size(159, 22);
             this.textBoxKm.TabIndex = 37;
             this.textBoxKm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxKm_KeyPress);
@@ -345,6 +355,7 @@
             this.textBoxPret.Location = new System.Drawing.Point(92, 98);
             this.textBoxPret.MaxLength = 7;
             this.textBoxPret.Name = "textBoxPret";
+            this.textBoxPret.ShortcutsEnabled = false;
             this.textBoxPret.Size = new System.Drawing.Size(159, 22);
             this.textBoxPret.TabIndex = 35;
             this.textBoxPret.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPret_KeyPress);
@@ -608,6 +619,7 @@
             // richTextBoxDescriere
             // 
             this.richTextBoxDescriere.BackColor = System.Drawing.Color.SeaGreen;
+            this.richTextBoxDescriere.ForeColor = System.Drawing.Color.Snow;
             this.richTextBoxDescriere.Location = new System.Drawing.Point(6, 24);
             this.richTextBoxDescriere.Name = "richTextBoxDescriere";
             this.richTextBoxDescriere.Size = new System.Drawing.Size(523, 253);
@@ -630,11 +642,11 @@
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Bauhaus 93", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Green;
-            this.label19.Location = new System.Drawing.Point(370, 7);
+            this.label19.Location = new System.Drawing.Point(452, 7);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(366, 33);
+            this.label19.Size = new System.Drawing.Size(168, 33);
             this.label19.TabIndex = 12;
-            this.label19.Text = "Stealy Wheely Automobiley";
+            this.label19.Text = "Car-Ma App";
             // 
             // AnnounceAddModifyForm
             // 
@@ -646,11 +658,14 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1149, 686);
             this.MinimumSize = new System.Drawing.Size(1149, 686);
             this.Name = "AnnounceAddModifyForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form";
+            this.Text = "Car-Ma App";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AnnounceAddModifyForm_FormClosing);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
